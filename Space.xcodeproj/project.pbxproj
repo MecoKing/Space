@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB335D9218A10E1C00AF7A33 /* HumanCargo.png */; };
+		CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27918A0305200D0F466 /* RogueFighter.png */; };
+		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
+		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
+		CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC2189B524E0012B45F /* AlienFighter.png */; };
+		CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC3189B524E0012B45F /* HumanFighter.png */; };
 		CBC0C0711899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C0731899A615005E2507 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0721899A615005E2507 /* SpriteKit.framework */; };
 		CBC0C07D1899A615005E2507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC0C07B1899A615005E2507 /* InfoPlist.strings */; };
@@ -34,6 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB335D9218A10E1C00AF7A33 /* HumanCargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanCargo.png; path = Images/HumanCargo.png; sourceTree = SOURCE_ROOT; };
+		CB47C27918A0305200D0F466 /* RogueFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueFighter.png; path = Images/RogueFighter.png; sourceTree = SOURCE_ROOT; };
+		CB47C27B18A0328A00D0F466 /* SPACEShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEShip.h; sourceTree = "<group>"; };
+		CB47C27C18A0328A00D0F466 /* SPACEShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEShip.m; sourceTree = "<group>"; };
+		CB47C27E18A033ED00D0F466 /* Laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Laser.png; path = Images/Laser.png; sourceTree = SOURCE_ROOT; };
+		CB7C6BC2189B524E0012B45F /* AlienFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlienFighter.png; path = Images/AlienFighter.png; sourceTree = SOURCE_ROOT; };
+		CB7C6BC3189B524E0012B45F /* HumanFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanFighter.png; path = Images/HumanFighter.png; sourceTree = SOURCE_ROOT; };
 		CBC0C06D1899A615005E2507 /* Space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Space.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC0C0701899A615005E2507 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CBC0C0721899A615005E2507 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -81,6 +94,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CBAF1FC0189AA82B00F747FD /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				CB7C6BC2189B524E0012B45F /* AlienFighter.png */,
+				CB7C6BC3189B524E0012B45F /* HumanFighter.png */,
+				CB47C27918A0305200D0F466 /* RogueFighter.png */,
+				CB335D9218A10E1C00AF7A33 /* HumanCargo.png */,
+				CB47C27E18A033ED00D0F466 /* Laser.png */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
 		CBC0C0641899A615005E2507 = {
 			isa = PBXGroup;
 			children = (
@@ -125,11 +150,14 @@
 			isa = PBXGroup;
 			children = (
 				CBC0C0841899A615005E2507 /* MainMenu.xib */,
-				CBC0C0861899A615005E2507 /* SPACEMyScene.m */,
 				CBC0C0881899A615005E2507 /* SPACEMyScene.h */,
-				CBC0C0891899A615005E2507 /* SPACEAppDelegate.m */,
+				CBC0C0861899A615005E2507 /* SPACEMyScene.m */,
+				CB47C27B18A0328A00D0F466 /* SPACEShip.h */,
+				CB47C27C18A0328A00D0F466 /* SPACEShip.m */,
 				CBC0C08B1899A615005E2507 /* SPACEAppDelegate.h */,
+				CBC0C0891899A615005E2507 /* SPACEAppDelegate.m */,
 				CBC0C08C1899A615005E2507 /* Spaceship.png */,
+				CBAF1FC0189AA82B00F747FD /* Graphics */,
 				CBC0C08E1899A615005E2507 /* Images.xcassets */,
 				CBC0C0791899A615005E2507 /* Supporting Files */,
 			);
@@ -242,9 +270,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB47C27F18A033ED00D0F466 /* Laser.png in Resources */,
 				CBC0C08D1899A615005E2507 /* Spaceship.png in Resources */,
+				CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */,
 				CBC0C08F1899A615005E2507 /* Images.xcassets in Resources */,
+				CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */,
 				CBC0C07D1899A615005E2507 /* InfoPlist.strings in Resources */,
+				CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */,
+				CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */,
 				CBC0C0831899A615005E2507 /* Credits.rtf in Resources */,
 				CBC0C0851899A615005E2507 /* MainMenu.xib in Resources */,
 			);
@@ -267,6 +300,7 @@
 			files = (
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBC0C08A1899A615005E2507 /* SPACEAppDelegate.m in Sources */,
+				CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */,
 				CBC0C0871899A615005E2507 /* SPACEMyScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +506,7 @@
 				CBC0C0A61899A615005E2507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CBC0C0A71899A615005E2507 /* Build configuration list for PBXNativeTarget "SpaceTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +515,7 @@
 				CBC0C0A91899A615005E2507 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
