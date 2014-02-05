@@ -12,6 +12,7 @@
 @interface SPACEStellarBody : NSObject
 
 +(instancetype)randomStarWithSize:(CGSize)size;
++(instancetype)redGiantWithSize:(CGSize)size;
 +(instancetype)randomPlanetWithSize:(CGSize)size;
 
 @property CGFloat radius;

@@ -127,10 +127,12 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         
         NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
 //        Test with more stars
-//        starCount = 100;
+//        starCount = 10;
         for (NSUInteger i = 0; i < starCount; i++) {
-            [self addChild:[SPACEStellarBody randomStarWithSize:size].shape];
-            
+            if (SPACERandomInInterval(1, 1000) >= 995)
+                [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
+            else
+                [self addChild:[SPACEStellarBody randomStarWithSize:size].shape];
         }
         
         NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
