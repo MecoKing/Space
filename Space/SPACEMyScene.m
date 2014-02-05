@@ -116,22 +116,21 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         
-        SKColor *textColor = SPACEInverseOfColour(self.backgroundColor);
         SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
         SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
         planetCountLabel.position = CGPointMake(50, 20);
         starCountLabel.position = CGPointMake(50, 50);
-        planetCountLabel.color = textColor;
-        starCountLabel.color = textColor;
+        planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
+        starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
         planetCountLabel.fontSize = 14;
         starCountLabel.fontSize = 14;
-        
         
         NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
 //        Test with more stars
 //        starCount = 100;
         for (NSUInteger i = 0; i < starCount; i++) {
             [self addChild:[SPACEStellarBody randomStarWithSize:size].shape];
+            
         }
         
         NSUInteger planetCount = [self planetCountBasedOnStars:starCount];

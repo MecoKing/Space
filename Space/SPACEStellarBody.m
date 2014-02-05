@@ -69,7 +69,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)randomPlanetWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(5, 50);
-    body.mass = SPACERandomInInterval(5, 50) * body.radius;
+    body.mass = SPACERandomInInterval(10, 50) * body.radius;
     body.position = SPACERandomInSize(size);
     body.colour = SPACEAverageDarkColour();
     body.glowColour = [[body.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25];
