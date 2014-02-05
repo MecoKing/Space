@@ -14,6 +14,7 @@
 +(instancetype)randomStarWithSize:(CGSize)size;
 +(instancetype)randomPlanetWithSize:(CGSize)size;
 
++(instancetype)superGiantWithSize:(CGSize)size;
 +(instancetype)redGiantWithSize:(CGSize)size;
 +(instancetype)whiteDwarfWithSize:(CGSize)size;
 +(instancetype)moonWithSize:(CGSize)size;

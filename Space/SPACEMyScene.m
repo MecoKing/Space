@@ -142,7 +142,10 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
                 [self addChild:[SPACEStellarBody gasPlanetWithSize:size].shape];
         }
         for (NSUInteger i = 0; i < starCount; i++) {
-            if (SPACERandomInInterval(1, 200) >= 195)
+            CGFloat starType = SPACERandomInInterval(1, 1000);
+            if (starType >= 975)//2.5% chance
+                [self addChild:[SPACEStellarBody superGiantWithSize:size].shape];
+            else if (starType >= 950)//2.5% chance
                 [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
             else
                 [self addChild:[SPACEStellarBody whiteDwarfWithSize:size].shape];

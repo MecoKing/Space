@@ -81,6 +81,17 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 #pragma mark
 #pragma mark Non-Random Stellar Bodies
 
++(instancetype)superGiantWithSize:(CGSize)size {
+    SPACEStellarBody *body = [self new];
+    body.radius = SPACERandomInInterval(500, 1000);
+    body.mass = SPACERandomInInterval(500, 1000) * body.radius;
+    body.position = SPACERandomInSize(size);
+    body.colour = [SKColor colorWithRed:SPACERandomInInterval(0.75, 1) green:SPACERandomInInterval(0.45, 0.55) blue:0.2 alpha:1];
+    body.glowColour = [[body.colour blendedColorWithFraction:0.25 ofColor:[SKColor whiteColor]] colorWithAlphaComponent:0.75];
+    body.glowRatio = SPACERandomInInterval(0.3, 0.45);
+    return body;
+}
+
 +(instancetype)redGiantWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(250, 600);
