@@ -64,6 +64,48 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
     };
 }
 
+
+static inline CGPoint SPACESubtractPoint(CGPoint a, CGPoint b) {
+    return (CGPoint){
+        .x = a.x - b.x,
+        .y = a.y - b.y,
+    };
+}
+
+static inline CGFloat SPACEMagnitudeOfPoint(CGPoint a) {
+    return sqrt(a.x * a.x + a.y * a.y);
+}
+
+static inline CGFloat SPACEDistanceBetweenPoints(CGPoint a, CGPoint b) {
+    return SPACEMagnitudeOfPoint(SPACESubtractPoint(a, b));
+}
+
+static inline CGPoint SPACEMultiplyPoint(CGPoint a, CGPoint b) {
+    return (CGPoint){
+    	.x = a.x * b.x,
+        .y = a.y * b.y,
+    };
+}
+
+static inline CGPoint SPACEMultiplyPointByScalar(CGPoint a, CGFloat s) {
+    return (CGPoint){
+    	.x = a.x * s,
+        .y = a.y * s,
+    };
+}
+
+static inline CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s) {
+    return (CGPoint){
+    	.x = a.x / s,
+        .y = a.y / s,
+    };
+}
+
+static inline CGPoint SPACENormalizePoint(CGPoint a) {
+    CGFloat magnitude = SPACEMagnitudeOfPoint(a);
+    return SPACEDividePointByScalar(a, magnitude);
+}
+
 #pragma mark
 #pragma mark Stellar Bodies!
 
@@ -130,10 +172,12 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
     physicsBody.mass = self.mass;
     physicsBody.density = self.mass / area;
     
-    physicsBody.velocity = CGVectorMake(SPACERandomInInterval(10, 20), SPACERandomInInterval(10, 20));
+    physicsBody.velocity = CGVectorMake(SPACERandomInInterval(-20, 20), SPACERandomInInterval(-20, 20));
+    physicsBody.friction = 0;
     
     CGFloat oneRotationPerSecond = M_PI * 2;
     physicsBody.angularVelocity = SPACERandomInInterval(oneRotationPerSecond * 10, oneRotationPerSecond * 100);
+    physicsBody.angularDamping = 0;
     
     shape.physicsBody = physicsBody;
     
@@ -144,7 +188,11 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 
 
 #pragma mark
-#pragma mark DrawingToScreen!
+#pragma mark Scene
+
+@interface SPACEMyScene ()
+@property NSTimeInterval previousTime;
+@end
 
 @implementation SPACEMyScene
 
@@ -152,7 +200,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
     srandomdev();
 }
 
--(id)initWithSize:(CGSize)size {    
+-(instancetype)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
@@ -162,6 +210,14 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
         
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         
+        
+        SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+        SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+        planetCountLabel.position = CGPointMake(100, 50);
+        starCountLabel.position = CGPointMake(100, 100);
+
+        
+        
         NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
 //        Test with more stars
 //        starCount = 100;
@@ -169,14 +225,29 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
             [self addChild:[SPACEStellarBody randomStarWithSize:size].shape];
         }
         
-        NSUInteger planetCount = SPACERandomIntegerInInterval(1, 10);
+        NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
 //        Test with more planets
 //        planetCount = 100;
         for (NSUInteger i = 0; i < planetCount; i++) {
             [self addChild:[SPACEStellarBody randomPlanetInSceneWithSize:size].shape];
         }
+        
+
+        planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
+        starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
+        
+        [self addChild:planetCountLabel];
+        [self addChild:starCountLabel];
     }
     return self;
+}
+
+-(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
+    int planetCount = 0;
+    for (int i = 0; i < starCount; i++) {
+        planetCount += SPACERandomIntegerInInterval(1, 9);
+    }
+    return planetCount;
 }
 
 -(void)mouseDown:(NSEvent *)theEvent {
@@ -185,7 +256,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
     CGPoint location = [theEvent locationInNode:self];
     SKSpriteNode *sprite;
     
-    NSUInteger shipChoice = SPACERandomInInterval(1, 4);
+    NSUInteger shipChoice = SPACERandomInInterval(1, 4);//<- This is being stupid
     if (shipChoice == 1)
         sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
     else if (shipChoice == 2)
@@ -198,8 +269,28 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
     [self addChild:sprite];
 }
 
+// multiply by currentTime
 -(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+    for (SKNode *a in self.children) {
+        CGPoint centreOfGravity = a.position;
+        CGFloat mass = a.physicsBody.mass;
+        
+        for (SKNode *b in self.children) {
+            if (a == b) continue;
+            CGPoint position = b.position;
+            CGFloat distance = SPACEDistanceBetweenPoints(centreOfGravity, position);
+            if (distance == 0) continue;
+            
+            CGFloat magnitude = (mass * b.physicsBody.mass) / (distance * distance);
+            CGPoint direction = SPACENormalizePoint(SPACESubtractPoint(centreOfGravity, position));
+            
+            [b.physicsBody applyForce:(CGVector){
+                .dx = direction.x * magnitude,
+                .dy = direction.y * magnitude,
+            }];
+//            f = g * (m1 * m2 / r^2)
+        }
+    }
 }
 
 @end

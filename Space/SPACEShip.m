@@ -19,5 +19,4 @@
 //Hide behind Planets, Stars, etc. when weak
 //Team up with other ships of its type
 
-
 @end
