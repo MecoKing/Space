@@ -128,18 +128,24 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
 //        Test with more stars
 //        starCount = 10;
-        for (NSUInteger i = 0; i < starCount; i++) {
-            if (SPACERandomInInterval(1, 200) >= 195)//14|8|2|2|23
-                [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
-            else
-                [self addChild:[SPACEStellarBody randomStarWithSize:size].shape];
-        }
-        
         NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
 //        Test with more planets
 //        planetCount = 100;
+        
         for (NSUInteger i = 0; i < planetCount; i++) {
-            [self addChild:[SPACEStellarBody randomPlanetWithSize:size].shape];
+            CGFloat planetType = SPACERandomInInterval(1, 100);
+            if (planetType >= 66)
+                [self addChild:[SPACEStellarBody moonWithSize:size].shape];
+            else if (planetType >= 33)
+                [self addChild:[SPACEStellarBody terraPlanetWithSize:size].shape];
+            else
+                [self addChild:[SPACEStellarBody gasPlanetWithSize:size].shape];
+        }
+        for (NSUInteger i = 0; i < starCount; i++) {
+            if (SPACERandomInInterval(1, 200) >= 195)
+                [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
+            else
+                [self addChild:[SPACEStellarBody whiteDwarfWithSize:size].shape];
         }
         
 
