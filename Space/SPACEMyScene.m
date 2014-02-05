@@ -30,6 +30,10 @@ static inline SKColor *SPACERandomDarkColour() {
     return [SKColor colorWithRed:SPACERandomInInterval(0, 0.5) green:SPACERandomInInterval(0, 0.5) blue:SPACERandomInInterval(0, 0.5) alpha:1];
 }
 
+static inline SKColor *SPACEInverseOfColour(SKColor *colour) {
+    return [SKColor colorWithRed: 1 - colour.redComponent green: 1 - colour.greenComponent blue: 1 - colour.blueComponent alpha:1];
+}
+
 static inline CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent){
     CGFloat baseAfterAveraging;
     if (baseColourComponent > averageColourComponent + 0.1)
@@ -210,11 +214,15 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         
-        
-        SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-        planetCountLabel.position = CGPointMake(100, 50);
-        starCountLabel.position = CGPointMake(100, 100);
+        SKColor *textColor = SPACEInverseOfColour(self.backgroundColor);
+        SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+        SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+        planetCountLabel.position = CGPointMake(50, 20);
+        starCountLabel.position = CGPointMake(50, 50);
+        planetCountLabel.color = textColor;
+        starCountLabel.color = textColor;
+        planetCountLabel.fontSize = 12;
+        starCountLabel.fontSize = 12;
 
         
         
