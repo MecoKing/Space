@@ -24,10 +24,6 @@ static inline SKColor *SPACERandomColour() {
     return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
 }
 
-static inline SKColor *SPACERandomLightColour() {
-    return [SKColor colorWithRed:SPACERandomInInterval(0.5, 1) green:SPACERandomInInterval(0.5, 1) blue:SPACERandomInInterval(0.5, 1) alpha:1];
-}
-
 static inline SKColor *SPACERandomDarkColour() {
     return [SKColor colorWithRed:SPACERandomInInterval(0, 0.5) green:SPACERandomInInterval(0, 0.5) blue:SPACERandomInInterval(0, 0.5) alpha:1];
 }
@@ -48,28 +44,12 @@ static inline CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGF
     return baseAfterAveraging;
 }
 
-static inline SKColor *SPACEAverageLightColour () {
-    SKColor *baseColour = SPACERandomLightColour();
-    CGFloat averageColourComponent = (baseColour.redComponent + baseColour.blueComponent + baseColour.greenComponent) / 3;
-    
-    return [SKColor colorWithRed:SPACEFloatCloseToAverage(baseColour.redComponent, averageColourComponent) green:SPACEFloatCloseToAverage(baseColour.greenComponent, averageColourComponent) blue:SPACEFloatCloseToAverage(baseColour.blueComponent, averageColourComponent ) alpha:1];
-}
-
 static inline SKColor *SPACEAverageDarkColour () {
     SKColor *baseColour = SPACERandomDarkColour();
     CGFloat averageColour = (baseColour.redComponent + baseColour.blueComponent + baseColour.greenComponent) / 3;
     
     return [SKColor colorWithRed:SPACEFloatCloseToAverage(baseColour.redComponent, averageColour) green:SPACEFloatCloseToAverage(baseColour.greenComponent, averageColour) blue:SPACEFloatCloseToAverage(baseColour.blueComponent, averageColour) alpha:1];
 }
-
-
-static inline CGPoint SPACERandomInSize(CGSize size) {
-    return (CGPoint){
-        .x = SPACERandomInInterval(0, size.width),
-        .y = SPACERandomInInterval(0, size.height),
-    };
-}
-
 
 static inline CGPoint SPACESubtractPoint(CGPoint a, CGPoint b) {
     return (CGPoint){
