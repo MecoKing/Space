@@ -8,6 +8,11 @@
 
 #import "SPACEShip.h"
 
+static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
+    CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
+    return value * fabs(to - from) + from;
+}
+
 @implementation SPACEShip
 
 //Ships should do different things based on type
@@ -18,5 +23,19 @@
 //Should Also
 //Hide behind Planets, Stars, etc. when weak
 //Team up with other ships of its type
+
++(instancetype) randomShipAtPosition: (CGPoint)position {
+    SPACEShip *ship = [self new];
+    NSUInteger shipChoice = SPACERandomInInterval(1, 4);//<- This is being stupid
+    if (shipChoice == 1)
+        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
+    else if (shipChoice == 2)
+        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"RogueFighter"];
+    else if (shipChoice == 3)
+        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"AlienFighter"];
+    
+    ship.sprite.position = position;
+    return ship;
+}
 
 @end

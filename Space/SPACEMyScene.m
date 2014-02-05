@@ -7,6 +7,7 @@
 //
 
 #import "SPACEMyScene.h"
+#import "SPACEShip.h"
 
 #pragma mark Stuff!
 static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
@@ -221,9 +222,8 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         starCountLabel.position = CGPointMake(50, 50);
         planetCountLabel.color = textColor;
         starCountLabel.color = textColor;
-        planetCountLabel.fontSize = 12;
-        starCountLabel.fontSize = 12;
-
+        planetCountLabel.fontSize = 14;
+        starCountLabel.fontSize = 14;
         
         
         NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
@@ -243,7 +243,6 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
         planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
         starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-        
         [self addChild:planetCountLabel];
         [self addChild:starCountLabel];
     }
@@ -251,9 +250,9 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 }
 
 -(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
-    int planetCount = 0;
-    for (int i = 0; i < starCount; i++) {
-        planetCount += SPACERandomIntegerInInterval(1, 9);
+    int planetCount = SPACERandomInInterval(1, 9);//Alway at least one planet per system
+    for (int i = 0; i < starCount - 1; i++) {
+        planetCount += SPACERandomInInterval(0, 9);//possible to have one planet for 3 stars
     }
     return planetCount;
 }
@@ -262,19 +261,9 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
      /* Called when a mouse click occurs */
     
     CGPoint location = [theEvent locationInNode:self];
-    SKSpriteNode *sprite;
     
-    NSUInteger shipChoice = SPACERandomInInterval(1, 4);//<- This is being stupid
-    if (shipChoice == 1)
-        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
-    else if (shipChoice == 2)
-        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"RogueFighter"];
-    else if (shipChoice == 3)
-        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"AlienFighter"];
-    
-    sprite.position = location;
-    
-    [self addChild:sprite];
+    [self addChild:[SPACEShip randomShipAtPosition:location].sprite];
+
 }
 
 // multiply by currentTime

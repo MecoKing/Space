@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SpriteKit/SpriteKit.h>
 
 @interface SPACEShip : NSObject
+
+@property SKSpriteNode *sprite;
+
++(instancetype) randomShipAtPosition: (CGPoint) position;
 
 @end
