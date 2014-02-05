@@ -13,6 +13,7 @@
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
 		CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC2189B524E0012B45F /* AlienFighter.png */; };
 		CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC3189B524E0012B45F /* HumanFighter.png */; };
+		CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA2394D18A27C8100351847 /* SPACEStellarBody.m */; };
 		CBC0C0711899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C0731899A615005E2507 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0721899A615005E2507 /* SpriteKit.framework */; };
 		CBC0C07D1899A615005E2507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC0C07B1899A615005E2507 /* InfoPlist.strings */; };
@@ -47,6 +48,8 @@
 		CB47C27E18A033ED00D0F466 /* Laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Laser.png; path = Images/Laser.png; sourceTree = SOURCE_ROOT; };
 		CB7C6BC2189B524E0012B45F /* AlienFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlienFighter.png; path = Images/AlienFighter.png; sourceTree = SOURCE_ROOT; };
 		CB7C6BC3189B524E0012B45F /* HumanFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanFighter.png; path = Images/HumanFighter.png; sourceTree = SOURCE_ROOT; };
+		CBA2394C18A27C8100351847 /* SPACEStellarBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStellarBody.h; sourceTree = "<group>"; };
+		CBA2394D18A27C8100351847 /* SPACEStellarBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStellarBody.m; sourceTree = "<group>"; };
 		CBC0C06D1899A615005E2507 /* Space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Space.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC0C0701899A615005E2507 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		CBC0C0721899A615005E2507 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -152,6 +155,8 @@
 				CBC0C0841899A615005E2507 /* MainMenu.xib */,
 				CBC0C0881899A615005E2507 /* SPACEMyScene.h */,
 				CBC0C0861899A615005E2507 /* SPACEMyScene.m */,
+				CBA2394C18A27C8100351847 /* SPACEStellarBody.h */,
+				CBA2394D18A27C8100351847 /* SPACEStellarBody.m */,
 				CB47C27B18A0328A00D0F466 /* SPACEShip.h */,
 				CB47C27C18A0328A00D0F466 /* SPACEShip.m */,
 				CBC0C08B1899A615005E2507 /* SPACEAppDelegate.h */,
@@ -300,6 +305,7 @@
 			files = (
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBC0C08A1899A615005E2507 /* SPACEAppDelegate.m in Sources */,
+				CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */,
 				CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */,
 				CBC0C0871899A615005E2507 /* SPACEMyScene.m in Sources */,
 			);

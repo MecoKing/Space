@@ -7,6 +7,7 @@
 //
 
 #import "SPACEMyScene.h"
+#import "SPACEStellarBody.h"
 #import "SPACEShip.h"
 
 #pragma mark Stuff!
@@ -111,86 +112,6 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
     return SPACEDividePointByScalar(a, magnitude);
 }
 
-#pragma mark
-#pragma mark Stellar Bodies!
-
-@interface SPACEStellarBody : NSObject
-
-+(instancetype)randomStarWithSize:(CGSize)size;
-
-@property CGFloat radius;
-@property CGFloat mass;
-@property CGPoint position;
-@property SKColor *colour;
-@property SKColor *glowColour;
-@property CGFloat glowRatio;
-
-@property (readonly) SKShapeNode *shape;
-
-@end
-
-@implementation SPACEStellarBody
-
-+(instancetype)randomStarWithSize:(CGSize)size {
-    SPACEStellarBody *body = [self new];
-    body.radius = SPACERandomInInterval(20, 100);
-    body.mass = SPACERandomInInterval(20, 100) * body.radius;
-    body.position = SPACERandomInSize(size);
-    body.colour = SPACERandomLightColour();
-    body.glowColour = [[body.colour blendedColorWithFraction:0.25 ofColor:[SKColor whiteColor]] colorWithAlphaComponent:0.5];
-    body.glowRatio = 0.5;
-    return body;
-}
-
-+(instancetype)randomPlanetInSceneWithSize:(CGSize)size {
-    SPACEStellarBody *body = [self new];
-    body.radius = SPACERandomInInterval(5, 50);
-    body.mass = SPACERandomInInterval(5, 50) * body.radius;
-    body.position = SPACERandomInSize(size);
-    body.colour = SPACEAverageDarkColour();
-    body.glowColour = [[body.colour blendedColorWithFraction:0.5 ofColor:[SKColor cyanColor]] colorWithAlphaComponent:0.25];
-    body.glowRatio = 0.1;
-    return body;
-}
-
-
--(SKShapeNode *)shape {
-    SKShapeNode *shape = [SKShapeNode node];
-    
-    CGRect bounds = {
-        .origin.x = -self.radius,
-        .origin.y = -self.radius,
-        .size.width = self.radius * 2,
-        .size.height = self.radius * 2,
-    };
-    CGPathRef path = CGPathCreateWithEllipseInRect(bounds, NULL);
-    shape.path = path;
-    CGPathRelease(path);
-    
-    shape.fillColor = self.colour;
-    shape.strokeColor = self.glowColour;
-    shape.glowWidth = self.radius * self.glowRatio;
-    shape.position = self.position;
-    
-    SKPhysicsBody *physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.radius];
-    CGFloat area = M_PI * self.radius * self.radius;
-    physicsBody.mass = self.mass;
-    physicsBody.density = self.mass / area;
-    
-    physicsBody.velocity = CGVectorMake(SPACERandomInInterval(-20, 20), SPACERandomInInterval(-20, 20));
-    physicsBody.friction = 0;
-    
-    CGFloat oneRotationPerSecond = M_PI * 2;
-    physicsBody.angularVelocity = SPACERandomInInterval(oneRotationPerSecond * 10, oneRotationPerSecond * 100);
-    physicsBody.angularDamping = 0;
-    
-    shape.physicsBody = physicsBody;
-    
-    return shape;
-}
-
-@end
-
 
 #pragma mark
 #pragma mark Scene
@@ -237,7 +158,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 //        Test with more planets
 //        planetCount = 100;
         for (NSUInteger i = 0; i < planetCount; i++) {
-            [self addChild:[SPACEStellarBody randomPlanetInSceneWithSize:size].shape];
+            [self addChild:[SPACEStellarBody randomPlanetWithSize:size].shape];
         }
         
 
@@ -259,9 +180,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void)mouseDown:(NSEvent *)theEvent {
      /* Called when a mouse click occurs */
-    
     CGPoint location = [theEvent locationInNode:self];
-    
     [self addChild:[SPACEShip randomShipAtPosition:location].sprite];
 
 }

@@ -26,13 +26,15 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
 
 +(instancetype) randomShipAtPosition: (CGPoint)position {
     SPACEShip *ship = [self new];
-    NSUInteger shipChoice = SPACERandomInInterval(1, 4);//<- This is being stupid
+    NSUInteger shipChoice = SPACERandomInInterval(1, 5);//<- This is being stupid
     if (shipChoice == 1)
         ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
     else if (shipChoice == 2)
         ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"RogueFighter"];
     else if (shipChoice == 3)
         ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"AlienFighter"];
+    else if (shipChoice == 4)
+        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanCargo"];
     
     ship.sprite.position = position;
     return ship;
