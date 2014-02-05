@@ -72,7 +72,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
     body.mass = SPACERandomInInterval(5, 50) * body.radius;
     body.position = SPACERandomInSize(size);
     body.colour = SPACEAverageDarkColour();
-    body.glowColour = [[body.colour blendedColorWithFraction:0.5 ofColor:[SKColor cyanColor]] colorWithAlphaComponent:0.25];
+    body.glowColour = [[body.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25];
     body.glowRatio = 0.1;
     return body;
 }
