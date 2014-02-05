@@ -129,7 +129,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 //        Test with more stars
 //        starCount = 10;
         for (NSUInteger i = 0; i < starCount; i++) {
-            if (SPACERandomInInterval(1, 1000) >= 995)
+            if (SPACERandomInInterval(1, 200) >= 195)//14|8|2|2|23
                 [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
             else
                 [self addChild:[SPACEStellarBody randomStarWithSize:size].shape];
@@ -163,7 +163,11 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
      /* Called when a mouse click occurs */
     CGPoint location = [theEvent locationInNode:self];
     [self addChild:[SPACEShip randomShipAtPosition:location].sprite];
+}
 
+-(void) keyDown:(NSEvent *)theEvent {
+    [self removeAllChildren];
+    [self initWithSize:self.size];
 }
 
 // multiply by currentTime
