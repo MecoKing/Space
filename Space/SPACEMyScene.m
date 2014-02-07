@@ -144,7 +144,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         for (NSUInteger i = 0; i < starCount; i++) {
             CGFloat starType = SPACERandomInInterval(1, 1000);
             if (starType >= 975)//2.5% chance
-                [self addChild:[SPACEStellarBody superGiantWithSize:size].shape];
+                [self addChild:[SPACEStellarBody supernovaWithSize:size].shape];
             else if (starType >= 950)//2.5% chance
                 [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
             else
