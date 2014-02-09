@@ -23,21 +23,12 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
 //Should Also
 //Hide behind Planets, Stars, etc. when weak
 //Team up with other ships of its type
-
-+(instancetype) randomShipAtPosition: (CGPoint)position {
-    SPACEShip *ship = [self new];
-    NSUInteger shipChoice = SPACERandomInInterval(1, 5);//<- This is being stupid
-    if (shipChoice == 1)
-        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
-    else if (shipChoice == 2)
-        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"RogueFighter"];
-    else if (shipChoice == 3)
-        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"AlienFighter"];
-    else if (shipChoice == 4)
-        ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:@"HumanCargo"];
-    
-    ship.sprite.position = position;
-    return ship;
-}
+//
+//W key - Move forward based on direction
+//A key - Rotate left
+//S key - Move backward based on direction
+//D key - Rotate right
+//SPACE - Fire lasers based on mouse location
+//SHIFT - Enter stealth mode
 
 @end

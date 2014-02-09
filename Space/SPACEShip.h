@@ -11,8 +11,4 @@
 
 @interface SPACEShip : NSObject
 
-@property SKSpriteNode *sprite;
-
-+(instancetype) randomShipAtPosition: (CGPoint) position;
-
 @end

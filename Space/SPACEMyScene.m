@@ -8,7 +8,6 @@
 
 #import "SPACEMyScene.h"
 #import "SPACEStellarBody.h"
-#import "SPACEShip.h"
 
 #pragma mark Stuff!
 static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
@@ -166,12 +165,6 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         planetCount += SPACERandomInInterval(0, 9);//possible to have one planet for 3 stars
     }
     return planetCount;
-}
-
--(void)mouseDown:(NSEvent *)theEvent {
-     /* Called when a mouse click occurs */
-    CGPoint location = [theEvent locationInNode:self];
-    [self addChild:[SPACEShip randomShipAtPosition:location].sprite];
 }
 
 -(void) keyDown:(NSEvent *)theEvent {
