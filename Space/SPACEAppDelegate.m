@@ -9,12 +9,6 @@
 #import "SPACEAppDelegate.h"
 #import "SPACEMyScene.h"
 
-@interface SPACEAppDelegate ()
-
-@property SKScene *scene;
-
-@end
-
 @implementation SPACEAppDelegate
 
 @synthesize window = _window;
@@ -23,12 +17,12 @@
 {
     /* Pick a size for the scene */
     CGSize size = [self.window contentRectForFrameRect:self.window.frame].size;
-    self.scene = [SPACEMyScene sceneWithSize:size];
+    SKScene *scene = [SPACEMyScene sceneWithSize:size];
 
     /* Set the scale mode to scale to fit the window */
-    self.scene.scaleMode = SKSceneScaleModeAspectFit;
+    scene.scaleMode = SKSceneScaleModeAspectFit;
 
-    [self.skView presentScene:self.scene];
+    [self.skView presentScene:scene];
 
 //    self.skView.showsFPS = YES;
 //    self.skView.showsNodeCount = YES;
