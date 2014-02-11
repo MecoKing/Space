@@ -20,7 +20,7 @@
     SKScene *scene = [SPACEMyScene sceneWithSize:size];
 
     /* Set the scale mode to scale to fit the window */
-    scene.scaleMode = SKSceneScaleModeAspectFit;
+    scene.scaleMode = SKSceneScaleModeResizeFill;
 
     [self.skView presentScene:scene];
 

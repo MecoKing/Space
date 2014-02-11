@@ -114,50 +114,47 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         self.backgroundColor = SPACEAverageDarkColour();
         
         self.physicsWorld.gravity = CGVectorMake(0, 0);
-        
-        SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-        SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-        planetCountLabel.position = CGPointMake(50, 20);
-        starCountLabel.position = CGPointMake(50, 50);
-        planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-        starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-        planetCountLabel.fontSize = 14;
-        starCountLabel.fontSize = 14;
-        
-        NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
-//        Test with more stars
-//        starCount = 10;
-        NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
-//        Test with more planets
-//        planetCount = 100;
-        
-        for (NSUInteger i = 0; i < planetCount; i++) {
-            CGFloat planetType = SPACERandomInInterval(1, 100);
-            if (planetType >= 66)
-                [self addChild:[SPACEStellarBody moonWithSize:size].shape];
-            else if (planetType >= 33)
-                [self addChild:[SPACEStellarBody terraPlanetWithSize:size].shape];
-            else
-                [self addChild:[SPACEStellarBody gasPlanetWithSize:size].shape];
-        }
-        for (NSUInteger i = 0; i < starCount; i++) {
-            CGFloat starType = SPACERandomInInterval(1, 1000);
-            if (starType >= 975)//2.5% chance
-                [self addChild:[SPACEStellarBody supernovaWithSize:size].shape];
-            else if (starType >= 950)//2.5% chance
-                [self addChild:[SPACEStellarBody redGiantWithSize:size].shape];
-            else
-                [self addChild:[SPACEStellarBody whiteDwarfWithSize:size].shape];
-        }
-        
-
-        planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
-        starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-        [self addChild:planetCountLabel];
-        [self addChild:starCountLabel];
+        [self generateSolarSystem];
     }
     return self;
 }
+
+-(void) generateSolarSystem {
+    NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
+    NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
+    for (NSUInteger i = 0; i < planetCount; i++) {
+        CGFloat planetType = SPACERandomInInterval(1, 100);
+        if (planetType >= 66)
+            [self addChild:[SPACEStellarBody moonWithSize:self.size].shape];
+        else if (planetType >= 33)
+            [self addChild:[SPACEStellarBody terraPlanetWithSize:self.size].shape];
+        else
+            [self addChild:[SPACEStellarBody gasPlanetWithSize:self.size].shape];
+    }
+    for (NSUInteger i = 0; i < starCount; i++) {
+        CGFloat starType = SPACERandomInInterval(1, 1000);
+        if (starType >= 975)//2.5% chance
+            [self addChild:[SPACEStellarBody supernovaWithSize:self.size].shape];
+        else if (starType >= 950)//2.5% chance
+            [self addChild:[SPACEStellarBody redGiantWithSize:self.size].shape];
+        else
+            [self addChild:[SPACEStellarBody whiteDwarfWithSize:self.size].shape];
+    }
+    
+    SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+    SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+    planetCountLabel.position = CGPointMake(50, 20);
+    starCountLabel.position = CGPointMake(50, 50);
+    planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
+    starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
+    planetCountLabel.fontSize = 14;
+    starCountLabel.fontSize = 14;
+    planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
+    starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
+    [self addChild:planetCountLabel];
+    [self addChild:starCountLabel];
+}
+
 
 -(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
     int planetCount = SPACERandomInInterval(1, 9);//Alway at least one planet per system
@@ -169,7 +166,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void) keyDown:(NSEvent *)theEvent {
     [self removeAllChildren];
-    [self initWithSize:self.size];
+    [self generateSolarSystem];
 }
 
 // multiply by currentTime

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8F403EB5-C8A9-406A-9A98-E3F922CA1C9C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Space</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B8C09D16-2713-4852-882F-36987588BE5C</key>
+		<string>https://github.com/MecoKing/Space.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Space.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B8C09D16-2713-4852-882F-36987588BE5C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MecoKing/Space.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B8C09D16-2713-4852-882F-36987588BE5C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B8C09D16-2713-4852-882F-36987588BE5C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Space</string>
+		</dict>
+	</array>
+</dict>
+</plist>
