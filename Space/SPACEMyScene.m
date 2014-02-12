@@ -171,6 +171,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void)update:(CFTimeInterval)currentTime {
     if (self.previousTime == 0) self.previousTime = currentTime;
+    const CGFloat gravitationalConstant = 6e-20;
     CFTimeInterval interval = currentTime - self.previousTime;
     for (SKNode *a in self.children) {
         CGPoint centreOfGravity = a.position;
@@ -182,7 +183,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
             CGFloat distance = SPACEDistanceBetweenPoints(centreOfGravity, position);
             if (distance == 0) continue;
             
-            CGFloat magnitude = (mass * b.physicsBody.mass) / (distance * distance);
+            CGFloat magnitude = gravitationalConstant * ((mass * b.physicsBody.mass) / (distance * distance));
             CGPoint direction = SPACENormalizePoint(SPACESubtractPoint(centreOfGravity, position));
             
             [b.physicsBody applyForce:(CGVector){
