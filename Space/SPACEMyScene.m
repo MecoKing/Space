@@ -169,8 +169,9 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
     [self generateSolarSystem];
 }
 
-// multiply by currentTime
 -(void)update:(CFTimeInterval)currentTime {
+    if (self.previousTime == 0) self.previousTime = currentTime;
+    CFTimeInterval interval = currentTime - self.previousTime;
     for (SKNode *a in self.children) {
         CGPoint centreOfGravity = a.position;
         CGFloat mass = a.physicsBody.mass;
@@ -191,6 +192,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 //            f = g * (m1 * m2 / r^2)
         }
     }
+    self.previousTime = currentTime;
 }
 
 @end
