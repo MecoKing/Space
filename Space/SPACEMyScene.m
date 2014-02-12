@@ -186,8 +186,8 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
             CGPoint direction = SPACENormalizePoint(SPACESubtractPoint(centreOfGravity, position));
             
             [b.physicsBody applyForce:(CGVector){
-                .dx = direction.x * magnitude,
-                .dy = direction.y * magnitude,
+                .dx = direction.x * magnitude * interval,
+                .dy = direction.y * magnitude * interval,
             }];
 //            f = g * (m1 * m2 / r^2)
         }
