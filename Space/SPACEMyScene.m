@@ -111,8 +111,6 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
-        self.backgroundColor = SPACEAverageDarkColour();
-        
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         [self generateSolarSystem];
     }
@@ -120,6 +118,8 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 }
 
 -(void) generateSolarSystem {
+    self.backgroundColor = SPACEAverageDarkColour();
+    
     NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
     NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
     for (NSUInteger i = 0; i < planetCount; i++) {
@@ -171,7 +171,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void)update:(CFTimeInterval)currentTime {
     if (self.previousTime == 0) self.previousTime = currentTime;
-    const CGFloat gravitationalConstant = 6e-20;
+    const CGFloat gravitationalConstant = 6e-18;
     CFTimeInterval interval = currentTime - self.previousTime;
     for (SKNode *a in self.children) {
         CGPoint centreOfGravity = a.position;
