@@ -84,7 +84,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)supernovaWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(400, 600);
-    body.mass = SPACERandomInInterval(400, 600) * body.radius;
+    body.mass = SPACERandomInInterval(1.5e31, 2.2e31);
     body.position = SPACERandomInSize(size);
     body.colour = [SKColor colorWithRed:SPACERandomInInterval(0.75, 1) green:SPACERandomInInterval(0.45, 0.55) blue:0.2 alpha:1];
     body.glowColour = [[body.colour blendedColorWithFraction:0.25 ofColor:[SKColor whiteColor]] colorWithAlphaComponent:0.75];
@@ -95,7 +95,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)redGiantWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(250, 400);
-    body.mass = SPACERandomInInterval(250, 400) * body.radius;
+    body.mass = SPACERandomInInterval(2.4e30, 3e30);
     body.position = SPACERandomInSize(size);
     body.colour = [SKColor colorWithRed:SPACERandomInInterval(0.5, 1) green:SPACERandomInInterval(0, 0.1) blue:SPACERandomInInterval(0, 0.1) alpha:1];
     body.glowColour = [[body.colour blendedColorWithFraction:0.25 ofColor:[SKColor whiteColor]] colorWithAlphaComponent:0.75];
@@ -106,7 +106,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)whiteDwarfWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(150, 250);
-    body.mass = SPACERandomInInterval(150, 250) * body.radius;
+    body.mass = SPACERandomInInterval(2e30, 2.1e30);
     body.position = SPACERandomInSize(size);
     body.colour = [SKColor colorWithRed:SPACERandomInInterval(0.8, 1) green:SPACERandomInInterval(0.8, 1) blue:SPACERandomInInterval(0.8, 1) alpha:1];
     body.glowColour = [[body.colour blendedColorWithFraction:0.25 ofColor:[SKColor whiteColor]] colorWithAlphaComponent:0.75];
@@ -117,7 +117,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)moonWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(5, 15);
-    body.mass = SPACERandomInInterval(5e10, 15e10) * body.radius;
+    body.mass = SPACERandomInInterval(1e15, 1e23);
     body.position = SPACERandomInSize(size);
     body.colour = SPACEAverageDarkColour();
     body.glowColour = [[body.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25];
@@ -128,7 +128,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)terraPlanetWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(20, 50);
-    body.mass = SPACERandomInInterval(20, 50) * body.radius;
+    body.mass = SPACERandomInInterval(2e23, 2e25);
     body.position = SPACERandomInSize(size);
     body.colour = SPACEAverageDarkColour();
     body.glowColour = [[body.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25];
@@ -139,7 +139,7 @@ static inline CGPoint SPACERandomInSize(CGSize size) {
 +(instancetype)gasPlanetWithSize:(CGSize)size {
     SPACEStellarBody *body = [self new];
     body.radius = SPACERandomInInterval(50, 100);
-    body.mass = SPACERandomInInterval(50, 100) * body.radius;
+    body.mass = SPACERandomInInterval(1e25, 1e27);
     body.position = SPACERandomInSize(size);
     body.colour = SPACEAverageDarkColour();
     body.glowColour = [[body.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25];
