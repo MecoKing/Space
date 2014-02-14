@@ -171,7 +171,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void)update:(CFTimeInterval)currentTime {
     if (self.previousTime == 0) self.previousTime = currentTime;
-    const CGFloat gravitationalConstant = 6e-18;
+    const CGFloat gravitationalConstant = 6e-19;
     CFTimeInterval interval = currentTime - self.previousTime;
     for (SKNode *a in self.children) {
         CGPoint centreOfGravity = a.position;
