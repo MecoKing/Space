@@ -16,9 +16,9 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
 @implementation SPACEShip
 
 //Ships should do different things based on type
-//Human Fighter - patrol area, attack alien and rogue fighters
-//Alien Fighter - Stalk Human Fighters, If no humans around attack Rogue Fighters
-//Rogue Fighters - Stalk Human Fighters, If no humans around attack Alien Fighters
+//Allied Fighter - patrol area, attack Enemy fighters
+//Neutral Fighter - Stalk Allied fighters, If no Allies around attack Neutral fighters
+//Rogue Fighters - Stalk Enemy fighters, Defend against anyship that attacks
 //
 //Should Also
 //Hide behind Planets, Stars, etc. when weak
@@ -28,7 +28,9 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
 //A key - Rotate left
 //S key - Move backward based on direction
 //D key - Rotate right
-//SPACE - Fire lasers based on mouse location
+//SPACE - Fire turrets based on mouse location
 //SHIFT - Enter stealth mode
+//LEFTMOUSE - Fire cannons from front of ship
+//RIGHTMOUSE - Fire missiles from front of ship, arc towards mouse location
 
 @end
