@@ -112,6 +112,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
         self.physicsWorld.gravity = CGVectorMake(0, 0);
+        [self generateNebula];
         [self generateSolarSystem];
     }
     return self;
@@ -156,6 +157,33 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 }
 
 
+-(void) generateNebula {
+    int numberOfClouds = (self.size.width / 2);
+
+    for (int i = 0; i < numberOfClouds; i++) {
+        
+        SKShapeNode *cloud = [SKShapeNode node];
+        int cloudSize = SPACERandomInInterval(10, 100);
+        
+        CGRect bounds = {
+            .origin.x = SPACERandomInInterval(0, self.size.width),
+            .origin.y = SPACERandomInInterval(0, self.size.height),
+            .size.width = cloudSize * 2,
+            .size.height = cloudSize * 2,
+        };
+   
+        CGPathRef path = CGPathCreateWithEllipseInRect(bounds, NULL);
+        cloud.path = path;
+        CGPathRelease(path);
+        
+        cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
+        cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.5);
+   
+        [self addChild:cloud];
+    }
+}
+
+
 -(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
     int planetCount = SPACERandomInInterval(1, 9);//Alway at least one planet per system
     for (int i = 0; i < starCount - 1; i++) {
@@ -166,6 +194,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void) keyDown:(NSEvent *)theEvent {
     [self removeAllChildren];
+    [self generateNebula];
     [self generateSolarSystem];
 }
 
