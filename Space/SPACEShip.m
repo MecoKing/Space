@@ -15,6 +15,20 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
 
 @implementation SPACEShip
 
+-(instancetype)init {
+    if ((self = [super init])) {
+        _node = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
+        
+    }
+    return self;
+}
+
+-(void)setAngle:(CGFloat)angle {
+    CGFloat delta = angle - _angle;
+    [self.node runAction:[SKAction rotateByAngle:delta duration:0.25]];
+    _angle = angle;
+}
+
 //Ships should do different things based on type
 //Allied Fighter - patrol area, attack Enemy fighters
 //Neutral Fighter - Stalk Allied fighters, If no Allies around attack Neutral fighters

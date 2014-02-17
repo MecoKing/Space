@@ -7,6 +7,7 @@
 //
 
 #import "SPACEMyScene.h"
+#import "SPACEShip.h"
 #import "SPACEStellarBody.h"
 
 #pragma mark Stuff!
@@ -96,7 +97,11 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 #pragma mark Scene
 
 @interface SPACEMyScene ()
+
 @property NSTimeInterval previousTime;
+
+@property SPACEShip *playerShip;
+
 @end
 
 @implementation SPACEMyScene
@@ -106,19 +111,48 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 }
 
 -(instancetype)initWithSize:(CGSize)size {
-    if (self = [super initWithSize:size]) {
+    if ((self = [super initWithSize:size])) {
         /* Setup your scene here */
         
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
         self.physicsWorld.gravity = CGVectorMake(0, 0);
+        [self addPlayerShip];
         [self generateNebula];
         [self generateSolarSystem];
     }
     return self;
 }
 
+-(void)addPlayerShip {
+    self.playerShip = [SPACEShip new];
+    SKNode *node = self.playerShip.node;
+    node.position = (CGPoint){ CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) };
+    [self addChild:node];
+}
+
+
+
+#pragma mark Player controls
+
+-(void)keyDown:(NSEvent *)event {
+//    SKAction *rotateRight = [SKAction rotateByAngle:-(0.05 * M_PI) duration:0.25];
+    SKAction *rotateLeft = [SKAction rotateByAngle:(0.05 * M_PI) duration:0.25];
+    unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
+    
+    if (key == 'd' || key == NSRightArrowFunctionKey)
+        self.playerShip.angle = self.playerShip.angle - 0.05 * M_PI;
+    else if (key == 'a' || key == NSLeftArrowFunctionKey)
+        [self.playerShip.node runAction:rotateLeft];
+    else if (key == 'w' || key == NSUpArrowFunctionKey)
+        [self.playerShip.node runAction:nil];
+}
+
+
+#pragma mark Procedural generation
+
 -(void) generateSolarSystem {
+//    return;
     self.backgroundColor = SPACEAverageDarkColour();
     
     NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
@@ -158,6 +192,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 
 -(void) generateNebula {
+//    return;
     int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
 
     for (int i = 0; i < numberOfClouds; i++) {
@@ -193,10 +228,12 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 -(void) mouseDown:(NSEvent *)theEvent {
     [self removeAllChildren];
     [self generateNebula];
+    [self addPlayerShip];
     [self generateSolarSystem];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+//    return;
     if (self.previousTime == 0) self.previousTime = currentTime;
     const CGFloat gravitationalConstant = 6e-19;
     CFTimeInterval interval = currentTime - self.previousTime;

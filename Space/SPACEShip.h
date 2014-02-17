@@ -11,4 +11,8 @@
 
 @interface SPACEShip : NSObject
 
+@property (readonly) SKNode *node;
+
+@property (nonatomic) CGFloat angle;
+
 @end
