@@ -163,7 +163,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
     for (int i = 0; i < numberOfClouds; i++) {
         
         SKShapeNode *cloud = [SKShapeNode node];
-        int cloudSize = SPACERandomInInterval(10, 100);
+        int cloudSize = SPACERandomInInterval(50, 200);
         
         CGRect bounds = {
             .origin.x = SPACERandomInInterval(cloudSize / -2, self.size.width),
