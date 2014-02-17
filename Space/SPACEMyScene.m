@@ -158,7 +158,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 
 -(void) generateNebula {
-    int numberOfClouds = (self.size.width / 2);
+    int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
 
     for (int i = 0; i < numberOfClouds; i++) {
         
@@ -166,8 +166,8 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         int cloudSize = SPACERandomInInterval(10, 100);
         
         CGRect bounds = {
-            .origin.x = SPACERandomInInterval(0, self.size.width),
-            .origin.y = SPACERandomInInterval(0, self.size.height),
+            .origin.x = SPACERandomInInterval(cloudSize / -2, self.size.width),
+            .origin.y = SPACERandomInInterval(cloudSize / -2, self.size.height),
             .size.width = cloudSize * 2,
             .size.height = cloudSize * 2,
         };
@@ -185,14 +185,14 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 
 -(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
-    int planetCount = SPACERandomInInterval(1, 9);//Alway at least one planet per system
+    int planetCount = SPACERandomInInterval(1, 9);//Always at least one planet per system
     for (int i = 0; i < starCount - 1; i++) {
         planetCount += SPACERandomInInterval(0, 9);//possible to have one planet for 3 stars
     }
     return planetCount;
 }
 
--(void) keyDown:(NSEvent *)theEvent {
+-(void) mouseDown:(NSEvent *)theEvent {
     [self removeAllChildren];
     [self generateNebula];
     [self generateSolarSystem];
