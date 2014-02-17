@@ -172,12 +172,10 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
             .size.height = cloudSize * 2,
         };
    
-        CGPathRef path = CGPathCreateWithEllipseInRect(bounds, NULL);
-        cloud.path = path;
-        CGPathRelease(path);
+        cloud.path = CGPathCreateWithEllipseInRect(bounds, NULL);
         
         cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
-        cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.5);
+        cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
    
         [self addChild:cloud];
     }
