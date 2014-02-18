@@ -136,16 +136,20 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 #pragma mark Player controls
 
 -(void)keyDown:(NSEvent *)event {
-//    SKAction *rotateRight = [SKAction rotateByAngle:-(0.05 * M_PI) duration:0.25];
-    SKAction *rotateLeft = [SKAction rotateByAngle:(0.05 * M_PI) duration:0.25];
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
     if (key == 'd' || key == NSRightArrowFunctionKey)
         self.playerShip.angle = self.playerShip.angle - 0.05 * M_PI;
     else if (key == 'a' || key == NSLeftArrowFunctionKey)
-        [self.playerShip.node runAction:rotateLeft];
-    else if (key == 'w' || key == NSUpArrowFunctionKey)
-        [self.playerShip.node runAction:nil];
+        self.playerShip.angle = self.playerShip.angle + 0.05 * M_PI;
+    else if (key == 'w' || key == NSUpArrowFunctionKey) {
+        CGFloat magnitude = 0.05;
+        CGVector force = (CGVector){
+            .dx = -sin(self.playerShip.angle) * magnitude,
+            .dy = cos(self.playerShip.angle) * magnitude,
+        };
+        [self.playerShip.node.physicsBody applyForce:force];
+    }
 }
 
 

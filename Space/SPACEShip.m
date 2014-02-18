@@ -18,7 +18,8 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
 -(instancetype)init {
     if ((self = [super init])) {
         _node = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
-        
+        _node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
+        _node.physicsBody.friction = 0;
     }
     return self;
 }
