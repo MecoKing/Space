@@ -20,14 +20,10 @@ static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
         _node = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
         _node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
         _node.physicsBody.friction = 0;
+        _node.physicsBody.angularDamping = 0;
+        _node.physicsBody.mass = 100;
     }
     return self;
-}
-
--(void)setAngle:(CGFloat)angle {
-    CGFloat delta = angle - _angle;
-    [self.node runAction:[SKAction rotateByAngle:delta duration:0.25]];
-    _angle = angle;
 }
 
 //Ships should do different things based on type

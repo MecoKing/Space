@@ -135,22 +135,34 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 #pragma mark Player controls
 
+static const CGFloat linearMagnitude = 10000;
+static const CGFloat angularMagnitude = 0.1;
+
 -(void)keyDown:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
-    if (key == 'd' || key == NSRightArrowFunctionKey)
-        self.playerShip.angle = self.playerShip.angle - 0.05 * M_PI;
-    else if (key == 'a' || key == NSLeftArrowFunctionKey)
-        self.playerShip.angle = self.playerShip.angle + 0.05 * M_PI;
+    if ((key == 'd' || key == NSRightArrowFunctionKey) && !event.isARepeat)
+        [self.playerShip.node.physicsBody applyTorque:-angularMagnitude];
+    else if ((key == 'a' || key == NSLeftArrowFunctionKey) && !event.isARepeat)
+        [self.playerShip.node.physicsBody applyTorque:angularMagnitude];
     else if (key == 'w' || key == NSUpArrowFunctionKey) {
-        CGFloat magnitude = 0.05;
         CGVector force = (CGVector){
-            .dx = -sin(self.playerShip.angle) * magnitude,
-            .dy = cos(self.playerShip.angle) * magnitude,
+            .dx = -sin(self.playerShip.node.zRotation) * linearMagnitude,
+            .dy = cos(self.playerShip.node.zRotation) * linearMagnitude,
         };
         [self.playerShip.node.physicsBody applyForce:force];
     }
 }
+
+-(void)keyUp:(NSEvent *)event {
+    unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
+    
+    if (key == 'd' || key == NSRightArrowFunctionKey)
+        [self.playerShip.node.physicsBody applyTorque:angularMagnitude];
+    else if (key == 'a' || key == NSLeftArrowFunctionKey)
+        [self.playerShip.node.physicsBody applyTorque:-angularMagnitude];
+}
+
 
 
 #pragma mark Procedural generation
