@@ -201,16 +201,16 @@ static const CGFloat angularMagnitude = 0.1;
     
     SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
     SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    planetCountLabel.position = CGPointMake(50, 20);
-    starCountLabel.position = CGPointMake(50, 50);
+    planetCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 20);
+    starCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 50);
     planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
     starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
     planetCountLabel.fontSize = 14;
     starCountLabel.fontSize = 14;
     planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
     starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-    [self.universe addChild:planetCountLabel];
-    [self.universe addChild:starCountLabel];
+    [self addChild:planetCountLabel];
+    [self addChild:starCountLabel];
 }
 
 
@@ -251,6 +251,8 @@ static const CGFloat angularMagnitude = 0.1;
 
 -(void) mouseDown:(NSEvent *)theEvent {
     [self.universe removeAllChildren];
+    [self removeAllChildren];
+    [self addChild:self.universe];
 //    [self generateNebula];
     [self addPlayerShip];
     [self generateSolarSystem];
