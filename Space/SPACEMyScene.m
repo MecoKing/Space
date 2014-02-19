@@ -123,9 +123,9 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.universe = [SKNode node];
         [self addChild:self.universe];
-        [self generateNebula];
+//        [self generateNebula];
         [self addPlayerShip];
-//        [self generateSolarSystem];
+        [self generateSolarSystem];
     }
     return self;
 }
@@ -250,8 +250,8 @@ static const CGFloat angularMagnitude = 0.1;
 }
 
 -(void) mouseDown:(NSEvent *)theEvent {
-    [self removeAllChildren];
-    [self generateNebula];
+    [self.universe removeAllChildren];
+//    [self generateNebula];
     [self addPlayerShip];
     [self generateSolarSystem];
 }
@@ -261,11 +261,11 @@ static const CGFloat angularMagnitude = 0.1;
     if (self.previousTime == 0) self.previousTime = currentTime;
     const CGFloat gravitationalConstant = 6e-19;
     CFTimeInterval interval = currentTime - self.previousTime;
-    for (SKNode *a in self.children) {
+    for (SKNode *a in self.universe.children) {
         CGPoint centreOfGravity = a.position;
         CGFloat mass = a.physicsBody.mass;
         
-        for (SKNode *b in self.children) {
+        for (SKNode *b in self.universe.children) {
             if (a == b) continue;
             CGPoint position = b.position;
             CGFloat distance = SPACEDistanceBetweenPoints(centreOfGravity, position);
