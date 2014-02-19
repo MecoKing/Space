@@ -102,6 +102,8 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 @property SPACEShip *playerShip;
 
+@property SKNode *universe;
+
 @end
 
 @implementation SPACEMyScene
@@ -119,6 +121,8 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
         self.physicsWorld.gravity = CGVectorMake(0, 0);
+        self.universe = [SKNode node];
+        [self addChild:self.universe];
         [self generateNebula];
         [self addPlayerShip];
 //        [self generateSolarSystem];
@@ -128,8 +132,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 -(void)addPlayerShip {
     self.playerShip = [SPACEShip new];
-    SKNode *node = self.playerShip.node;
-    [self addChild:node];
+    [self.universe addChild:self.playerShip.node];
 }
 
 
@@ -138,6 +141,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 
 static const CGFloat linearMagnitude = 10000;
 static const CGFloat angularMagnitude = 0.1;
+
 
 -(void)keyDown:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
@@ -151,7 +155,10 @@ static const CGFloat angularMagnitude = 0.1;
             .dx = -sin(self.playerShip.node.zRotation) * linearMagnitude,
             .dy = cos(self.playerShip.node.zRotation) * linearMagnitude,
         };
+        
         [self.playerShip.node.physicsBody applyForce:force];
+        
+
     }
 }
 
@@ -176,20 +183,20 @@ static const CGFloat angularMagnitude = 0.1;
     for (NSUInteger i = 0; i < planetCount; i++) {
         CGFloat planetType = SPACERandomInInterval(1, 100);
         if (planetType >= 66)
-            [self addChild:[SPACEStellarBody moonWithSize:self.size].shape];
+            [self.universe addChild:[SPACEStellarBody moonWithSize:self.size].shape];
         else if (planetType >= 33)
-            [self addChild:[SPACEStellarBody terraPlanetWithSize:self.size].shape];
+            [self.universe addChild:[SPACEStellarBody terraPlanetWithSize:self.size].shape];
         else
-            [self addChild:[SPACEStellarBody gasPlanetWithSize:self.size].shape];
+            [self.universe addChild:[SPACEStellarBody gasPlanetWithSize:self.size].shape];
     }
     for (NSUInteger i = 0; i < starCount; i++) {
         CGFloat starType = SPACERandomInInterval(1, 1000);
         if (starType >= 975)//2.5% chance
-            [self addChild:[SPACEStellarBody supernovaWithSize:self.size].shape];
+            [self.universe addChild:[SPACEStellarBody supernovaWithSize:self.size].shape];
         else if (starType >= 950)//2.5% chance
-            [self addChild:[SPACEStellarBody redGiantWithSize:self.size].shape];
+            [self.universe addChild:[SPACEStellarBody redGiantWithSize:self.size].shape];
         else
-            [self addChild:[SPACEStellarBody whiteDwarfWithSize:self.size].shape];
+            [self.universe addChild:[SPACEStellarBody whiteDwarfWithSize:self.size].shape];
     }
     
     SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
@@ -202,8 +209,8 @@ static const CGFloat angularMagnitude = 0.1;
     starCountLabel.fontSize = 14;
     planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
     starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-    [self addChild:planetCountLabel];
-    [self addChild:starCountLabel];
+    [self.universe addChild:planetCountLabel];
+    [self.universe addChild:starCountLabel];
 }
 
 
@@ -229,7 +236,7 @@ static const CGFloat angularMagnitude = 0.1;
         cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
         cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
    
-        [self addChild:cloud];
+        [self.universe addChild:cloud];
     }
 }
 
@@ -274,6 +281,7 @@ static const CGFloat angularMagnitude = 0.1;
 //            f = g * (m1 * m2 / r^2)
         }
     }
+    self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.node.position, -1);
     self.previousTime = currentTime;
 }
 
