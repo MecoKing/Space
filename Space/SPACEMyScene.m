@@ -113,13 +113,15 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 -(instancetype)initWithSize:(CGSize)size {
     if ((self = [super initWithSize:size])) {
         /* Setup your scene here */
+
         
+        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
         self.physicsWorld.gravity = CGVectorMake(0, 0);
-        [self addPlayerShip];
         [self generateNebula];
-        [self generateSolarSystem];
+        [self addPlayerShip];
+//        [self generateSolarSystem];
     }
     return self;
 }
@@ -127,7 +129,6 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 -(void)addPlayerShip {
     self.playerShip = [SPACEShip new];
     SKNode *node = self.playerShip.node;
-    node.position = (CGPoint){ CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) };
     [self addChild:node];
 }
 
@@ -169,7 +170,6 @@ static const CGFloat angularMagnitude = 0.1;
 
 -(void) generateSolarSystem {
 //    return;
-    self.backgroundColor = SPACEAverageDarkColour();
     
     NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
     NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
@@ -209,6 +209,7 @@ static const CGFloat angularMagnitude = 0.1;
 
 -(void) generateNebula {
 //    return;
+    self.backgroundColor = SPACEAverageDarkColour();
     int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
 
     for (int i = 0; i < numberOfClouds; i++) {
