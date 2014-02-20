@@ -123,7 +123,7 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.universe = [SKNode node];
         [self addChild:self.universe];
-//        [self generateNebula];
+        [self generateNebula];
         [self addPlayerShip];
         [self generateSolarSystem];
     }
@@ -225,8 +225,8 @@ static const CGFloat angularMagnitude = 0.1;
         int cloudSize = SPACERandomInInterval(50, 200);
         
         CGRect bounds = {
-            .origin.x = SPACERandomInInterval(cloudSize / -2, self.size.width),
-            .origin.y = SPACERandomInInterval(cloudSize / -2, self.size.height),
+            .origin.x = SPACERandomInInterval((cloudSize / -2) - (self.size.width / 2), self.size.width),
+            .origin.y = SPACERandomInInterval((cloudSize / -2) - (self.size.height / 2), self.size.height),
             .size.width = cloudSize * 2,
             .size.height = cloudSize * 2,
         };
@@ -236,7 +236,7 @@ static const CGFloat angularMagnitude = 0.1;
         cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
         cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
    
-        [self.universe addChild:cloud];
+        [self addChild:cloud];
     }
 }
 
@@ -253,7 +253,7 @@ static const CGFloat angularMagnitude = 0.1;
     [self.universe removeAllChildren];
     [self removeAllChildren];
     [self addChild:self.universe];
-//    [self generateNebula];
+    [self generateNebula];
     [self addPlayerShip];
     [self generateSolarSystem];
 }
