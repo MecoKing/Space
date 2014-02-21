@@ -142,7 +142,6 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 static const CGFloat linearMagnitude = 10000;
 static const CGFloat angularMagnitude = 0.1;
 
-
 -(void)keyDown:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
@@ -157,8 +156,6 @@ static const CGFloat angularMagnitude = 0.1;
         };
         
         [self.playerShip.node.physicsBody applyForce:force];
-        
-
     }
 }
 
@@ -183,11 +180,17 @@ static const CGFloat angularMagnitude = 0.1;
     for (NSUInteger i = 0; i < planetCount; i++) {
         CGFloat planetType = SPACERandomInInterval(1, 100);
         if (planetType >= 66)
+        {
             [self.universe addChild:[SPACEStellarBody moonWithSize:self.size].shape];
+        }
         else if (planetType >= 33)
+        {
             [self.universe addChild:[SPACEStellarBody terraPlanetWithSize:self.size].shape];
+        }
         else
+        {
             [self.universe addChild:[SPACEStellarBody gasPlanetWithSize:self.size].shape];
+        }
     }
     for (NSUInteger i = 0; i < starCount; i++) {
         CGFloat starType = SPACERandomInInterval(1, 1000);

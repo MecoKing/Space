@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface SPACEStellarBody : NSObject
+@interface SPACEStellarBody : SKNode
 
 +(instancetype)randomStarWithSize:(CGSize)size;
 +(instancetype)randomPlanetWithSize:(CGSize)size;
