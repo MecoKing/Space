@@ -30,6 +30,7 @@
 		CBC0C0971899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C09F1899A615005E2507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC0C09D1899A615005E2507 /* InfoPlist.strings */; };
 		CBC0C0A11899A615005E2507 /* SpaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC0C0A01899A615005E2507 /* SpaceTests.m */; };
+		CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		CBC0C09C1899A615005E2507 /* SpaceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpaceTests-Info.plist"; sourceTree = "<group>"; };
 		CBC0C09E1899A615005E2507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CBC0C0A01899A615005E2507 /* SpaceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceTests.m; sourceTree = "<group>"; };
+		CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEFunction.h; sourceTree = "<group>"; };
+		CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEFunction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				CBA2394D18A27C8100351847 /* SPACEStellarBody.m */,
 				CB2A1A3618B565A300B36AA1 /* SPACESystem.h */,
 				CB2A1A3718B565A300B36AA1 /* SPACESystem.m */,
+				CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */,
+				CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */,
 				CB47C27B18A0328A00D0F466 /* SPACEShip.h */,
 				CB47C27C18A0328A00D0F466 /* SPACEShip.m */,
 				CBC0C08B1899A615005E2507 /* SPACEAppDelegate.h */,
@@ -313,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
+				CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */,
 				CBC0C08A1899A615005E2507 /* SPACEAppDelegate.m in Sources */,
 				CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */,
 				CB2A1A3818B565A300B36AA1 /* SPACESystem.m in Sources */,
