@@ -6,19 +6,13 @@
 //  Copyright (c) 2014 [pixelmonster]. All rights reserved.
 //
 
+#import "SPACEFunction.h"
 #import "SPACEMyScene.h"
 #import "SPACEShip.h"
 #import "SPACEStellarBody.h"
+#import "SPACESystem.h"
 
 #pragma mark Stuff!
-static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
-    CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
-    return value * fabs(to - from) + from;
-}
-
-static inline NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to) {
-    return random() % (to - from + 1) + from;
-}
 
 static inline SKColor *SPACERandomColour() {
     return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
@@ -121,9 +115,9 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
         self.physicsWorld.gravity = CGVectorMake(0, 0);
+        [self generateNebula];
         self.universe = [SKNode node];
         [self addChild:self.universe];
-        [self generateNebula];
         [self addPlayerShip];
         [self generateSolarSystem];
     }
@@ -173,7 +167,8 @@ static const CGFloat angularMagnitude = 0.1;
 #pragma mark Procedural generation
 
 -(void) generateSolarSystem {
-//    return;
+    [self.universe addChild:[SPACESystem randomSystem]];
+    return;
     
     NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
     NSUInteger planetCount = [self planetCountBasedOnStars:starCount];

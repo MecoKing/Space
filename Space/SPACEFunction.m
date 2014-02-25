@@ -8,6 +8,14 @@
 
 #import "SPACEFunction.h"
 
-@implementation SPACEFunction
+CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
+    CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
+    return value * fabs(to - from) + from;
+}
 
+NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to) {
+    return random() % (to - from + 1) + from;
+}
+
+@implementation SPACEFunction
 @end

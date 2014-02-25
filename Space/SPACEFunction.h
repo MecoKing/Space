@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface SPACEFunction : NSObject
+CGFloat SPACERandomInInterval(CGFloat from, CGFloat to);
+NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to);
 
+@interface SPACEFunction : NSObject
 @end

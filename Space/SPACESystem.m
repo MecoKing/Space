@@ -6,19 +6,11 @@
 //  Copyright (c) 2014 [pixelmonster]. All rights reserved.
 //
 
+#import "SPACEFunction.h"
 #import "SPACESystem.h"
 #import "SPACEStellarBody.h"
 #import "SPACEMyScene.h"
 
-
-static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
-    CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
-    return value * fabs(to - from) + from;
-}
-
-static inline NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to) {
-    return random() % (to - from + 1) + from;
-}
 
 static inline SKColor *SPACERandomColour() {
     return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
@@ -52,11 +44,20 @@ static inline SKColor *SPACEAverageDarkColour () {
 }
 
 
+@interface SPACEStarSystem : SPACESystem
+
+-(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEStellarBody *)planet;
+
+@property (readonly) SPACEStellarBody *star;
+
+@property (readonly) SPACEStellarBody *planet;
+
+@end
+
 @implementation SPACESystem
 
--(id)init {
-    
-    return  nil;
++(instancetype)randomSystem {
+    return [SPACEStarSystem randomSystem];
 }
 
 
@@ -157,5 +158,36 @@ static inline SKColor *SPACEAverageDarkColour () {
      */
 }
 
+
+@end
+
+
+@implementation SPACEStarSystem
+
++(instancetype)randomSystem {
+    CGSize fakeSize = (CGSize){ 1000, 1000 };
+    SEL selectors[] = {
+        @selector(supernovaWithSize:),
+        @selector(redGiantWithSize:),
+        @selector(whiteDwarfWithSize:),
+    };
+    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 2)];
+    
+    return [[self alloc] initWithStar:[SPACEStellarBody performSelector:selector withObject:nil] planet:[SPACEStellarBody randomPlanetWithSize:fakeSize]];
+}
+
+-(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEStellarBody *)planet {
+    if ((self = [super init])) {
+        _star = star;
+        _planet = planet;
+        
+//        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
+        star.position = (CGPoint){0};
+        [self addChild:star.shape];
+        
+        [self addChild:planet.shape];
+    }
+    return self;
+}
 
 @end

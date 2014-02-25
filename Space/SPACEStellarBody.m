@@ -9,7 +9,7 @@
 #import "SPACEStellarBody.h"
 
 
-static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
+static CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
     CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
     return value * fabs(to - from) + from;
 }
