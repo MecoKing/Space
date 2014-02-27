@@ -12,80 +12,6 @@
 #import "SPACEStellarBody.h"
 #import "SPACESystem.h"
 
-#pragma mark Stuff!
-
-static inline SKColor *SPACERandomColour() {
-    return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
-}
-
-static inline SKColor *SPACERandomDarkColour() {
-    return [SKColor colorWithRed:SPACERandomInInterval(0, 0.5) green:SPACERandomInInterval(0, 0.5) blue:SPACERandomInInterval(0, 0.5) alpha:1];
-}
-
-static inline SKColor *SPACEInverseOfColour(SKColor *colour) {
-    return [SKColor colorWithRed: 1 - colour.redComponent green: 1 - colour.greenComponent blue: 1 - colour.blueComponent alpha:1];
-}
-
-static inline CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent){
-    CGFloat baseAfterAveraging;
-    if (baseColourComponent > averageColourComponent + 0.1)
-        baseAfterAveraging = averageColourComponent + 0.1;
-    else if (baseColourComponent < averageColourComponent - 0.1)
-        baseAfterAveraging = averageColourComponent - 0.1;
-    else
-        baseAfterAveraging = baseColourComponent;
-    
-    return baseAfterAveraging;
-}
-
-static inline SKColor *SPACEAverageDarkColour () {
-    SKColor *baseColour = SPACERandomDarkColour();
-    CGFloat averageColour = (baseColour.redComponent + baseColour.blueComponent + baseColour.greenComponent) / 3;
-    
-    return [SKColor colorWithRed:SPACEFloatCloseToAverage(baseColour.redComponent, averageColour) green:SPACEFloatCloseToAverage(baseColour.greenComponent, averageColour) blue:SPACEFloatCloseToAverage(baseColour.blueComponent, averageColour) alpha:1];
-}
-
-static inline CGPoint SPACESubtractPoint(CGPoint a, CGPoint b) {
-    return (CGPoint){
-        .x = a.x - b.x,
-        .y = a.y - b.y,
-    };
-}
-
-static inline CGFloat SPACEMagnitudeOfPoint(CGPoint a) {
-    return sqrt(a.x * a.x + a.y * a.y);
-}
-
-static inline CGFloat SPACEDistanceBetweenPoints(CGPoint a, CGPoint b) {
-    return SPACEMagnitudeOfPoint(SPACESubtractPoint(a, b));
-}
-
-static inline CGPoint SPACEMultiplyPoint(CGPoint a, CGPoint b) {
-    return (CGPoint){
-    	.x = a.x * b.x,
-        .y = a.y * b.y,
-    };
-}
-
-static inline CGPoint SPACEMultiplyPointByScalar(CGPoint a, CGFloat s) {
-    return (CGPoint){
-    	.x = a.x * s,
-        .y = a.y * s,
-    };
-}
-
-static inline CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s) {
-    return (CGPoint){
-    	.x = a.x / s,
-        .y = a.y / s,
-    };
-}
-
-static inline CGPoint SPACENormalizePoint(CGPoint a) {
-    CGFloat magnitude = SPACEMagnitudeOfPoint(a);
-    return SPACEDividePointByScalar(a, magnitude);
-}
-
 
 #pragma mark
 #pragma mark Scene
@@ -167,8 +93,8 @@ static const CGFloat angularMagnitude = 0.1;
 #pragma mark Procedural generation
 
 -(void) generateSolarSystem {
-    [self.universe addChild:[SPACESystem randomSystem]];
-    return;
+//    [self.universe addChild:[SPACESystem randomSystem]];
+//    return;
     
     NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
     NSUInteger planetCount = [self planetCountBasedOnStars:starCount];

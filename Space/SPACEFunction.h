@@ -11,6 +11,20 @@
 
 CGFloat SPACERandomInInterval(CGFloat from, CGFloat to);
 NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to);
+SKColor *SPACERandomColour();
+SKColor *SPACERandomDarkColour();
+SKColor *SPACERandomLightColour();
+SKColor *SPACEInverseOfColour(SKColor *colour);
+CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent);
+SKColor *SPACEAverageDarkColour ();
+CGPoint SPACESubtractPoint(CGPoint a, CGPoint b);
+CGFloat SPACEMagnitudeOfPoint(CGPoint a);
+CGFloat SPACEDistanceBetweenPoints(CGPoint a, CGPoint b);
+CGPoint SPACEMultiplyPoint(CGPoint a, CGPoint b);
+CGPoint SPACEMultiplyPointByScalar(CGPoint a, CGFloat s);
+CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s);
+CGPoint SPACENormalizePoint(CGPoint a);
+CGPoint SPACERandomInSize(CGSize size);
 
 @interface SPACEFunction : NSObject
 @end
