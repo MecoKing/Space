@@ -13,7 +13,7 @@
 
 -(instancetype)init {
     if ((self = [super init])) {
-        _node = [SKSpriteNode spriteNodeWithImageNamed:@"HumanFighter"];
+        _node = [SKSpriteNode spriteNodeWithImageNamed:@"RogueFighter"];
         _node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
         _node.physicsBody.friction = 0;
         _node.physicsBody.angularDamping = 0;

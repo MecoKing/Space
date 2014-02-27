@@ -175,8 +175,8 @@ static const CGFloat angularMagnitude = 0.1;
 -(void) mouseDown:(NSEvent *)theEvent {
     [self.universe removeAllChildren];
     [self removeAllChildren];
-    [self addChild:self.universe];
     [self generateNebula];
+    [self addChild:self.universe];
     [self addPlayerShip];
     [self generateSolarSystem];
 }
