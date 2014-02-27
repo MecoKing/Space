@@ -10,13 +10,16 @@
 #import <SpriteKit/SpriteKit.h>
 
 CGFloat SPACERandomInInterval(CGFloat from, CGFloat to);
+CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent);
+
 NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to);
+
 SKColor *SPACERandomColour();
 SKColor *SPACERandomDarkColour();
 SKColor *SPACERandomLightColour();
 SKColor *SPACEInverseOfColour(SKColor *colour);
-CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent);
 SKColor *SPACEAverageDarkColour ();
+
 CGPoint SPACESubtractPoint(CGPoint a, CGPoint b);
 CGFloat SPACEMagnitudeOfPoint(CGPoint a);
 CGFloat SPACEDistanceBetweenPoints(CGPoint a, CGPoint b);

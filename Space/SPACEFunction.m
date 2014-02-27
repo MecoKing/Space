@@ -8,14 +8,36 @@
 
 #import "SPACEFunction.h"
 
+
+#pragma mark
+#pragma mark CGFloat
+
 CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
     CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
     return value * fabs(to - from) + from;
 }
 
+CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent) {
+    CGFloat baseAfterAveraging;
+    if (baseColourComponent > averageColourComponent + 0.1)
+        baseAfterAveraging = averageColourComponent + 0.1;
+    else if (baseColourComponent < averageColourComponent - 0.1)
+        baseAfterAveraging = averageColourComponent - 0.1;
+    else
+        baseAfterAveraging = baseColourComponent;
+    
+    return baseAfterAveraging;
+}
+
+#pragma mark
+#pragma mark NSUInteger
+
 NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to) {
     return random() % (to - from + 1) + from;
 }
+
+#pragma mark
+#pragma mark SKColor
 
 SKColor *SPACERandomColour() {
     return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
@@ -33,24 +55,15 @@ SKColor *SPACEInverseOfColour(SKColor *colour) {
     return [SKColor colorWithRed: 1 - colour.redComponent green: 1 - colour.greenComponent blue: 1 - colour.blueComponent alpha:1];
 }
 
-CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent) {
-    CGFloat baseAfterAveraging;
-    if (baseColourComponent > averageColourComponent + 0.1)
-        baseAfterAveraging = averageColourComponent + 0.1;
-    else if (baseColourComponent < averageColourComponent - 0.1)
-        baseAfterAveraging = averageColourComponent - 0.1;
-    else
-        baseAfterAveraging = baseColourComponent;
-    
-    return baseAfterAveraging;
-}
-
 SKColor *SPACEAverageDarkColour () {
     SKColor *baseColour = SPACERandomDarkColour();
     CGFloat averageColour = (baseColour.redComponent + baseColour.blueComponent + baseColour.greenComponent) / 3;
     
     return [SKColor colorWithRed:SPACEFloatCloseToAverage(baseColour.redComponent, averageColour) green:SPACEFloatCloseToAverage(baseColour.greenComponent, averageColour) blue:SPACEFloatCloseToAverage(baseColour.blueComponent, averageColour) alpha:1];
 }
+
+#pragma mark
+#pragma mark CGPoint
 
 CGPoint SPACESubtractPoint(CGPoint a, CGPoint b) {
     return (CGPoint){

@@ -55,8 +55,7 @@
     [self.universe addChild:self.playerShip.node];
 }
 
-
-
+#pragma mark
 #pragma mark Player controls
 
 static const CGFloat linearMagnitude = 10000;
@@ -89,7 +88,7 @@ static const CGFloat angularMagnitude = 0.1;
 }
 
 
-
+#pragma mark
 #pragma mark Procedural generation
 
 -(void) generateSolarSystem {
