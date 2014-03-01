@@ -31,6 +31,7 @@
 		CBC0C0971899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C09F1899A615005E2507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC0C09D1899A615005E2507 /* InfoPlist.strings */; };
 		CBC0C0A11899A615005E2507 /* SpaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC0C0A01899A615005E2507 /* SpaceTests.m */; };
+		CBF74C2C18C288D100A41A2A /* RazorFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF74C2B18C288D100A41A2A /* RazorFighter.png */; };
 		CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		CBC0C09C1899A615005E2507 /* SpaceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpaceTests-Info.plist"; sourceTree = "<group>"; };
 		CBC0C09E1899A615005E2507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CBC0C0A01899A615005E2507 /* SpaceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceTests.m; sourceTree = "<group>"; };
+		CBF74C2B18C288D100A41A2A /* RazorFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RazorFighter.png; path = Images/RazorFighter.png; sourceTree = SOURCE_ROOT; };
 		CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEFunction.h; sourceTree = "<group>"; };
 		CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEFunction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				CB47C27918A0305200D0F466 /* RogueFighter.png */,
 				CB830A2E18A7BCA10050FE42 /* RogueGunship.png */,
 				CB9F60AA18C0041200639141 /* RebelFighter.png */,
+				CBF74C2B18C288D100A41A2A /* RazorFighter.png */,
 				CB47C27E18A033ED00D0F466 /* Laser.png */,
 			);
 			name = Graphics;
@@ -296,6 +299,7 @@
 				CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */,
 				CBC0C08F1899A615005E2507 /* Images.xcassets in Resources */,
 				CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */,
+				CBF74C2C18C288D100A41A2A /* RazorFighter.png in Resources */,
 				CBC0C07D1899A615005E2507 /* InfoPlist.strings in Resources */,
 				CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */,
 				CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */,
