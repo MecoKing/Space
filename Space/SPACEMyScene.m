@@ -87,11 +87,11 @@ static const CGFloat angularMagnitude = 10;
         laser.position = self.playerShip.node.position;
         laser.zRotation = self.playerShip.node.zRotation;
         [self.laserManager addChild:laser];
-        laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
+        laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
         laser.physicsBody.mass = 1;
         CGVector force = (CGVector){
-            .dx = -sin(self.playerShip.node.zRotation) * linearMagnitude,
-            .dy = cos(self.playerShip.node.zRotation) * linearMagnitude,
+            .dx = -sin(laser.zRotation) * linearMagnitude,
+            .dy = cos(laser.zRotation) * linearMagnitude,
         };
         [laser.physicsBody applyForce:force];
     }
