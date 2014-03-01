@@ -23,6 +23,7 @@
 @property SPACEShip *playerShip;
 
 @property SKNode *universe;
+@property SKNode *laserManager;
 
 @end
 
@@ -43,7 +44,9 @@
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         [self generateNebula];
         self.universe = [SKNode node];
+        self.laserManager = [SKNode node];
         [self addChild:self.universe];
+        [self.universe addChild:self.laserManager];
         [self addPlayerShip];
         [self generateSolarSystem];
     }
@@ -75,6 +78,22 @@ static const CGFloat angularMagnitude = 0.1;
         };
         
         [self.playerShip.node.physicsBody applyForce:force];
+    }
+    
+    
+    if (key == ' ')
+    {
+        SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
+        laser.position = self.playerShip.node.position;
+        laser.zRotation = self.playerShip.node.zRotation;
+        [self.laserManager addChild:laser];
+        laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
+        laser.physicsBody.mass = 1;
+        CGVector force = (CGVector){
+            .dx = -sin(self.playerShip.node.zRotation) * linearMagnitude,
+            .dy = cos(self.playerShip.node.zRotation) * linearMagnitude,
+        };
+        [laser.physicsBody applyForce:force];
     }
 }
 
@@ -177,6 +196,7 @@ static const CGFloat angularMagnitude = 0.1;
     [self removeAllChildren];
     [self generateNebula];
     [self addChild:self.universe];
+    [self.universe addChild:self.laserManager];
     [self addPlayerShip];
     [self generateSolarSystem];
 }
@@ -208,6 +228,14 @@ static const CGFloat angularMagnitude = 0.1;
     }
     self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.node.position, -1);
     self.previousTime = currentTime;
+    for (SKNode *l in self.laserManager.children)
+    {
+        //if the laser is off screen remove it...
+        if ((!(l.position.x > 0 && l.position.x < self.frame.size.width)) || (!(l.position.y > 0 && l.position.y < self.frame.size.width)))
+        {
+            [l removeFromParent];
+        }
+    }
 }
 
 @end
