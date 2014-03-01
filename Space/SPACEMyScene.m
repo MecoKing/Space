@@ -192,6 +192,7 @@ static const CGFloat angularMagnitude = 0.1;
 }
 
 -(void) mouseDown:(NSEvent *)theEvent {
+    [self.laserManager removeAllChildren];
     [self.universe removeAllChildren];
     [self removeAllChildren];
     [self generateNebula];
