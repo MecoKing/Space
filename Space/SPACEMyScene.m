@@ -62,7 +62,7 @@
 #pragma mark Player controls
 
 static const CGFloat linearMagnitude = 10000;
-static const CGFloat angularMagnitude = 0.1;
+static const CGFloat angularMagnitude = 10;
 
 -(void)keyDown:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
