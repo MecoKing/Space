@@ -8,6 +8,7 @@
 
 #import "SPACEFunction.h"
 #import "SPACESystem.h"
+#import "SPACEStar.h"
 #import "SPACEStellarBody.h"
 #import "SPACEMyScene.h"
 
@@ -40,23 +41,23 @@ starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)s
 
 +(instancetype)randomSystem {
     SEL selectors[] = {
-        @selector(supernovaWithSize:),
-        @selector(redGiantWithSize:),
-        @selector(whiteDwarfWithSize:),
+        @selector(randomSuperGiant),
+        @selector(randomRedGiant),
+        @selector(randomWhiteDwarf),
     };
     SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
     
-    return [[self alloc] initWithStar:[SPACEStellarBody performSelector:selector withObject:nil] planet:[SPACEPlanetSystem randomSystem]];
+    return [[self alloc] initWithStar:[SPACEStar performSelector:selector withObject:nil] planet:[SPACEPlanetSystem randomSystem]];
 }
 
--(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEPlanetSystem *)planet {
+-(instancetype)initWithStar:(SPACEStar *)star planet:(SPACEPlanetSystem *)planet {
     if ((self = [super init])) {
         _star = star;
         _planet = planet;
         
 //        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
         star.position = (CGPoint){0};
-        [self addChild:star.shape];
+        [self addChild:star];
         
         [self addChild:planet];
     }

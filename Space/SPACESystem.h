@@ -16,6 +16,7 @@
 
 
 @class SPACEStellarBody;
+@class SPACEStar;
 
 @interface SPACEPlanetSystem : SPACESystem
 
@@ -31,9 +32,9 @@
 
 @interface SPACEStarSystem : SPACESystem
 
--(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEPlanetSystem *)planet;
+-(instancetype)initWithStar:(SPACEStar *)star planet:(SPACEPlanetSystem *)planet;
 
-@property (readonly) SPACEStellarBody *star;
+@property (readonly) SPACEStar *star;
 
 @property (readonly) SPACEPlanetSystem *planet;
 
