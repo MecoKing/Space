@@ -11,7 +11,6 @@
 
 @interface SPACEStellarBody : SKShapeNode <SPACEBarycentre>
 
-+(instancetype)bodyWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 -(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 
 @property (readonly) CGFloat radius; // should eventually be measured in km
