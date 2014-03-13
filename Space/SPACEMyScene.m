@@ -16,17 +16,6 @@
 #pragma mark
 #pragma mark Scene
 
-@interface SPACEMyScene ()
-
-@property NSTimeInterval previousTime;
-
-@property SPACEShip *playerShip;
-
-@property SKNode *universe;
-@property SKNode *laserManager;
-
-@end
-
 @implementation SPACEMyScene
 
 +(void)initialize {
