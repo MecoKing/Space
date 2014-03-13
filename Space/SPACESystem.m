@@ -11,17 +11,6 @@
 #import "SPACEStellarBody.h"
 #import "SPACEMyScene.h"
 
-
-@interface SPACEStarSystem : SPACESystem
-
--(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEStellarBody *)planet;
-
-@property (readonly) SPACEStellarBody *star;
-
-@property (readonly) SPACEStellarBody *planet;
-
-@end
-
 @implementation SPACESystem
 
 +(instancetype)randomSystem {
@@ -133,7 +122,6 @@
 @implementation SPACEStarSystem
 
 +(instancetype)randomSystem {
-    CGSize fakeSize = (CGSize){ 1000, 1000 };
     SEL selectors[] = {
         @selector(supernovaWithSize:),
         @selector(redGiantWithSize:),
@@ -141,10 +129,10 @@
     };
     SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
     
-    return [[self alloc] initWithStar:[SPACEStellarBody performSelector:selector withObject:nil] planet:[SPACEStellarBody randomPlanetWithSize:fakeSize]];
+    return [[self alloc] initWithStar:[SPACEStellarBody performSelector:selector withObject:nil] planet:[SPACEPlanetSystem randomSystem]];
 }
 
--(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEStellarBody *)planet {
+-(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEPlanetSystem *)planet {
     if ((self = [super init])) {
         _star = star;
         _planet = planet;
@@ -153,7 +141,36 @@
         star.position = (CGPoint){0};
         [self addChild:star.shape];
         
+        [self addChild:planet];
+    }
+    return self;
+}
+
+@end
+
+@implementation SPACEPlanetSystem
+
++(instancetype)randomSystem {
+    CGSize fakeSize = (CGSize){ 1000, 1000 };
+    SEL selectors[] = {
+        @selector(gasPlanetWithSize:),
+        @selector(terraPlanetWithSize:),
+    };
+    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
+    
+    return [[self alloc] initWithPlanet:[SPACEStellarBody performSelector:selector withObject:nil] moon:[SPACEStellarBody moonWithSize:fakeSize]];
+}
+
+-(instancetype)initWithPlanet:(SPACEStellarBody *)planet moon:(SPACEStellarBody *)moon {
+    if ((self = [super init])) {
+        _planet = planet;
+        _moon = moon;
+        
+//        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
+        planet.position = (CGPoint){0};
         [self addChild:planet.shape];
+        
+        [self addChild:moon.shape];
     }
     return self;
 }
