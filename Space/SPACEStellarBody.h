@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 [pixelmonster]. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "SPACEBarycentre.h"
 
-@interface SPACEStellarBody : SKShapeNode
+@interface SPACEStellarBody : SKShapeNode <SPACEBarycentre>
 
 +(instancetype)bodyWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 -(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;

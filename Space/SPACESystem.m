@@ -12,24 +12,13 @@
 #import "SPACEPlanet.h"
 #import "SPACEMyScene.h"
 
-@interface SPACEBarycentreSystem : SPACESystem
-
--(instancetype)initWithStellarBody:(SPACEStellarBody *)body satellites:(NSArray *)satellites;
-
-@end
-
-
 @implementation SPACESystem
 
-+(instancetype)systemWithBarycentre:(SPACESystem *)barycentre satellites:(NSArray *)satellites {
++(instancetype)systemWithBarycentre:(SKNode<SPACEBarycentre> *)barycentre satellites:(NSArray *)satellites {
 	return [[self alloc] initWithBarycentre:barycentre satellites:satellites];
 }
 
-+(instancetype)systemWithStellarBody:(SPACEStellarBody *)barycentre satellites:(NSArray *)satellites {
-	return [[SPACEBarycentreSystem alloc] initWithStellarBody:barycentre satellites:satellites];
-}
-
--(instancetype)initWithBarycentre:(SPACESystem *)barycentre satellites:(NSArray *)satellites {
+-(instancetype)initWithBarycentre:(SKNode<SPACEBarycentre> *)barycentre satellites:(NSArray *)satellites {
 	if ((self = [super init])) {
 		if (barycentre) {
 			_barycentre = barycentre;
@@ -40,11 +29,12 @@
 		for (SPACESystem *satellite in satellites) {
 			[self addChild:satellite];
 			
-			CGFloat min = satellite.radius + self.barycentreRadius;
-			satellite.position = SPACEPointWithPolarPoint((SPACEPolarPoint){
+			CGFloat min = satellite.radius + self.barycentre.radius;
+			SPACEPolarPoint polarPoint = (SPACEPolarPoint){
 				.r = SPACERandomInInterval(min, min * 2),
 				.phi = SPACERandomInInterval(0, 2 * M_PI),
-			});
+			};
+			satellite.position = SPACEPointWithPolarPoint(polarPoint);
 		}
 		
 		self.name = [self.barycentre.name stringByAppendingString:@" System"];
@@ -63,10 +53,10 @@
 	NSMutableArray *moons = [NSMutableArray new];
 	NSUInteger moonCount = SPACERandomIntegerInInterval(0, 5);
 	for (NSUInteger i = 0; i < moonCount; i++) {
-		[moons addObject:[self systemWithStellarBody:[SPACEPlanet randomMoon] satellites:@[]]];
+		[moons addObject:[self systemWithBarycentre:[SPACEPlanet randomMoon] satellites:@[]]];
 	}
 	
-	return [self systemWithStellarBody:[SPACEPlanet performSelector:selector withObject:nil] satellites:moons];
+	return [self systemWithBarycentre:[SPACEPlanet performSelector:selector withObject:nil] satellites:moons];
 }
 
 +(instancetype)randomStarSystem {
@@ -83,7 +73,7 @@
 		[planets addObject:[self randomPlanetarySystem]];
 	}
 	
-	return [self systemWithStellarBody:[SPACEStar performSelector:selector withObject:nil] satellites:planets];
+	return [self systemWithBarycentre:[SPACEStar performSelector:selector withObject:nil] satellites:planets];
 }
 
 +(instancetype)randomSystem {
@@ -91,36 +81,12 @@
 }
 
 
--(CGFloat)barycentreRadius {
-	return self.barycentre.radius;
-}
-
 -(CGFloat)radius {
-	CGFloat radius = self.barycentreRadius;
+	CGFloat radius = self.barycentre.radius;
 	for (SPACESystem *satellite in self.satellites) {
 		radius = MAX(radius, SPACEMagnitudeOfPoint(satellite.position));
 	}
 	return radius;
-}
-
-@end
-
-
-@implementation SPACEBarycentreSystem {
-	SPACEStellarBody *_body;
-}
-
--(instancetype)initWithStellarBody:(SPACEStellarBody *)body satellites:(NSArray *)satellites {
-	if ((self = [super initWithBarycentre:nil satellites:satellites])) {
-		_body = body;
-		[self addChild:body];
-	}
-	return self;
-}
-
-
--(CGFloat)barycentreRadius {
-	return _body.radius;
 }
 
 @end
