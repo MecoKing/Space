@@ -17,106 +17,23 @@
     return [SPACEStarSystem randomSystem];
 }
 
-
--(void) generateSolarSystem {
-    //    return;
-    
-    NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
-    for (int i = 0; i < starCount; i++)
-    {
-        NSUInteger starType = SPACERandomIntegerInInterval(0, 4);
-        if (starType == 0-1)
-        {
-            //system.addAWhiteDwarf
-            //RandomPlanetCount(1-9)
-            //for planetCount
-            //  RandomPlanetType
-            //  if 1-2
-            //      star.addATerra
-            //      RandomMoonCount(1-3)
-            //      for moonCount
-            //          terra.addAMoon
-            //  if 3
-            //      star.addAGasGiant
-            //      RandomMoonCount(3-10)
-            //      for moonCount
-            //          RandomMoonType
-            //          if 1-2
-            //              gasGiant.addAMoon
-            //          if 3
-            //              gasGiant.addATerra
-            //              RandomMoonCount(1-3)
-            //              for moonCount
-            //                  terra.addAMoon
-        }
-        else if (starType == 2)
-        {
-            //system.addARedGiant
-            //RandomPlanetCount(4-12)
-            //for planetCount
-            //  RandomPlanetType
-            //  if 1
-            //      star.addATerra
-            //      RandomMoonCount(1-3)
-            //      for moonCount
-            //          terra.addAMoon
-            //  if 2
-            //      star.addAGasGiant
-            //      RandomMoonCount(3-10)
-            //      for moonCount
-            //          RandomMoonType
-            //          if 1-2
-            //              gasGiant.addAMoon
-            //          if 3
-            //              gasGiant.addATerra
-            //              RandomMoonCount(1-3)
-            //              for moonCount
-            //                  terra.addAMoon
-        }
-        else if (starType == 3)
-        {
-            //system.addASupernova
-            //RandomPlanetCount(8-16)
-            //for planetCount
-            //  RandomPlanetType
-            //  if 1
-            //      star.addATerra
-            //      RandomMoonCount(1-3)
-            //      for moonCount
-            //          terra.addAMoon
-            //  if 2-3
-            //      star.addAGasGiant
-            //      RandomMoonCount(3-10)
-            //      for moonCount
-            //          RandomMoonType
-            //          if 1-2
-            //              gasGiant.addAMoon
-            //          if 3
-            //              gasGiant.addATerra
-            //              RandomMoonCount(1-3)
-            //              for moonCount
-            //                  terra.addAMoon
-        }
-    }
-    
-    /*
-    SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    planetCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 20);
-    starCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 50);
-    planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-    starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-    planetCountLabel.fontSize = 14;
-    starCountLabel.fontSize = 14;
-    planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
-    starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-    [self addChild:planetCountLabel];
-    [self addChild:starCountLabel];
-     */
-}
-
-
 @end
+
+    
+/*
+SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+planetCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 20);
+starCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 50);
+planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
+starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
+planetCountLabel.fontSize = 14;
+starCountLabel.fontSize = 14;
+planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
+starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
+[self addChild:planetCountLabel];
+[self addChild:starCountLabel];
+*/
 
 
 @implementation SPACEStarSystem

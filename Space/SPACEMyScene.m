@@ -232,7 +232,7 @@ static const CGFloat angularMagnitude = 10;
     for (SKNode *l in self.laserManager.children)
     {
         //if the laser is off screen remove it...
-        if ((!(l.position.x > -self.frame.size.width && l.position.x < self.frame.size.width)) || (!(l.position.y > -self.frame.size.height && l.position.y < self.frame.size.height)))
+        if ((!(l.position.x > -self.view.window.frame.size.width && l.position.x < self.view.window.frame.size.width)) || (!(l.position.y > -self.view.window.frame.size.height && l.position.y < self.view.window.frame.size.height)))
         {
             [l removeFromParent];
         }
