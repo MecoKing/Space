@@ -216,7 +216,7 @@
     }
     self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
     
-    if ((currentTime - self.previousTime) < 0.5) {
+    if ((currentTime - self.previousTime) < 5) {
         for (SPACEShip *ship in self.AIShips) {
             [ship runAutoPilot];
         }
