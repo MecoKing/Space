@@ -6,15 +6,21 @@
 @implementation SPACEPlanet
 
 +(instancetype)randomMoon {
-	return [self bodyWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0];
+	SPACEPlanet *planet = [self bodyWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0];
+	planet.name = @"Moon";
+	return planet;
 }
 
 +(instancetype)randomTerrestrialPlanet {
-	return [self bodyWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e23, 2e25) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.15)];
+	SPACEPlanet *planet = [self bodyWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e23, 2e25) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.15)];
+	planet.name = @"Terrestrial";
+	return planet;
 }
 
 +(instancetype)randomGasGiant {
-	return [self bodyWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2)];
+	SPACEPlanet *planet = [self bodyWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2)];
+	planet.name = @"Gas Giant";
+	return planet;
 }
 
 

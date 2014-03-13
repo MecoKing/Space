@@ -10,15 +10,21 @@
 }
 
 +(instancetype)randomSuperGiant {
-	return [self bodyWithRadius:SPACERandomInInterval(400, 600) mass:SPACERandomInInterval(1.5e31, 2.2e31) colour:[SKColor colorWithRed:SPACERandomInInterval(0.75, 1) green:SPACERandomInInterval(0.45, 0.55) blue:0.2 alpha:1] haloWidthRatio:self.haloWidthRatio];
+	SPACEStar *star = [self bodyWithRadius:SPACERandomInInterval(400, 600) mass:SPACERandomInInterval(1.5e31, 2.2e31) colour:[SKColor colorWithRed:SPACERandomInInterval(0.75, 1) green:SPACERandomInInterval(0.45, 0.55) blue:0.2 alpha:1] haloWidthRatio:self.haloWidthRatio];
+	star.name = @"Supergiant";
+	return star;
 }
 
 +(instancetype)randomRedGiant {
-	return [self bodyWithRadius:SPACERandomInInterval(250, 400) mass:SPACERandomInInterval(2.4e30, 3e30) colour:[SKColor colorWithRed:SPACERandomInInterval(0.5, 1) green:SPACERandomInInterval(0, 0.1) blue:SPACERandomInInterval(0, 0.1) alpha:1] haloWidthRatio:self.haloWidthRatio];
+	SPACEStar *star = [self bodyWithRadius:SPACERandomInInterval(250, 400) mass:SPACERandomInInterval(2.4e30, 3e30) colour:[SKColor colorWithRed:SPACERandomInInterval(0.5, 1) green:SPACERandomInInterval(0, 0.1) blue:SPACERandomInInterval(0, 0.1) alpha:1] haloWidthRatio:self.haloWidthRatio];
+	star.name = @"Red Giant";
+	return star;
 }
 
 +(instancetype)randomWhiteDwarf {
-	return [self bodyWithRadius:SPACERandomInInterval(150, 250) mass:SPACERandomInInterval(2e30, 2.1e30) colour:[SKColor colorWithRed:SPACERandomInInterval(0.8, 1) green:SPACERandomInInterval(0.8, 1) blue:SPACERandomInInterval(0.8, 1) alpha:1] haloWidthRatio:self.haloWidthRatio];
+	SPACEStar *star = [self bodyWithRadius:SPACERandomInInterval(150, 250) mass:SPACERandomInInterval(2e30, 2.1e30) colour:[SKColor colorWithRed:SPACERandomInInterval(0.8, 1) green:SPACERandomInInterval(0.8, 1) blue:SPACERandomInInterval(0.8, 1) alpha:1] haloWidthRatio:self.haloWidthRatio];
+	star.name = @"White Dwarf";
+	return star;
 }
 
 

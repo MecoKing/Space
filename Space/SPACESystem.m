@@ -46,6 +46,8 @@
 				.phi = SPACERandomInInterval(0, 2 * M_PI),
 			});
 		}
+		
+		self.name = [self.barycentre.name stringByAppendingString:@" System"];
 	}
 	return self;
 }
