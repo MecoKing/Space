@@ -100,10 +100,8 @@ static const CGFloat angularMagnitude = 10;
 -(void)keyUp:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
-    if (key == 'd' || key == NSRightArrowFunctionKey)
-        [self.playerShip.node.physicsBody applyTorque:angularMagnitude];
-    else if (key == 'a' || key == NSLeftArrowFunctionKey)
-        [self.playerShip.node.physicsBody applyTorque:-angularMagnitude];
+    if (key == 'd' || key == NSRightArrowFunctionKey || key == 'a' || key == NSLeftArrowFunctionKey)
+		self.playerShip.node.physicsBody.angularVelocity = 0;
 }
 
 
