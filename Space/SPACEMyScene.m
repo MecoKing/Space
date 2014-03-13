@@ -230,7 +230,13 @@ static const CGFloat angularMagnitude = 10;
     for (SKNode *l in self.laserManager.children)
     {
         //if the laser is off screen remove it...
-        if ((!(l.position.x > -self.view.window.frame.size.width && l.position.x < self.view.window.frame.size.width)) || (!(l.position.y > -self.view.window.frame.size.height && l.position.y < self.view.window.frame.size.height)))
+        CGRect windowRect = CGRectMake(
+                                        self.playerShip.node.position.x - (self.view.window.frame.size.width / 2),
+                                        self.playerShip.node.position.y - (self.view.window.frame.size.height / 2),
+                                        self.view.window.frame.size.width,
+                                        self.view.window.frame.size.height
+                                       );
+        if (!CGRectContainsPoint(windowRect, l.position))
         {
             [l removeFromParent];
         }
