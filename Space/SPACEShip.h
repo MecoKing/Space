@@ -11,6 +11,14 @@
 
 @interface SPACEShip : NSObject
 
-@property (readonly) SKNode *node;
+@property (readonly) SKNode *node;//why is this readonly!!!
+@property CGFloat linearMagnitude;
+@property CGFloat angularMagnitude;
+
+-(void) activateDirectionalThrustersRight;
+-(void) activateDirectionalThrustersLeft;
+-(void) activateThrusters;
+-(void) runAutoPilot;
+-(void) fireLaser;
 
 @end

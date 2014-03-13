@@ -37,9 +37,15 @@
         [self addChild:self.universe];
         [self.universe addChild:self.laserManager];
         [self addPlayerShip];
+        [self addAIShip];
         [self generateSolarSystem];
     }
     return self;
+}
+
+-(void) addAIShip {
+    self.AIShip = [SPACEShip new];
+    [self.universe addChild:self.AIShip.node];
 }
 
 -(void)addPlayerShip {
@@ -50,39 +56,21 @@
 #pragma mark
 #pragma mark Player controls
 
-static const CGFloat linearMagnitude = 10000;
-static const CGFloat angularMagnitude = 10;
-
 -(void)keyDown:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
     if ((key == 'd' || key == NSRightArrowFunctionKey) && !event.isARepeat)
-        [self.playerShip.node.physicsBody applyTorque:-angularMagnitude];
+        [self.playerShip activateDirectionalThrustersRight];
     else if ((key == 'a' || key == NSLeftArrowFunctionKey) && !event.isARepeat)
-        [self.playerShip.node.physicsBody applyTorque:angularMagnitude];
+        [self.playerShip activateDirectionalThrustersLeft];
     else if (key == 'w' || key == NSUpArrowFunctionKey) {
-        CGVector force = (CGVector){
-            .dx = -sin(self.playerShip.node.zRotation) * linearMagnitude,
-            .dy = cos(self.playerShip.node.zRotation) * linearMagnitude,
-        };
-        
-        [self.playerShip.node.physicsBody applyForce:force];
+        [self.playerShip activateThrusters];
     }
     
     
     if (key == ' ')
     {
-        SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
-        laser.position = self.playerShip.node.position;
-        laser.zRotation = self.playerShip.node.zRotation;
-        [self.laserManager addChild:laser];
-        laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
-        laser.physicsBody.mass = 1;
-        CGVector force = (CGVector){
-            .dx = -sin(laser.zRotation) * linearMagnitude,
-            .dy = cos(laser.zRotation) * linearMagnitude,
-        };
-        [laser.physicsBody applyForce:force];
+        [self.playerShip fireLaser];
     }
 }
 
@@ -186,6 +174,7 @@ static const CGFloat angularMagnitude = 10;
     [self addChild:self.universe];
     [self.universe addChild:self.laserManager];
     [self addPlayerShip];
+    [self addAIShip];
     [self generateSolarSystem];
 }
 
@@ -214,8 +203,16 @@ static const CGFloat angularMagnitude = 10;
 //            f = g * (m1 * m2 / r^2)
         }
     }
+    
+    if ((currentTime - self.previousTime) > 0.1) {
+        [self.AIShip runAutoPilot];
+    }
+    
+    
     self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.node.position, -1);
     self.previousTime = currentTime;
+    
+    
     for (SKNode *l in self.laserManager.children)
     {
         //if the laser is off screen remove it...

@@ -15,6 +15,7 @@
 @property NSTimeInterval previousTime;
 
 @property SPACEShip *playerShip;
+@property SPACEShip *AIShip;
 
 @property SKNode *universe;
 @property SKNode *laserManager;
