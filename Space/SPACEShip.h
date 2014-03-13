@@ -9,16 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface SPACEShip : NSObject
+@interface SPACEShip : SKSpriteNode
 
-@property (readonly) SKNode *node;//why is this readonly!!!
+
 @property CGFloat linearMagnitude;
 @property CGFloat angularMagnitude;
+@property SKSpriteNode *sprite;
 
+-(void) releaseDirectionalThrusters;
 -(void) activateDirectionalThrustersRight;
 -(void) activateDirectionalThrustersLeft;
 -(void) activateThrusters;
 -(void) runAutoPilot;
 -(void) fireLaser;
++(instancetype) shipWithImageNamed: (NSString*) imageName;
 
 @end

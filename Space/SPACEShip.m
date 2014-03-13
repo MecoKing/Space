@@ -12,13 +12,12 @@
 
 @implementation SPACEShip
 
--(instancetype)init {
-    if ((self = [super init])) {
-        _node = [SKSpriteNode spriteNodeWithImageNamed:@"RebelFighter"];
-        _node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
-        _node.physicsBody.friction = 0;
-        _node.physicsBody.angularDamping = 0;
-        _node.physicsBody.mass = 100;
+-(instancetype)initWithImageNamed:(NSString *)name {
+    if ((self = [super initWithImageNamed:name])) {
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
+        self.physicsBody.friction = 0;
+        self.physicsBody.angularDamping = 0;
+        self.physicsBody.mass = 100;
         self.angularMagnitude = 10;
         self.linearMagnitude = 10000;
     }
@@ -26,31 +25,30 @@
 }
 
 +(instancetype) shipWithImageNamed: (NSString*)imageName {
-    SPACEShip *ship = [SPACEShip new];
-    //Check SPACEShip.h for more information
-    //ship.node = [SKSpriteNode spriteNodeWithImageNamed:imageName];
-    return ship;
+    return [[self alloc] initWithImageNamed:imageName];
 }
 
-
+-(void) releaseDirectionalThrusters {
+    self.physicsBody.angularVelocity = 0;
+}
 -(void) activateDirectionalThrustersRight {
-    [self.node.physicsBody applyTorque:-self.angularMagnitude];
+    [self.physicsBody applyTorque:-self.angularMagnitude];
 }
 -(void) activateDirectionalThrustersLeft {
-    [self.node.physicsBody applyTorque:self.angularMagnitude];
+    [self.physicsBody applyTorque:self.angularMagnitude];
 }
 -(void) activateThrusters {
     CGVector force = (CGVector){
-        .dx = -sin(self.node.zRotation) * self.linearMagnitude,
-        .dy = cos(self.node.zRotation) * self.linearMagnitude,
+        .dx = -sin(self.zRotation) * self.linearMagnitude,
+        .dy = cos(self.zRotation) * self.linearMagnitude,
     };
-    [self.node.physicsBody applyForce:force];
+    [self.physicsBody applyForce:force];
 }
 -(void) fireLaser {
     SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
-    laser.position = self.node.position;
-    laser.zRotation = self.node.zRotation;
-    SPACEMyScene *scene = (SPACEMyScene*)self.node.scene;
+    laser.position = self.position;
+    laser.zRotation = self.zRotation;
+    SPACEMyScene *scene = (SPACEMyScene*)self.scene;
     [scene.laserManager addChild:laser];
     laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
     laser.physicsBody.mass = 1;
@@ -64,18 +62,19 @@
 
 -(void) runAutoPilot {
     NSUInteger action = SPACERandomIntegerInInterval(1, 100);
-    if (action <= 20) {
+    if (action <= 30) {
         [self activateDirectionalThrustersRight];
     }
-    else if (action <= 40) {
+    else if (action <= 60) {
         [self activateDirectionalThrustersLeft];
     }
     else if (action <= 90) {
         [self activateThrusters];
-        self.angularMagnitude = 0;
+        [self releaseDirectionalThrusters];
     }
     else {
         [self fireLaser];
+        [self releaseDirectionalThrusters];
     }
 }
 
