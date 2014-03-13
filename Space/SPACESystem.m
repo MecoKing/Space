@@ -47,19 +47,19 @@ starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)s
     };
     SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
     
-    return [[self alloc] initWithStar:[SPACEStar performSelector:selector withObject:nil] planet:[SPACEPlanetSystem randomSystem]];
+    return [[self alloc] initWithStar:[SPACEStar performSelector:selector withObject:nil] planetSystem:[SPACEPlanetSystem randomSystem]];
 }
 
--(instancetype)initWithStar:(SPACEStar *)star planet:(SPACEPlanetSystem *)planet {
+-(instancetype)initWithStar:(SPACEStar *)star planetSystem:(SPACEPlanetSystem *)planetSystem {
     if ((self = [super init])) {
         _star = star;
-        _planet = planet;
+        _planetSystem = planetSystem;
         
 //        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
         star.position = (CGPoint){0};
         [self addChild:star];
         
-        [self addChild:planet];
+        [self addChild:planetSystem];
     }
     return self;
 }

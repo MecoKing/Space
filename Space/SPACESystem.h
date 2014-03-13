@@ -15,16 +15,16 @@
 @end
 
 
-@class SPACEStellarBody;
 @class SPACEStar;
+@class SPACEPlanet;
 
 @interface SPACEPlanetSystem : SPACESystem
 
--(instancetype)initWithPlanet:(SPACEStellarBody *)planet moon:(SPACEStellarBody *)moon;
+-(instancetype)initWithPlanet:(SPACEPlanet *)planet moon:(SPACEPlanet *)moon;
 
-@property (readonly) SPACEStellarBody *planet;
+@property (readonly) SPACEPlanet *planet;
 
-@property (readonly) SPACEStellarBody *moon;
+@property (readonly) SPACEPlanet *moon;
 
 @end
 
@@ -32,11 +32,11 @@
 
 @interface SPACEStarSystem : SPACESystem
 
--(instancetype)initWithStar:(SPACEStar *)star planet:(SPACEPlanetSystem *)planet;
+-(instancetype)initWithStar:(SPACEStar *)star planetSystem:(SPACEPlanetSystem *)planetSystem;
 
 @property (readonly) SPACEStar *star;
 
-@property (readonly) SPACEPlanetSystem *planet;
+@property (readonly) SPACEPlanetSystem *planetSystem;
 
 @end
 
