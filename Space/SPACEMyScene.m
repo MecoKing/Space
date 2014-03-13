@@ -111,8 +111,8 @@ static const CGFloat angularMagnitude = 10;
 #pragma mark Procedural generation
 
 -(void) generateSolarSystem {
-//    [self.universe addChild:[SPACESystem randomSystem]];
-//    return;
+    [self.universe addChild:[SPACESystem randomSystem]];
+    return;
     
     NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
     NSUInteger planetCount = [self planetCountBasedOnStars:starCount];

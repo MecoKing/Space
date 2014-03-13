@@ -139,7 +139,7 @@
         @selector(redGiantWithSize:),
         @selector(whiteDwarfWithSize:),
     };
-    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 2)];
+    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
     
     return [[self alloc] initWithStar:[SPACEStellarBody performSelector:selector withObject:nil] planet:[SPACEStellarBody randomPlanetWithSize:fakeSize]];
 }
