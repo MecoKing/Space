@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB2A1A3818B565A300B36AA1 /* SPACESystem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2A1A3718B565A300B36AA1 /* SPACESystem.m */; };
 		CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB335D9218A10E1C00AF7A33 /* HumanCargo.png */; };
+		CB3BE6BE18D216FC008CC8AA /* GasPlanetTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3BE6BD18D216FC008CC8AA /* GasPlanetTexture.png */; };
 		CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27918A0305200D0F466 /* RogueFighter.png */; };
 		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
@@ -49,6 +50,7 @@
 		CB2A1A3618B565A300B36AA1 /* SPACESystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACESystem.h; sourceTree = "<group>"; };
 		CB2A1A3718B565A300B36AA1 /* SPACESystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACESystem.m; sourceTree = "<group>"; };
 		CB335D9218A10E1C00AF7A33 /* HumanCargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanCargo.png; path = Images/HumanCargo.png; sourceTree = SOURCE_ROOT; };
+		CB3BE6BD18D216FC008CC8AA /* GasPlanetTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture.png; path = Images/GasPlanetTexture.png; sourceTree = SOURCE_ROOT; };
 		CB47C27918A0305200D0F466 /* RogueFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueFighter.png; path = Images/RogueFighter.png; sourceTree = SOURCE_ROOT; };
 		CB47C27B18A0328A00D0F466 /* SPACEShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEShip.h; sourceTree = "<group>"; };
 		CB47C27C18A0328A00D0F466 /* SPACEShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEShip.m; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				CB9F60AA18C0041200639141 /* RebelFighter.png */,
 				CBF74C2B18C288D100A41A2A /* RazorFighter.png */,
 				CB47C27E18A033ED00D0F466 /* Laser.png */,
+				CB3BE6BD18D216FC008CC8AA /* GasPlanetTexture.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				CBC0C07D1899A615005E2507 /* InfoPlist.strings in Resources */,
 				CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */,
 				CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */,
+				CB3BE6BE18D216FC008CC8AA /* GasPlanetTexture.png in Resources */,
 				CBC0C0831899A615005E2507 /* Credits.rtf in Resources */,
 				CB830A2F18A7BCA10050FE42 /* RogueGunship.png in Resources */,
 				CB9F60AB18C0041200639141 /* RebelFighter.png in Resources */,

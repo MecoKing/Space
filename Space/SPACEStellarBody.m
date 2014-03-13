@@ -101,6 +101,7 @@
     body.colour = SPACEAverageDarkColour();
     body.glowColour = [[body.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25];
     body.glowRatio = SPACERandomInInterval(0, 0.2);
+    body.planetTexture = [SKSpriteNode spriteNodeWithImageNamed:@"GasPlanetTexture"];
     return body;
 }
 
@@ -136,6 +137,15 @@
     physicsBody.angularDamping = 0;
     
     shape.physicsBody = physicsBody;
+    
+    
+    if (self.planetTexture != nil) {
+        self.planetTexture.position = CGPointMake(0, 0);
+//        self.planetTexture.blendMode = SKBlendModeAdd;
+        self.planetTexture.size = CGSizeMake(shape.frame.size.width, shape.frame.size.height);
+        [self addChild:self.planetTexture];
+    }
+    
     
     return shape;
 }

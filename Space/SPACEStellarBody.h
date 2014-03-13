@@ -27,6 +27,7 @@
 @property SKColor *colour;
 @property SKColor *glowColour;
 @property CGFloat glowRatio;
+@property SKSpriteNode *planetTexture;
 
 @property (readonly) SKShapeNode *shape;
 
