@@ -112,3 +112,20 @@ CGPoint SPACERandomInSize(CGSize size) {
         .y = SPACERandomInInterval(0, size.height),
     };
 }
+
+
+#pragma mark Polar coordinates
+
+CGPoint SPACEPointWithPolarPoint(SPACEPolarPoint p) {
+	return (CGPoint){
+		.x = p.r * cos(p.phi),
+		.y = p.r * sin(p.phi),
+	};
+}
+
+SPACEPolarPoint SPACEPolarPointWithPoint(CGPoint p) {
+	return (SPACEPolarPoint){
+		.r = SPACEMagnitudeOfPoint(p),
+		.phi = atan2(p.y, p.x),
+	};
+}

@@ -29,5 +29,10 @@ CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s);
 CGPoint SPACENormalizePoint(CGPoint a);
 CGPoint SPACERandomInSize(CGSize size);
 
+typedef struct {
+	CGFloat r; // radius
+	CGFloat phi; // angle in radians
+} SPACEPolarPoint;
 
-#define SPACEMemoize(...) 
+CGPoint SPACEPointWithPolarPoint(SPACEPolarPoint polar);
+SPACEPolarPoint SPACEPolarPointWithPoint(CGPoint point);
