@@ -229,11 +229,11 @@
     {
         //if the laser is off screen remove it...
         CGRect windowRect = CGRectMake(
-                                        self.playerShip.position.x - (self.view.window.frame.size.width / 2),
-                                        self.playerShip.position.y - (self.view.window.frame.size.height / 2),
-                                        self.view.window.frame.size.width,
-                                        self.view.window.frame.size.height
-                                       );
+            self.playerShip.position.x - (self.view.window.frame.size.width / 2),
+            self.playerShip.position.y - (self.view.window.frame.size.height / 2),
+            self.view.window.frame.size.width,
+            self.view.window.frame.size.height
+        );
         if (!CGRectContainsPoint(windowRect, l.position))
         {
             [l removeFromParent];
