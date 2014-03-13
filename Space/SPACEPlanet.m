@@ -5,6 +5,14 @@
 
 @implementation SPACEPlanet
 
+-(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(NSColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio texture:(SKTexture *)texture {
+	if ((self = [super initWithRadius:radius mass:mass colour:colour haloWidthRatio:haloWidthRatio])) {
+		_texture = texture;
+	}
+	return self;
+}
+
+
 +(instancetype)randomMoon {
 	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0];
 	planet.name = @"Moon";
@@ -18,7 +26,7 @@
 }
 
 +(instancetype)randomGasGiant {
-	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2)];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2) texture:[SKTexture textureWithImageNamed:@"GasPlanetTexture"]];
 	planet.name = @"Gas Giant";
 	return planet;
 }

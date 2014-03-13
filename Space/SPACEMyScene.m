@@ -16,17 +16,6 @@
 #pragma mark
 #pragma mark Scene
 
-@interface SPACEMyScene ()
-
-@property NSTimeInterval previousTime;
-
-@property SPACEShip *playerShip;
-
-@property SKNode *universe;
-@property SKNode *laserManager;
-
-@end
-
 @implementation SPACEMyScene
 
 +(void)initialize {
@@ -48,52 +37,51 @@
         [self addChild:self.universe];
         [self.universe addChild:self.laserManager];
         [self addPlayerShip];
+        [self addStarShips];
         [self generateSolarSystem];
     }
     return self;
 }
 
 -(void)addPlayerShip {
-    self.playerShip = [SPACEShip new];
-    [self.universe addChild:self.playerShip.node];
+    self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+    [self.universe addChild:self.playerShip];
+}
+
+-(void) addStarShips {
+    SPACEShip *alien = [SPACEShip shipWithImageNamed:@"AlienFighter"];
+    SPACEShip *rogue = [SPACEShip shipWithImageNamed:@"RogueFighter"];
+    SPACEShip *rebel = [SPACEShip shipWithImageNamed:@"RebelFighter"];
+    SPACEShip *razor = [SPACEShip shipWithImageNamed:@"RazorFighter"];
+    self.AIShips = @[
+        alien,
+        rogue,
+        rebel,
+        razor
+    ];
+    for (SPACEShip *ship in self.AIShips) {
+        [self addChild:ship];
+    }
 }
 
 #pragma mark
 #pragma mark Player controls
 
-static const CGFloat linearMagnitude = 10000;
-static const CGFloat angularMagnitude = 10;
-
 -(void)keyDown:(NSEvent *)event {
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
     if ((key == 'd' || key == NSRightArrowFunctionKey) && !event.isARepeat)
-        [self.playerShip.node.physicsBody applyTorque:-angularMagnitude];
+        [self.playerShip activateDirectionalThrustersRight];
     else if ((key == 'a' || key == NSLeftArrowFunctionKey) && !event.isARepeat)
-        [self.playerShip.node.physicsBody applyTorque:angularMagnitude];
+        [self.playerShip activateDirectionalThrustersLeft];
     else if (key == 'w' || key == NSUpArrowFunctionKey) {
-        CGVector force = (CGVector){
-            .dx = -sin(self.playerShip.node.zRotation) * linearMagnitude,
-            .dy = cos(self.playerShip.node.zRotation) * linearMagnitude,
-        };
-        
-        [self.playerShip.node.physicsBody applyForce:force];
+        [self.playerShip activateThrusters];
     }
     
     
     if (key == ' ')
     {
-        SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
-        laser.position = self.playerShip.node.position;
-        laser.zRotation = self.playerShip.node.zRotation;
-        [self.laserManager addChild:laser];
-        laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
-        laser.physicsBody.mass = 1;
-        CGVector force = (CGVector){
-            .dx = -sin(laser.zRotation) * linearMagnitude,
-            .dy = cos(laser.zRotation) * linearMagnitude,
-        };
-        [laser.physicsBody applyForce:force];
+        [self.playerShip fireLaser];
     }
 }
 
@@ -101,7 +89,7 @@ static const CGFloat angularMagnitude = 10;
     unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
     if (key == 'd' || key == NSRightArrowFunctionKey || key == 'a' || key == NSLeftArrowFunctionKey)
-		self.playerShip.node.physicsBody.angularVelocity = 0;
+        [self.playerShip releaseDirectionalThrusters];
 }
 
 
@@ -156,6 +144,7 @@ static const CGFloat angularMagnitude = 10;
     [self addChild:self.universe];
     [self.universe addChild:self.laserManager];
     [self addPlayerShip];
+    [self addStarShips];
     [self generateSolarSystem];
 }
 
@@ -184,12 +173,27 @@ static const CGFloat angularMagnitude = 10;
 //            f = g * (m1 * m2 / r^2)
         }
     }
-    self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.node.position, -1);
+    self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
+    
+    if ((currentTime - self.previousTime) < 5) {
+        for (SPACEShip *ship in self.AIShips) {
+            [ship runAutoPilot];
+        }
+    }
+    
     self.previousTime = currentTime;
+    
+    
     for (SKNode *l in self.laserManager.children)
     {
         //if the laser is off screen remove it...
-        if ((!(l.position.x > -self.view.window.frame.size.width && l.position.x < self.view.window.frame.size.width)) || (!(l.position.y > -self.view.window.frame.size.height && l.position.y < self.view.window.frame.size.height)))
+        CGRect windowRect = CGRectMake(
+                                        self.playerShip.position.x - (self.view.window.frame.size.width / 2),
+                                        self.playerShip.position.y - (self.view.window.frame.size.height / 2),
+                                        self.view.window.frame.size.width,
+                                        self.view.window.frame.size.height
+                                       );
+        if (!CGRectContainsPoint(windowRect, l.position))
         {
             [l removeFromParent];
         }

@@ -8,4 +8,6 @@
 +(instancetype)randomTerrestrialPlanet;
 +(instancetype)randomGasGiant;
 
+@property (readonly) SKTexture *texture;
+
 @end

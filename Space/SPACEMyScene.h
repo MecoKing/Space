@@ -8,6 +8,16 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+@class SPACEShip;
+
 @interface SPACEMyScene : SKScene
+
+@property NSTimeInterval previousTime;
+
+@property SPACEShip *playerShip;
+@property NSArray* AIShips;
+
+@property SKNode *universe;
+@property SKNode *laserManager;
 
 @end
