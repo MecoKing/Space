@@ -9,21 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@class SPACEStar;
-
 @interface SPACEStellarBody : SKShapeNode
 
-+(instancetype)moonWithSize:(CGSize)size;
-+(instancetype)terraPlanetWithSize:(CGSize)size;
-+(instancetype)gasPlanetWithSize:(CGSize)size;
++(instancetype)bodyWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
+-(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 
-@property CGFloat radius;
-@property CGFloat mass;
-//@property CGPoint position;
-@property SKColor *colour;
-@property SKColor *glowColour;
-@property CGFloat glowRatio;
+@property (readonly) CGFloat radius; // should eventually be measured in km
+@property (readonly) CGFloat mass; // should eventually be measured in kg or similar
+@property (readonly) SKColor *colour;
 
-@property (readonly) SKShapeNode *shape;
+@property (readonly) CGFloat haloWidthRatio;
+@property (readonly) SKColor *haloColour; // subclass responsibility
+
+
+// these methods are not available for creating new instances, use the constructor(s) above
+-(instancetype)init UNAVAILABLE_ATTRIBUTE;
++(instancetype)new UNAVAILABLE_ATTRIBUTE;
++(instancetype)node UNAVAILABLE_ATTRIBUTE;
 
 @end

@@ -29,5 +29,5 @@ CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s);
 CGPoint SPACENormalizePoint(CGPoint a);
 CGPoint SPACERandomInSize(CGSize size);
 
-@interface SPACEFunction : NSObject
-@end
+
+#define SPACEMemoize(...) 

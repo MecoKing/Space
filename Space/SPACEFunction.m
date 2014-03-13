@@ -112,7 +112,3 @@ CGPoint SPACERandomInSize(CGSize size) {
         .y = SPACERandomInInterval(0, size.height),
     };
 }
-
-
-@implementation SPACEFunction
-@end

@@ -9,7 +9,7 @@
 #import "SPACEFunction.h"
 #import "SPACESystem.h"
 #import "SPACEStar.h"
-#import "SPACEStellarBody.h"
+#import "SPACEPlanet.h"
 #import "SPACEMyScene.h"
 
 @implementation SPACESystem
@@ -69,26 +69,25 @@ starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)s
 @implementation SPACEPlanetSystem
 
 +(instancetype)randomSystem {
-    CGSize fakeSize = (CGSize){ 1000, 1000 };
     SEL selectors[] = {
-        @selector(gasPlanetWithSize:),
-        @selector(terraPlanetWithSize:),
+        @selector(randomGasGiant),
+        @selector(randomTerrestrialPlanet),
     };
     SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
     
-    return [[self alloc] initWithPlanet:[SPACEStellarBody performSelector:selector withObject:nil] moon:[SPACEStellarBody moonWithSize:fakeSize]];
+    return [[self alloc] initWithPlanet:[SPACEPlanet performSelector:selector withObject:nil] moon:[SPACEPlanet randomMoon]];
 }
 
--(instancetype)initWithPlanet:(SPACEStellarBody *)planet moon:(SPACEStellarBody *)moon {
+-(instancetype)initWithPlanet:(SPACEPlanet *)planet moon:(SPACEPlanet *)moon {
     if ((self = [super init])) {
         _planet = planet;
         _moon = moon;
         
 //        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
         planet.position = (CGPoint){0};
-        [self addChild:planet.shape];
+        [self addChild:planet];
         
-        [self addChild:moon.shape];
+        [self addChild:moon];
     }
     return self;
 }
