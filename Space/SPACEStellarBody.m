@@ -23,6 +23,8 @@
 		_radius = radius;
 		_haloWidthRatio = haloWidthRatio;
 		
+		_colour = colour;
+		
 		CGRect bounds = {
 			.origin.x = -_radius, .origin.y = -_radius,
 			.size.width = _radius * 2, .size.height = _radius * 2
@@ -56,11 +58,6 @@
 
 -(CGFloat)mass {
 	return self.physicsBody.mass;
-}
-
-
--(SKColor *)colour {
-	return _shape.fillColor;
 }
 
 
