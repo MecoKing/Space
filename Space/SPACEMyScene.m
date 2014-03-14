@@ -93,8 +93,10 @@
 }
 
 -(void) mouseDown:(NSEvent *)click {
-    CGPoint target = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
-    [self.playerShip fireMissileAtPoint:target];
+    CGPoint locationInViewCoordinates = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
+	CGPoint locationInSceneCoordinates = [self.scene.view convertPoint:locationInViewCoordinates toScene:self.scene];
+	CGPoint locationInUniverseCoordinates = [self.universe convertPoint:locationInSceneCoordinates fromNode:self.scene];
+    [self.playerShip fireMissileAtPoint:locationInUniverseCoordinates];
 }
 
 
