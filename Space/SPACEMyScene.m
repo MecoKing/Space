@@ -92,6 +92,11 @@
         [self.playerShip releaseDirectionalThrusters];
 }
 
+-(void) mouseDown:(NSEvent *)click {
+    CGPoint target = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
+    [self.playerShip fireMissileAtPoint:target];
+}
+
 
 #pragma mark
 #pragma mark Procedural generation

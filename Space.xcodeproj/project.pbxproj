@@ -21,6 +21,7 @@
 		CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC2189B524E0012B45F /* AlienFighter.png */; };
 		CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC3189B524E0012B45F /* HumanFighter.png */; };
 		CB830A2F18A7BCA10050FE42 /* RogueGunship.png in Resources */ = {isa = PBXBuildFile; fileRef = CB830A2E18A7BCA10050FE42 /* RogueGunship.png */; };
+		CB93C45F18D39151008D90FE /* Missile.png in Resources */ = {isa = PBXBuildFile; fileRef = CB93C45E18D39151008D90FE /* Missile.png */; };
 		CB9F60AB18C0041200639141 /* RebelFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9F60AA18C0041200639141 /* RebelFighter.png */; };
 		CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA2394D18A27C8100351847 /* SPACEStellarBody.m */; };
 		CBC0C0711899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
@@ -73,6 +74,7 @@
 		CB7C6BC2189B524E0012B45F /* AlienFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlienFighter.png; path = Images/AlienFighter.png; sourceTree = SOURCE_ROOT; };
 		CB7C6BC3189B524E0012B45F /* HumanFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanFighter.png; path = Images/HumanFighter.png; sourceTree = SOURCE_ROOT; };
 		CB830A2E18A7BCA10050FE42 /* RogueGunship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueGunship.png; path = Images/RogueGunship.png; sourceTree = SOURCE_ROOT; };
+		CB93C45E18D39151008D90FE /* Missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Missile.png; path = Images/Missile.png; sourceTree = SOURCE_ROOT; };
 		CB9F60AA18C0041200639141 /* RebelFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RebelFighter.png; path = Images/RebelFighter.png; sourceTree = SOURCE_ROOT; };
 		CBA2394C18A27C8100351847 /* SPACEStellarBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStellarBody.h; sourceTree = "<group>"; };
 		CBA2394D18A27C8100351847 /* SPACEStellarBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStellarBody.m; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				CB27AE6E18D361CC001C65B5 /* PlanetTextures */,
 				CB27AE6D18D361C5001C65B5 /* Ships */,
 				CB47C27E18A033ED00D0F466 /* Laser.png */,
+				CB93C45E18D39151008D90FE /* Missile.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				CBC0C0831899A615005E2507 /* Credits.rtf in Resources */,
 				CB830A2F18A7BCA10050FE42 /* RogueGunship.png in Resources */,
 				CB9F60AB18C0041200639141 /* RebelFighter.png in Resources */,
+				CB93C45F18D39151008D90FE /* Missile.png in Resources */,
 				CB27AE6418D33FCB001C65B5 /* TerraPlanetTexture01.png in Resources */,
 				CB27AE6518D33FCB001C65B5 /* TerraPlanetTexture02.png in Resources */,
 				CBC0C0851899A615005E2507 /* MainMenu.xib in Resources */,

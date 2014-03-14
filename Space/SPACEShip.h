@@ -27,6 +27,7 @@
 -(void) activateThrusters;
 -(void) runAutoPilot;
 -(void) fireLaser;
+-(void) fireMissileAtPoint: (CGPoint) destination;
 +(instancetype) shipWithImageNamed: (NSString*) imageName;
 
 @end

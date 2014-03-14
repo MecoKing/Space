@@ -63,6 +63,23 @@
     };
     [laser.physicsBody applyForce:force];
 }
+-(void) fireMissileAtPoint: (CGPoint)destination {
+    CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
+    CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi;
+    
+    SKSpriteNode *missile = [SKSpriteNode spriteNodeWithImageNamed:@"Missile"];
+    missile.position = self.position;//Just in front of the spaceship
+    missile.zRotation = firingAngle;
+    SPACEMyScene *scene = (SPACEMyScene*)self.scene;
+    [scene.laserManager addChild:missile];
+    missile.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
+    missile.physicsBody.mass = 10;
+    CGVector force = (CGVector){
+        .dx = -sin(missile.zRotation) * self.linearMagnitude,
+        .dy = cos(missile.zRotation) * self.linearMagnitude,
+    };
+    [missile.physicsBody applyForce:force];
+}
 
 
 -(void) runAutoPilot {
@@ -78,6 +95,9 @@
     [self goToPoint:ship.position];
     if (self.currentAngle > (self.angleToFace - 0.1) && self.currentAngle < (self.angleToFace + 0.1)) {
         [self fireLaser];
+    }
+    if (SPACERandomIntegerInInterval(1, 1000) == 1) {
+        [self fireMissileAtPoint:ship.position];
     }
 }
 
