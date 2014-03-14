@@ -33,6 +33,10 @@
     return [[self alloc] initWithImageNamed:imageName];
 }
 
+
+@dynamic scene;
+
+
 -(void) releaseDirectionalThrusters {
     self.physicsBody.angularVelocity = 0;
 }

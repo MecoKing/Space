@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface SPACEShip : SKSpriteNode
+@class SPACEMyScene;
 
+@interface SPACEShip : SKSpriteNode
 
 @property CGFloat linearMagnitude;
 @property CGFloat angularMagnitude;
@@ -20,6 +21,8 @@
 @property CGPoint relativePoint;
 @property CGFloat angleToFace;
 @property CGFloat currentAngle;
+
+@property (SK_NONATOMIC_IOSONLY, readonly) SPACEMyScene *scene;
 
 -(void) releaseDirectionalThrusters;
 -(void) activateDirectionalThrustersRight;
