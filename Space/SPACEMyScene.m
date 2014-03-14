@@ -77,11 +77,11 @@
     else if (key == 'w' || key == NSUpArrowFunctionKey) {
         [self.playerShip activateThrusters];
     }
-    
-    
-    if (key == ' ')
-    {
+    if (key == ' ') {
         [self.playerShip fireLaser];
+    }
+    if (key == 'r') {
+        [self refreshSolarSystem];
     }
 }
 
@@ -136,7 +136,7 @@
     return planetCount;
 }
 
--(void) mouseDown:(NSEvent *)theEvent {
+-(void) refreshSolarSystem {
     [self.laserManager removeAllChildren];
     [self.universe removeAllChildren];
     [self removeAllChildren];
@@ -184,7 +184,7 @@
     self.previousTime = currentTime;
     
     
-    for (SKNode *l in self.laserManager.children)
+    for (SKNode *projectile in self.laserManager.children)
     {
         //if the laser is off screen remove it...
         CGRect windowRect = CGRectMake(
@@ -193,9 +193,9 @@
             self.view.window.frame.size.width,
             self.view.window.frame.size.height
         );
-        if (!CGRectContainsPoint(windowRect, l.position))
+        if (!CGRectContainsPoint(windowRect, projectile.position))
         {
-            [l removeFromParent];
+            [projectile removeFromParent];
         }
     }
 }
