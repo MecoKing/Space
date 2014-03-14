@@ -14,11 +14,18 @@ CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageCo
 
 NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to);
 
+#pragma mark Colours
+
 SKColor *SPACERandomColour();
 SKColor *SPACERandomDarkColour();
 SKColor *SPACERandomLightColour();
 SKColor *SPACEInverseOfColour(SKColor *colour);
 SKColor *SPACEAverageDarkColour ();
+
+
+#pragma mark Points
+
+CGPoint SPACEPointWithVector(CGVector v);
 
 CGPoint SPACESubtractPoint(CGPoint a, CGPoint b);
 CGFloat SPACEMagnitudeOfPoint(CGPoint a);
@@ -29,6 +36,14 @@ CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s);
 CGPoint SPACENormalizePoint(CGPoint a);
 CGPoint SPACERandomInSize(CGSize size);
 
+#pragma mark Vectors
+
+CGVector SPACEVectorWithPoint(CGPoint p);
+CGVector SPACEMultiplyVectorByScalar(CGVector v, CGFloat s);
+
+
+#pragma mark Polar coordinates
+
 typedef struct {
 	CGFloat r; // radius
 	CGFloat phi; // angle in radians
@@ -36,3 +51,6 @@ typedef struct {
 
 CGPoint SPACEPointWithPolarPoint(SPACEPolarPoint polar);
 SPACEPolarPoint SPACEPolarPointWithPoint(CGPoint point);
+
+CGVector SPACEVectorWithPolarPoint(SPACEPolarPoint p);
+SPACEPolarPoint SPACEPolarPointWithVector(CGVector v);
