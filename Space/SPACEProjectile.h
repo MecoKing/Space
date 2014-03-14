@@ -2,5 +2,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface SPACEProjectile : SKNode
+@interface SPACEProjectile : SKSpriteNode
+
++(instancetype)missileOriginatingFromNode:(SKNode *)node;
++(instancetype)laserOriginatingFromNode:(SKNode *)node;
+
 @end

@@ -9,6 +9,7 @@
 #import "SPACEShip.h"
 #import "SPACEFunction.h"
 #import "SPACEMyScene.h"
+#import "SPACEProjectile.h"
 
 @implementation SPACEShip
 
@@ -58,36 +59,19 @@
 }
 
 -(void) fireLaser {
-    SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
-    laser.position = self.position;//Just in front of the spaceship
-    laser.zRotation = self.zRotation;
-    SPACEMyScene *scene = (SPACEMyScene*)self.scene;
-    [scene.laserManager addChild:laser];
-    laser.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
-    laser.physicsBody.mass = 1;
-    CGVector force = (CGVector){
-        .dx = -sin(laser.zRotation) * self.linearMagnitude,
-        .dy = cos(laser.zRotation) * self.linearMagnitude,
-    };
-    [laser.physicsBody applyForce:force];
+	SPACEProjectile *laser = [SPACEProjectile laserOriginatingFromNode:self];
+    [self.scene.laserManager addChild:laser];
+    [laser.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = self.zRotation, .r = self.linearMagnitude })];
 }
 
 -(void) fireMissileAtPoint: (CGPoint)destination {
-    CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
+	CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
     CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi - M_PI_2;
-    
-    SKSpriteNode *missile = [SKSpriteNode spriteNodeWithImageNamed:@"Missile"];
-    missile.position = self.position;//Just in front of the spaceship
-    missile.zRotation = firingAngle;
-    SPACEMyScene *scene = (SPACEMyScene*)self.scene;
-    [scene.laserManager addChild:missile];
-    missile.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.1];
-    missile.physicsBody.mass = 10;
-    CGVector force = (CGVector){
-        .dx = -sin(missile.zRotation) * self.linearMagnitude,
-        .dy = cos(missile.zRotation) * self.linearMagnitude,
-    };
-    [missile.physicsBody applyForce:force];
+	
+	SPACEProjectile *missile = [SPACEProjectile missileOriginatingFromNode:self];
+	[self.scene.laserManager addChild:missile];
+	missile.zRotation = firingAngle;
+	[missile.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = firingAngle, .r = self.linearMagnitude })];
 }
 
 
