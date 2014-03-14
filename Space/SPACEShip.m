@@ -65,7 +65,7 @@
 }
 -(void) fireMissileAtPoint: (CGPoint)destination {
     CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
-    CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi;
+    CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi - M_PI_2;
     
     SKSpriteNode *missile = [SKSpriteNode spriteNodeWithImageNamed:@"Missile"];
     missile.position = self.position;//Just in front of the spaceship
