@@ -134,7 +134,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CBAF1FC0189AA82B00F747FD /* Graphics */ = {
+		CB27AE6D18D361C5001C65B5 /* Ships */ = {
 			isa = PBXGroup;
 			children = (
 				CB7C6BC2189B524E0012B45F /* AlienFighter.png */,
@@ -144,7 +144,13 @@
 				CB830A2E18A7BCA10050FE42 /* RogueGunship.png */,
 				CB9F60AA18C0041200639141 /* RebelFighter.png */,
 				CBF74C2B18C288D100A41A2A /* RazorFighter.png */,
-				CB47C27E18A033ED00D0F466 /* Laser.png */,
+			);
+			name = Ships;
+			sourceTree = "<group>";
+		};
+		CB27AE6E18D361CC001C65B5 /* PlanetTextures */ = {
+			isa = PBXGroup;
+			children = (
 				CBE2F8A518D28237005B8B25 /* GasPlanetTexture01.png */,
 				CBE2F8A618D28237005B8B25 /* GasPlanetTexture02.png */,
 				CBE2F8A718D28237005B8B25 /* GasPlanetTexture03.png */,
@@ -154,6 +160,16 @@
 				CB27AE6718D35180001C65B5 /* MoltenPlanetTexture01.png */,
 				CB27AE6818D35180001C65B5 /* MoltenPlanetTexture02.png */,
 				CB27AE6918D35180001C65B5 /* MoltenPlanetTexture03.png */,
+			);
+			name = PlanetTextures;
+			sourceTree = "<group>";
+		};
+		CBAF1FC0189AA82B00F747FD /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				CB27AE6E18D361CC001C65B5 /* PlanetTextures */,
+				CB27AE6D18D361C5001C65B5 /* Ships */,
+				CB47C27E18A033ED00D0F466 /* Laser.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";

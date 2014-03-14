@@ -21,6 +21,8 @@
         self.texture.filteringMode = SKTextureFilteringNearest;
         self.angularMagnitude = 10;
         self.linearMagnitude = 10000;
+        self.allegiance = SPACERandomIntegerInInterval(1, 5);
+        //Eventually Have the spaceship texture based on allegiance
     }
     return self;
 }
