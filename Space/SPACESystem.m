@@ -29,7 +29,7 @@
 		for (SPACESystem *satellite in satellites) {
 			[self addChild:satellite];
 			
-			CGFloat min = satellite.radius + self.barycentre.radius;
+			CGFloat min = self.barycentre.radius + satellite.radius * 2;
 			SPACEPolarPoint polarPoint = (SPACEPolarPoint){
 				.r = SPACERandomInInterval(min, min * 2),
 				.phi = SPACERandomInInterval(0, 2 * M_PI),
