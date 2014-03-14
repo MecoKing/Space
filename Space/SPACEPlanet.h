@@ -6,6 +6,7 @@
 
 +(instancetype)randomMoon;
 +(instancetype)randomTerrestrialPlanet;
++(instancetype)randomMoltenPlanet;
 +(instancetype)randomGasGiant;
 
 @property (readonly) SKTexture *texture;

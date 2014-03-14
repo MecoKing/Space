@@ -53,14 +53,22 @@
 }
 
 +(instancetype)randomTerrestrialPlanet {
-	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e23, 2e25) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.15)];
+    NSArray *planetTextures = @[ @"TerraPlanetTexture01", @"TerraPlanetTexture02", @"TerraPlanetTexture03" ];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e23, 2e25) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.15) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Terrestrial";
+	return planet;
+}
+
++(instancetype)randomMoltenPlanet {
+    NSArray *planetTextures = @[ @"MoltenPlanetTexture01", @"MoltenPlanetTexture02", @"MoltenPlanetTexture03" ];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e25, 2e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.1) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
+	planet.name = @"Molten";
 	return planet;
 }
 
 +(instancetype)randomGasGiant {
     NSArray *planetTextures = @[ @"GasPlanetTexture01", @"GasPlanetTexture02", @"GasPlanetTexture03" ];
-	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(60, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Gas Giant";
 	return planet;
 }
