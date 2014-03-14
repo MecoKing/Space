@@ -36,12 +36,15 @@
 -(void) releaseDirectionalThrusters {
     self.physicsBody.angularVelocity = 0;
 }
+
 -(void) activateDirectionalThrustersRight {
     [self.physicsBody applyTorque:-self.angularMagnitude];
 }
+
 -(void) activateDirectionalThrustersLeft {
     [self.physicsBody applyTorque:self.angularMagnitude];
 }
+
 -(void) activateThrusters {
     CGVector force = (CGVector){
         .dx = -sin(self.zRotation) * self.linearMagnitude,
@@ -49,6 +52,7 @@
     };
     [self.physicsBody applyForce:force];
 }
+
 -(void) fireLaser {
     SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
     laser.position = self.position;//Just in front of the spaceship
@@ -63,6 +67,7 @@
     };
     [laser.physicsBody applyForce:force];
 }
+
 -(void) fireMissileAtPoint: (CGPoint)destination {
     CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
     CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi - M_PI_2;
