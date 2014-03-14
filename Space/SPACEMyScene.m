@@ -11,6 +11,7 @@
 #import "SPACEShip.h"
 #import "SPACEStellarBody.h"
 #import "SPACESystem.h"
+#import "SPACEPlanet.h"
 
 
 #pragma mark
@@ -102,7 +103,8 @@
 #pragma mark Procedural generation
 
 -(void) generateSolarSystem {
-    [self.universe addChild:[SPACESystem randomSystem]];
+    self.system = [SPACESystem randomSystem];
+    [self.universe addChild:self.system];
 }
 
 
@@ -187,6 +189,12 @@
 //    }
     
     self.previousTime = currentTime;
+    
+    
+    for (SPACEPlanet *planet in self.system.satellites) {
+        [planet updateWithSystem:self.system];
+    }
+    
     
     
     for (SKNode *projectile in self.laserManager.children)

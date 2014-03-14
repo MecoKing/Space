@@ -115,6 +115,14 @@
 	return radius;
 }
 
+#pragma mark barycentre
+-(void) updateWithSystem: (SPACESystem*) origin {
+    [self.barycentre updateWithSystem:origin];
+    for (SPACESystem *system in self.satellites) {
+        [system updateWithSystem:origin];
+    }
+}
+
 @end
 
     

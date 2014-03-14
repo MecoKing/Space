@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @class SPACEShip;
+@class SPACESystem;
 
 @interface SPACEMyScene : SKScene
 
@@ -16,7 +17,7 @@
 
 @property SPACEShip *playerShip;
 @property NSArray* AIShips;
-
+@property SPACESystem* system;
 @property SKNode *universe;
 @property SKNode *laserManager;
 
