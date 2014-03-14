@@ -3,11 +3,44 @@
 #import "SPACEPlanet.h"
 #import "SPACEFunction.h"
 
-@implementation SPACEPlanet
+@implementation SPACEPlanet {
+	SKSpriteNode *sprite;
+}
+
++(SKView *)textureRenderingView {
+	static SKView *view;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		view = [[SKView alloc] initWithFrame:(NSRect){ .size.width = 1000, .size.height = 1000 }];
+	});
+	return view;
+}
 
 -(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(NSColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio texture:(SKTexture *)texture {
 	if ((self = [super initWithRadius:radius mass:mass colour:colour haloWidthRatio:haloWidthRatio])) {
 		_texture = texture;
+		
+		CGSize size = { .width = radius * 2, .height = radius * 2 };
+		
+		SKCropNode *crop = [SKCropNode node];
+		
+		SKSpriteNode *textureNode = [SKSpriteNode spriteNodeWithTexture:texture size:size];
+		textureNode.color = self.colour;
+		textureNode.texture.filteringMode = SKTextureFilteringNearest;
+		textureNode.blendMode = SKBlendModeScreen;
+		[crop addChild:textureNode];
+		
+		SKShapeNode *mask = [SKShapeNode node];
+		mask.fillColor = [SKColor whiteColor];
+		mask.strokeColor = [SKColor clearColor];
+		
+		CGPathRef path = CGPathCreateWithEllipseInRect((CGRect){ .origin.x = -radius, .origin.y = -radius, .size = size }, NULL);
+		mask.path = path;
+		CGPathRelease(path);
+		
+		crop.maskNode = [SKSpriteNode spriteNodeWithTexture:[[self.class textureRenderingView] textureFromNode:mask]];
+		
+		[self addChild:crop];
 	}
 	return self;
 }
