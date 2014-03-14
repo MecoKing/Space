@@ -8,13 +8,85 @@
 
 #import "SPACEFunction.h"
 #import "SPACESystem.h"
-#import "SPACEStellarBody.h"
+#import "SPACEStar.h"
+#import "SPACEPlanet.h"
 #import "SPACEMyScene.h"
 
 @implementation SPACESystem
 
++(instancetype)systemWithBarycentre:(SKNode<SPACEBarycentre> *)barycentre satellites:(NSArray *)satellites {
+	return [[self alloc] initWithBarycentre:barycentre satellites:satellites];
+}
+
+-(instancetype)initWithBarycentre:(SKNode<SPACEBarycentre> *)barycentre satellites:(NSArray *)satellites {
+	if ((self = [super init])) {
+		if (barycentre) {
+			_barycentre = barycentre;
+			[self addChild:barycentre];
+		}
+		
+		_satellites = [satellites copy];
+		for (SPACESystem *satellite in satellites) {
+			[self addChild:satellite];
+			
+			CGFloat min = self.barycentre.radius + satellite.radius * 2;
+			SPACEPolarPoint polarPoint = (SPACEPolarPoint){
+				.r = SPACERandomInInterval(min, min * 2),
+				.phi = SPACERandomInInterval(0, 2 * M_PI),
+			};
+			satellite.position = SPACEPointWithPolarPoint(polarPoint);
+		}
+		
+		self.name = [self.barycentre.name stringByAppendingString:@" System"];
+	}
+	return self;
+}
+
+
++(instancetype)randomPlanetarySystem {
+	SEL selectors[] = {
+        @selector(randomGasGiant),
+        @selector(randomTerrestrialPlanet),
+    };
+    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
+    
+	NSMutableArray *moons = [NSMutableArray new];
+	NSUInteger moonCount = SPACERandomIntegerInInterval(0, 5);
+	for (NSUInteger i = 0; i < moonCount; i++) {
+		[moons addObject:[self systemWithBarycentre:[SPACEPlanet randomMoon] satellites:@[]]];
+	}
+	
+	return [self systemWithBarycentre:[SPACEPlanet performSelector:selector withObject:nil] satellites:moons];
+}
+
++(instancetype)randomStarSystem {
+	SEL selectors[] = {
+        @selector(randomSuperGiant),
+        @selector(randomRedGiant),
+        @selector(randomWhiteDwarf),
+    };
+    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
+    
+	NSMutableArray *planets = [NSMutableArray new];
+	NSUInteger planetCount = SPACERandomIntegerInInterval(0, 5);
+	for (NSUInteger i = 0; i < planetCount; i++) {
+		[planets addObject:[self randomPlanetarySystem]];
+	}
+	
+	return [self systemWithBarycentre:[SPACEStar performSelector:selector withObject:nil] satellites:planets];
+}
+
 +(instancetype)randomSystem {
-    return [SPACEStarSystem randomSystem];
+    return [self randomStarSystem];
+}
+
+
+-(CGFloat)radius {
+	CGFloat radius = self.barycentre.radius;
+	for (SPACESystem *satellite in self.satellites) {
+		radius = MAX(radius, SPACEMagnitudeOfPoint(satellite.position));
+	}
+	return radius;
 }
 
 @end
@@ -34,62 +106,3 @@ starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)s
 [self addChild:planetCountLabel];
 [self addChild:starCountLabel];
 */
-
-
-@implementation SPACEStarSystem
-
-+(instancetype)randomSystem {
-    SEL selectors[] = {
-        @selector(supernovaWithSize:),
-        @selector(redGiantWithSize:),
-        @selector(whiteDwarfWithSize:),
-    };
-    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
-    
-    return [[self alloc] initWithStar:[SPACEStellarBody performSelector:selector withObject:nil] planet:[SPACEPlanetSystem randomSystem]];
-}
-
--(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEPlanetSystem *)planet {
-    if ((self = [super init])) {
-        _star = star;
-        _planet = planet;
-        
-//        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
-        star.position = (CGPoint){0};
-        [self addChild:star.shape];
-        
-        [self addChild:planet];
-    }
-    return self;
-}
-
-@end
-
-@implementation SPACEPlanetSystem
-
-+(instancetype)randomSystem {
-    CGSize fakeSize = (CGSize){ 1000, 1000 };
-    SEL selectors[] = {
-        @selector(gasPlanetWithSize:),
-        @selector(terraPlanetWithSize:),
-    };
-    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
-    
-    return [[self alloc] initWithPlanet:[SPACEStellarBody performSelector:selector withObject:nil] moon:[SPACEStellarBody moonWithSize:fakeSize]];
-}
-
--(instancetype)initWithPlanet:(SPACEStellarBody *)planet moon:(SPACEStellarBody *)moon {
-    if ((self = [super init])) {
-        _planet = planet;
-        _moon = moon;
-        
-//        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
-        planet.position = (CGPoint){0};
-        [self addChild:planet.shape];
-        
-        [self addChild:moon.shape];
-    }
-    return self;
-}
-
-@end

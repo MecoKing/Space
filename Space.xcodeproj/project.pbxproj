@@ -36,6 +36,8 @@
 		CBE2F8AA18D28237005B8B25 /* GasPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A718D28237005B8B25 /* GasPlanetTexture03.png */; };
 		CBF74C2C18C288D100A41A2A /* RazorFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF74C2B18C288D100A41A2A /* RazorFighter.png */; };
 		CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */; };
+		D47912CC18D2134F00015495 /* SPACEStar.m in Sources */ = {isa = PBXBuildFile; fileRef = D47912CB18D2134F00015495 /* SPACEStar.m */; };
+		D47912CF18D21FB200015495 /* SPACEPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = D47912CE18D21FB200015495 /* SPACEPlanet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,11 @@
 		CBF74C2B18C288D100A41A2A /* RazorFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RazorFighter.png; path = Images/RazorFighter.png; sourceTree = SOURCE_ROOT; };
 		CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEFunction.h; sourceTree = "<group>"; };
 		CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEFunction.m; sourceTree = "<group>"; };
+		D47912CA18D2134F00015495 /* SPACEStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStar.h; sourceTree = "<group>"; };
+		D47912CB18D2134F00015495 /* SPACEStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStar.m; sourceTree = "<group>"; };
+		D47912CD18D21FB200015495 /* SPACEPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEPlanet.h; sourceTree = "<group>"; };
+		D47912CE18D21FB200015495 /* SPACEPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEPlanet.m; sourceTree = "<group>"; };
+		D47912D018D26BDE00015495 /* SPACEBarycentre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEBarycentre.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +188,13 @@
 				CBC0C0861899A615005E2507 /* SPACEMyScene.m */,
 				CBA2394C18A27C8100351847 /* SPACEStellarBody.h */,
 				CBA2394D18A27C8100351847 /* SPACEStellarBody.m */,
+				D47912CA18D2134F00015495 /* SPACEStar.h */,
+				D47912CB18D2134F00015495 /* SPACEStar.m */,
+				D47912CD18D21FB200015495 /* SPACEPlanet.h */,
+				D47912CE18D21FB200015495 /* SPACEPlanet.m */,
 				CB2A1A3618B565A300B36AA1 /* SPACESystem.h */,
 				CB2A1A3718B565A300B36AA1 /* SPACESystem.m */,
+				D47912D018D26BDE00015495 /* SPACEBarycentre.h */,
 				CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */,
 				CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */,
 				CB47C27B18A0328A00D0F466 /* SPACEShip.h */,
@@ -339,8 +351,10 @@
 			files = (
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */,
+				D47912CF18D21FB200015495 /* SPACEPlanet.m in Sources */,
 				CBC0C08A1899A615005E2507 /* SPACEAppDelegate.m in Sources */,
 				CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */,
+				D47912CC18D2134F00015495 /* SPACEStar.m in Sources */,
 				CB2A1A3818B565A300B36AA1 /* SPACESystem.m in Sources */,
 				CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */,
 				CBC0C0871899A615005E2507 /* SPACEMyScene.m in Sources */,

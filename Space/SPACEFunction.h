@@ -29,5 +29,10 @@ CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s);
 CGPoint SPACENormalizePoint(CGPoint a);
 CGPoint SPACERandomInSize(CGSize size);
 
-@interface SPACEFunction : NSObject
-@end
+typedef struct {
+	CGFloat r; // radius
+	CGFloat phi; // angle in radians
+} SPACEPolarPoint;
+
+CGPoint SPACEPointWithPolarPoint(SPACEPolarPoint polar);
+SPACEPolarPoint SPACEPolarPointWithPoint(CGPoint point);

@@ -98,47 +98,6 @@
 
 -(void) generateSolarSystem {
     [self.universe addChild:[SPACESystem randomSystem]];
-    return;
-    
-    NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
-    NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
-    for (NSUInteger i = 0; i < planetCount; i++) {
-        CGFloat planetType = SPACERandomInInterval(1, 100);
-        if (planetType >= 66)
-        {
-            [self.universe addChild:[SPACEStellarBody moonWithSize:self.size].shape];
-        }
-        else if (planetType >= 33)
-        {
-            [self.universe addChild:[SPACEStellarBody terraPlanetWithSize:self.size].shape];
-        }
-        else
-        {
-            [self.universe addChild:[SPACEStellarBody gasPlanetWithSize:self.size].shape];
-        }
-    }
-    for (NSUInteger i = 0; i < starCount; i++) {
-        CGFloat starType = SPACERandomInInterval(1, 1000);
-        if (starType >= 975)//2.5% chance
-            [self.universe addChild:[SPACEStellarBody supernovaWithSize:self.size].shape];
-        else if (starType >= 950)//2.5% chance
-            [self.universe addChild:[SPACEStellarBody redGiantWithSize:self.size].shape];
-        else
-            [self.universe addChild:[SPACEStellarBody whiteDwarfWithSize:self.size].shape];
-    }
-    
-    SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    planetCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 20);
-    starCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 50);
-    planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-    starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-    planetCountLabel.fontSize = 14;
-    starCountLabel.fontSize = 14;
-    planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
-    starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-    [self addChild:planetCountLabel];
-    [self addChild:starCountLabel];
 }
 
 

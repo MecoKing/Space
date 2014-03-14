@@ -6,38 +6,21 @@
 //  Copyright (c) 2014 [pixelmonster]. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
-
-@interface SPACESystem : SKNode
-
-+(instancetype)randomSystem;
-
-@end
-
+#import "SPACEBarycentre.h"
 
 @class SPACEStellarBody;
 
-@interface SPACEPlanetSystem : SPACESystem
+@interface SPACESystem : SKNode <SPACEBarycentre>
 
--(instancetype)initWithPlanet:(SPACEStellarBody *)planet moon:(SPACEStellarBody *)moon;
++(instancetype)systemWithBarycentre:(SKNode<SPACEBarycentre> *)barycentre satellites:(NSArray *)satellites;
 
-@property (readonly) SPACEStellarBody *planet;
++(instancetype)randomSystem;
 
-@property (readonly) SPACEStellarBody *moon;
-
-@end
-
-
-
-@interface SPACEStarSystem : SPACESystem
-
--(instancetype)initWithStar:(SPACEStellarBody *)star planet:(SPACEPlanetSystem *)planet;
-
-@property (readonly) SPACEStellarBody *star;
-
-@property (readonly) SPACEPlanetSystem *planet;
+@property (readonly) SKNode<SPACEBarycentre> *barycentre; // the gravitational hub of the system. for a planetary system this will be the planet that the moons orbit; for a star system it would be the star(s) that the planets orbit
+@property (readonly) NSArray *satellites; // systems which are satellites of this system
 
 @end
+
 
 // - star system (of various sizes/kinds)
     // - planetary systems orbiting them

@@ -6,29 +6,24 @@
 //  Copyright (c) 2014 [pixelmonster]. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
+#import "SPACEBarycentre.h"
 
-@interface SPACEStellarBody : SKNode
+@interface SPACEStellarBody : SKShapeNode <SPACEBarycentre>
 
-+(instancetype)randomStarWithSize:(CGSize)size;
-+(instancetype)randomPlanetWithSize:(CGSize)size;
+-(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 
-+(instancetype)supernovaWithSize:(CGSize)size;
-+(instancetype)redGiantWithSize:(CGSize)size;
-+(instancetype)whiteDwarfWithSize:(CGSize)size;
-+(instancetype)moonWithSize:(CGSize)size;
-+(instancetype)terraPlanetWithSize:(CGSize)size;
-+(instancetype)gasPlanetWithSize:(CGSize)size;
+@property (readonly) CGFloat radius; // should eventually be measured in km
+@property (readonly) CGFloat mass; // should eventually be measured in kg or similar
+@property (readonly) SKColor *colour;
 
-@property CGFloat radius;
-@property CGFloat mass;
-@property CGPoint position;
-@property SKColor *colour;
-@property SKColor *glowColour;
-@property CGFloat glowRatio;
-@property SKSpriteNode *planetTexture;
+@property (readonly) CGFloat haloWidthRatio;
+@property (readonly) SKColor *haloColour; // subclass responsibility
 
-@property (readonly) SKShapeNode *shape;
+
+// these methods are not available for creating new instances, use the constructor(s) above
+-(instancetype)init UNAVAILABLE_ATTRIBUTE;
++(instancetype)new UNAVAILABLE_ATTRIBUTE;
++(instancetype)node UNAVAILABLE_ATTRIBUTE;
 
 @end
