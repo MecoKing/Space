@@ -79,4 +79,17 @@
     }
 }
 
+-(void) chaseShip: (SPACEShip*) ship {
+    //if (!facing ship)
+    //    if (left of ship)
+    //        [self activateDirectionalThrustersLeft];
+    //    if (right of ship)
+    //        [self activateDirectionalThrustersLeft];
+    //else
+    //    [self activateThrusters];
+    //    [self releaseDirectionalThrusters];
+    //    if (close to ship)
+    //        [self fireLaser];
+}
+
 @end
