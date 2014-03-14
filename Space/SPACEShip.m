@@ -18,6 +18,7 @@
         self.physicsBody.friction = 0;
         self.physicsBody.angularDamping = 0;
         self.physicsBody.mass = 100;
+        self.texture.filteringMode = SKTextureFilteringNearest;
         self.angularMagnitude = 10;
         self.linearMagnitude = 10000;
     }
