@@ -27,7 +27,7 @@
 		SKSpriteNode *textureNode = [SKSpriteNode spriteNodeWithTexture:texture size:size];
 		textureNode.color = self.colour;
 		textureNode.texture.filteringMode = SKTextureFilteringNearest;
-		textureNode.blendMode = SKBlendModeScreen;
+//		textureNode.blendMode = SKBlendModeScreen;
 		[crop addChild:textureNode];
 		
 		SKShapeNode *mask = [SKShapeNode node];
@@ -59,7 +59,8 @@
 }
 
 +(instancetype)randomGasGiant {
-	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2) texture:[SKTexture textureWithImageNamed:@"GasPlanetTexture"]];
+    NSArray *planetTextures = @[ @"GasPlanetTexture01", @"GasPlanetTexture02", @"GasPlanetTexture03" ];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(50, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Gas Giant";
 	return planet;
 }
