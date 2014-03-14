@@ -22,6 +22,8 @@
         self.angularMagnitude = 10;
         self.linearMagnitude = 10000;
         self.allegiance = SPACERandomIntegerInInterval(1, 5);
+        
+//        [self activateThrusters];
         //Eventually Have the spaceship texture based on allegiance
     }
     return self;
@@ -49,7 +51,7 @@
 }
 -(void) fireLaser {
     SKSpriteNode *laser = [SKSpriteNode spriteNodeWithImageNamed:@"Laser"];
-    laser.position = self.position;
+    laser.position = self.position;//Just in front of the spaceship
     laser.zRotation = self.zRotation;
     SPACEMyScene *scene = (SPACEMyScene*)self.scene;
     [scene.laserManager addChild:laser];
@@ -64,34 +66,44 @@
 
 
 -(void) runAutoPilot {
-    NSUInteger action = SPACERandomIntegerInInterval(1, 100);
-    if (action <= 30) {
-        [self activateDirectionalThrustersRight];
-    }
-    else if (action <= 60) {
-        [self activateDirectionalThrustersLeft];
-    }
-    else if (action <= 90) {
-        [self activateThrusters];
-        [self releaseDirectionalThrusters];
-    }
-    else {
-        [self fireLaser];
-        [self releaseDirectionalThrusters];
+    [self releaseDirectionalThrusters];
+//    NSUInteger action = SPACERandomIntegerInInterval(1, 100);
+//    if (action <= 30) {
+//        [self activateDirectionalThrustersRight];
+//    }
+//    else if (action <= 60) {
+//        [self activateDirectionalThrustersLeft];
+//    }
+//    else if (action <= 90) {
+//        [self activateThrusters];
+//        [self releaseDirectionalThrusters];
+//    }
+//    else {
+//        [self fireLaser];
+//        [self releaseDirectionalThrusters];
+//    }
+    
+    
+    if (true) {
+        SPACEMyScene *scene = (SPACEMyScene*)self.scene;
+        [self huntShip:scene.playerShip];
     }
 }
 
--(void) chaseShip: (SPACEShip*) ship {
-    //if (!facing ship)
-    //    if (left of ship)
-    //        [self activateDirectionalThrustersLeft];
-    //    if (right of ship)
-    //        [self activateDirectionalThrustersLeft];
-    //else
-    //    [self activateThrusters];
-    //    [self releaseDirectionalThrusters];
-    //    if (close to ship)
-    //        [self fireLaser];
+-(void) huntShip: (SPACEShip*) ship {
+    CGPoint relativePoint = SPACESubtractPoint(ship.position, self.position);
+    CGFloat angleToFace = SPACEPolarPointWithPoint(relativePoint).phi;
+    CGFloat currentAngle = self.zRotation + M_PI_2;
+    if (currentAngle < (angleToFace - 0.2)) {
+        [self activateDirectionalThrustersLeft];
+    }
+    else if (currentAngle > (angleToFace + 0.2)) {
+        [self activateDirectionalThrustersRight];
+    }
+    else {
+        [self activateThrusters];
+        [self fireLaser];
+    }
 }
 
 @end

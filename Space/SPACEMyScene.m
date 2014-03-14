@@ -60,7 +60,7 @@
         razor
     ];
     for (SPACEShip *ship in self.AIShips) {
-        [self addChild:ship];
+        [self.universe addChild:ship];
     }
 }
 
@@ -175,11 +175,11 @@
     }
     self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
     
-    if ((currentTime - self.previousTime) < 5) {
+//    if (fmod(currentTime, 1) < 0.1) {
         for (SPACEShip *ship in self.AIShips) {
             [ship runAutoPilot];
         }
-    }
+//    }
     
     self.previousTime = currentTime;
     
