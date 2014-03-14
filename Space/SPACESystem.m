@@ -63,8 +63,8 @@
 	NSMutableArray *moons = [NSMutableArray new];
 	NSUInteger moonCount = SPACERandomIntegerInInterval(2, 6);
 	for (NSUInteger i = 0; i < moonCount; i++) {
-        NSUInteger moonType = SPACERandomIntegerInInterval(0, 1);
-        if (moonType == 0) {
+        NSUInteger moonType = SPACERandomIntegerInInterval(1, 4);
+        if (moonType == 1) {
             [moons addObject:[self smallPlanetarySystem]];
         }
         else {

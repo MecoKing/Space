@@ -67,42 +67,32 @@
 
 -(void) runAutoPilot {
     [self releaseDirectionalThrusters];
-//    NSUInteger action = SPACERandomIntegerInInterval(1, 100);
-//    if (action <= 30) {
-//        [self activateDirectionalThrustersRight];
-//    }
-//    else if (action <= 60) {
-//        [self activateDirectionalThrustersLeft];
-//    }
-//    else if (action <= 90) {
-//        [self activateThrusters];
-//        [self releaseDirectionalThrusters];
-//    }
-//    else {
-//        [self fireLaser];
-//        [self releaseDirectionalThrusters];
-//    }
     
-    
+    SPACEMyScene *scene = (SPACEMyScene*)self.scene;
     if (true) {
-        SPACEMyScene *scene = (SPACEMyScene*)self.scene;
         [self huntShip:scene.playerShip];
     }
 }
 
 -(void) huntShip: (SPACEShip*) ship {
-    CGPoint relativePoint = SPACESubtractPoint(ship.position, self.position);
-    CGFloat angleToFace = SPACEPolarPointWithPoint(relativePoint).phi;
-    CGFloat currentAngle = self.zRotation + M_PI_2;
-    if (currentAngle < (angleToFace - 0.2)) {
+    [self goToPoint:ship.position];
+    if (self.currentAngle > (self.angleToFace - 0.1) && self.currentAngle < (self.angleToFace + 0.1)) {
+        [self fireLaser];
+    }
+}
+
+-(void) goToPoint: (CGPoint) destination {
+    self.relativePoint = SPACESubtractPoint(destination, self.position);
+    self.angleToFace = SPACEPolarPointWithPoint(self.relativePoint).phi;
+    self.currentAngle = self.zRotation + M_PI_2;
+    if (self.currentAngle < (self.angleToFace - 0.2)) {
         [self activateDirectionalThrustersLeft];
     }
-    else if (currentAngle > (angleToFace + 0.2)) {
+    else if (self.currentAngle > (self.angleToFace + 0.2)) {
         [self activateDirectionalThrustersRight];
     }
     else {
         [self activateThrusters];
-        [self fireLaser];
     }
 }
 
