@@ -15,6 +15,7 @@
 		CB27AE6C18D35180001C65B5 /* MoltenPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6918D35180001C65B5 /* MoltenPlanetTexture03.png */; };
 		CB2A1A3818B565A300B36AA1 /* SPACESystem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2A1A3718B565A300B36AA1 /* SPACESystem.m */; };
 		CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB335D9218A10E1C00AF7A33 /* HumanCargo.png */; };
+		CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */; };
 		CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27918A0305200D0F466 /* RogueFighter.png */; };
 		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
@@ -68,6 +69,8 @@
 		CB2A1A3618B565A300B36AA1 /* SPACESystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACESystem.h; sourceTree = "<group>"; };
 		CB2A1A3718B565A300B36AA1 /* SPACESystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACESystem.m; sourceTree = "<group>"; };
 		CB335D9218A10E1C00AF7A33 /* HumanCargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanCargo.png; path = Images/HumanCargo.png; sourceTree = SOURCE_ROOT; };
+		CB3A0D6D18D48E6A00E3D1F7 /* SPACEHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEHUD.h; sourceTree = "<group>"; };
+		CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEHUD.m; sourceTree = "<group>"; };
 		CB47C27918A0305200D0F466 /* RogueFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueFighter.png; path = Images/RogueFighter.png; sourceTree = SOURCE_ROOT; };
 		CB47C27B18A0328A00D0F466 /* SPACEShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEShip.h; sourceTree = "<group>"; };
 		CB47C27C18A0328A00D0F466 /* SPACEShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEShip.m; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 				D41A625018D3AD950065B6D0 /* SPACEProjectile.m */,
 				CBC0C08B1899A615005E2507 /* SPACEAppDelegate.h */,
 				CBC0C0891899A615005E2507 /* SPACEAppDelegate.m */,
+				CB3A0D6D18D48E6A00E3D1F7 /* SPACEHUD.h */,
+				CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */,
 				CBC0C08C1899A615005E2507 /* Spaceship.png */,
 				CBAF1FC0189AA82B00F747FD /* Graphics */,
 				CBC0C08E1899A615005E2507 /* Images.xcassets */,
@@ -408,6 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */,
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */,
 				D47912CF18D21FB200015495 /* SPACEPlanet.m in Sources */,

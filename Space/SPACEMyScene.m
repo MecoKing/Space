@@ -11,6 +11,7 @@
 #import "SPACEShip.h"
 #import "SPACEStellarBody.h"
 #import "SPACESystem.h"
+#import "SPACEHUD.h"
 
 
 #pragma mark
@@ -107,6 +108,7 @@
 
 -(void) generateSolarSystem {
     [self.universe addChild:[SPACESystem randomSystem]];
+    [self addChild:[SPACEHUD compassHUDAtPosition:CGPointMake(-150, -150)]];
 }
 
 
