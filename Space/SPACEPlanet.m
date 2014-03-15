@@ -100,7 +100,7 @@
         totalRotation += node.zRotation;
         node = node.parent;
     }
-    SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(origin.position, [origin convertPoint:self.position fromNode:self])), -0.35 * self.radius));
+    SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(origin.position, [origin convertPoint:self.position fromNode:self])), -0.5 * self.radius));
     polarPoint.phi -= totalRotation;
     self.shadow.position = SPACEPointWithPolarPoint(polarPoint);
 }

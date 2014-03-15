@@ -18,5 +18,6 @@
 
 
 +(instancetype) compassHUDAtPosition: (CGPoint) position;
+-(void) updateDotsOnCompass;
 
 @end

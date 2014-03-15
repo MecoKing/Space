@@ -10,6 +10,7 @@
 
 @class SPACEShip;
 @class SPACESystem;
+@class SPACEHUD;
 
 @interface SPACEMyScene : SKScene
 
@@ -20,5 +21,6 @@
 @property SPACESystem* system;
 @property SKNode *universe;
 @property SKNode *laserManager;
+@property SPACEHUD *compassHUD;
 
 @end

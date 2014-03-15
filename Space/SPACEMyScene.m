@@ -110,7 +110,8 @@
 -(void) generateSolarSystem {
     self.system = [SPACESystem randomSystem];
     [self.universe addChild:self.system];
-    [self addChild:[SPACEHUD compassHUDAtPosition:CGPointMake(-150, -150)]];
+    self.compassHUD = [SPACEHUD compassHUDAtPosition:CGPointMake(-150, -150)];
+    [self addChild:self.compassHUD];
 }
 
 
@@ -133,7 +134,7 @@
    
         cloud.path = CGPathCreateWithEllipseInRect(bounds, NULL);
         
-        cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
+        cloud.strokeColor = [SKColor colorWithWhite:1 alpha:0.01];
         cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
    
         [self addChild:cloud];
@@ -201,7 +202,7 @@
         [planet updateWithSystem:self.system];
     }
     
-    
+    [self.compassHUD updateDotsOnCompass];
     
     for (SKNode *projectile in self.laserManager.children)
     {
