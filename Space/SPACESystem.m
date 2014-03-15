@@ -9,6 +9,7 @@
 #import "SPACEFunction.h"
 #import "SPACESystem.h"
 #import "SPACEStar.h"
+#import "SPACEOrbit.h"
 #import "SPACEPlanet.h"
 #import "SPACEMyScene.h"
 
@@ -22,6 +23,9 @@
 	if ((self = [super init])) {
 		if (barycentre) {
 			_barycentre = barycentre;
+			
+			_barycentre.physicsBody.angularVelocity = SPACERandomInInterval(0.01, 0.3) * 2 * M_PI;
+			
 			[self addChild:barycentre];
 		}
 		
@@ -30,11 +34,10 @@
 			[self addChild:satellite];
 			
 			CGFloat min = self.barycentre.radius + satellite.radius * 2;
-			SPACEPolarPoint polarPoint = (SPACEPolarPoint){
-				.r = SPACERandomInInterval(min, min * 2),
-				.phi = SPACERandomInInterval(0, 2 * M_PI),
-			};
-			satellite.position = SPACEPointWithPolarPoint(polarPoint);
+			CGFloat radius = SPACERandomInInterval(min, min * 2);
+			SPACEOrbit *orbit = [SPACEOrbit orbitWithRadius:radius azimuth:SPACERandomInInterval(0, 2 * M_PI) period:SPACERandomInInterval(1.0/5.0, 1.0/20.0) * radius];
+			satellite.orbit = orbit;
+			satellite.position = SPACEPointWithPolarPoint(orbit.currentPosition);
             satellite.zRotation = SPACERandomInInterval(0, 2 * M_PI);
 		}
 		
@@ -72,7 +75,9 @@
         }
     }
 	
-	return [self systemWithBarycentre:[SPACEPlanet randomGasGiant] satellites:moons];
+	SPACESystem *system = [self systemWithBarycentre:[SPACEPlanet randomGasGiant] satellites:moons];
+	system.barycentre.physicsBody.angularVelocity = 0; // gas giants oughtn’t rotate
+	return system;
 }
 
 +(instancetype)randomPlanetarySystem {
@@ -115,11 +120,16 @@
 	return radius;
 }
 
-#pragma mark barycentre
--(void) updateWithSystem: (SPACESystem*) origin {
-    [self.barycentre updateWithSystem:origin];
+
+#pragma mark SKBarycentre
+
+-(void)updateWithSystem:(SPACESystem *)origin overInterval:(CFTimeInterval)time {
+    [self.barycentre updateWithSystem:origin overInterval:time];
+	
+	self.position = SPACEPointWithPolarPoint([self.orbit updatePositionOverInterval:time]);
+	
     for (SPACESystem *system in self.satellites) {
-        [system updateWithSystem:origin];
+        [system updateWithSystem:origin overInterval:time];
     }
 }
 

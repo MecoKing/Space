@@ -8,7 +8,7 @@
 
 #import "SPACEBarycentre.h"
 
-@class SPACEStellarBody;
+@class SPACEOrbit;
 
 @interface SPACESystem : SKNode <SPACEBarycentre>
 
@@ -18,6 +18,8 @@
 
 @property (readonly) SKNode<SPACEBarycentre> *barycentre; // the gravitational hub of the system. for a planetary system this will be the planet that the moons orbit; for a star system it would be the star(s) that the planets orbit
 @property (readonly) NSArray *satellites; // systems which are satellites of this system
+
+@property SPACEOrbit *orbit;
 
 @end
 
