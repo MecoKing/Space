@@ -40,23 +40,23 @@
 		mask.path = path;
 		CGPathRelease(path);
 		
-        SKShapeNode *shadow = [SKShapeNode new];
-        shadow.path = mask.path;
-        shadow.fillColor = [SKColor colorWithCalibratedWhite:0 alpha:0.99];
-        shadow.strokeColor = [SKColor colorWithCalibratedWhite:0 alpha:0.9];
-        shadow.glowWidth = shadow.frame.size.width * 0.2;
-        
-        CGSize containerSize = {
-            .width = size.width * 1.4,
-            .height = size.height * 1.4,
-        };
-        SKSpriteNode *shadowContainer = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:containerSize];
-        [shadowContainer addChild:shadow];
-        
+		SKShapeNode *shadow = [SKShapeNode new];
+		shadow.path = mask.path;
+		shadow.fillColor = [SKColor colorWithCalibratedWhite:0 alpha:0.99];
+		shadow.strokeColor = [SKColor colorWithCalibratedWhite:0 alpha:0.9];
+		shadow.glowWidth = shadow.frame.size.width * 0.2;
+		
+		CGSize containerSize = {
+			.width = size.width * 1.4,
+			.height = size.height * 1.4,
+		};
+		SKSpriteNode *shadowContainer = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:containerSize];
+		[shadowContainer addChild:shadow];
+		
 		crop.maskNode = [SKSpriteNode spriteNodeWithTexture:[[self.class textureRenderingView] textureFromNode:mask]];
-        
-        self.shadow = [SKSpriteNode spriteNodeWithTexture:[[self.class textureRenderingView] textureFromNode:shadowContainer]];
-        [crop addChild:self.shadow];
+		
+		self.shadow = [SKSpriteNode spriteNodeWithTexture:[[self.class textureRenderingView] textureFromNode:shadowContainer]];
+		[crop addChild:self.shadow];
 		[self addChild:crop];
 	}
 	return self;
@@ -70,21 +70,21 @@
 }
 
 +(instancetype)randomTerrestrialPlanet {
-    NSArray *planetTextures = @[ @"TerraPlanetTexture01", @"TerraPlanetTexture02", @"TerraPlanetTexture03" ];
+	NSArray *planetTextures = @[ @"TerraPlanetTexture01", @"TerraPlanetTexture02", @"TerraPlanetTexture03" ];
 	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e23, 2e25) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.15) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Terrestrial";
 	return planet;
 }
 
 +(instancetype)randomMoltenPlanet {
-    NSArray *planetTextures = @[ @"MoltenPlanetTexture01", @"MoltenPlanetTexture02", @"MoltenPlanetTexture03" ];
+	NSArray *planetTextures = @[ @"MoltenPlanetTexture01", @"MoltenPlanetTexture02", @"MoltenPlanetTexture03" ];
 	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(20, 50) mass:SPACERandomInInterval(2e25, 2e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.1) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Molten";
 	return planet;
 }
 
 +(instancetype)randomGasGiant {
-    NSArray *planetTextures = @[ @"GasPlanetTexture01", @"GasPlanetTexture02", @"GasPlanetTexture03" ];
+	NSArray *planetTextures = @[ @"GasPlanetTexture01", @"GasPlanetTexture02", @"GasPlanetTexture03" ];
 	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(60, 100) mass:SPACERandomInInterval(1e25, 1e27) colour:SPACEAverageDarkColour() haloWidthRatio:SPACERandomInInterval(0, 0.2) texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Gas Giant";
 	return planet;
@@ -103,17 +103,17 @@
 #pragma mark SKBarycentre
 
 -(void)updateWithSystem:(SPACESystem *)origin overInterval:(CFTimeInterval)time {
-    //Today I speak good english yes.
-    SKNode *node = self;
-    CGFloat totalRotation = 0;
-    
-    while (node != origin) {
-        totalRotation += node.zRotation;
-        node = node.parent;
-    }
-    SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(origin.position, [origin convertPoint:self.position fromNode:self])), -0.5 * self.radius));
-    polarPoint.phi -= totalRotation;
-    self.shadow.position = SPACEPointWithPolarPoint(polarPoint);
+	//Today I speak good english yes.
+	SKNode *node = self;
+	CGFloat totalRotation = 0;
+	
+	while (node != origin) {
+		totalRotation += node.zRotation;
+		node = node.parent;
+	}
+	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(origin.position, [origin convertPoint:self.position fromNode:self])), -0.5 * self.radius));
+	polarPoint.phi -= totalRotation;
+	self.shadow.position = SPACEPointWithPolarPoint(polarPoint);
 }
 
 @end

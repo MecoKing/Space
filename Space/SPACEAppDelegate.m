@@ -20,18 +20,18 @@
 @synthesize window = _window;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    CGSize size = [self.window contentRectForFrameRect:self.window.frame].size;
-    SKScene *scene = [SPACEMyScene sceneWithSize:size];
+	CGSize size = [self.window contentRectForFrameRect:self.window.frame].size;
+	SKScene *scene = [SPACEMyScene sceneWithSize:size];
 	
-    scene.scaleMode = SKSceneScaleModeResizeFill;
+	scene.scaleMode = SKSceneScaleModeResizeFill;
 	
-    [self.skView presentScene:scene];
+	[self.skView presentScene:scene];
 	
 	[self.windowController showWindow:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
-    return YES;
+	return YES;
 }
 
 @end

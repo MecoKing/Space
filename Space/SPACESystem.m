@@ -38,7 +38,7 @@
 			SPACEOrbit *orbit = [SPACEOrbit orbitWithRadius:radius azimuth:SPACERandomInInterval(0, 2 * M_PI) period:SPACERandomInInterval(1.0/5.0, 1.0/20.0) * radius];
 			satellite.orbit = orbit;
 			satellite.position = SPACEPointWithPolarPoint(orbit.currentPosition);
-            satellite.zRotation = SPACERandomInInterval(0, 2 * M_PI);
+			satellite.zRotation = SPACERandomInInterval(0, 2 * M_PI);
 		}
 		
 		self.name = [self.barycentre.name stringByAppendingString:@" System"];
@@ -48,15 +48,15 @@
 
 +(instancetype)smallPlanetarySystem {
 	SEL selectors[] = {
-        @selector(randomTerrestrialPlanet),
-        @selector(randomMoltenPlanet),
-    };
-    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
-    
+		@selector(randomTerrestrialPlanet),
+		@selector(randomMoltenPlanet),
+	};
+	SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
+	
 	NSMutableArray *moons = [NSMutableArray new];
 	NSUInteger moonCount = SPACERandomIntegerInInterval(0, 3);
 	for (NSUInteger i = 0; i < moonCount; i++) {
-        [moons addObject:[self systemWithBarycentre:[SPACEPlanet randomMoon] satellites:@[]]];
+		[moons addObject:[self systemWithBarycentre:[SPACEPlanet randomMoon] satellites:@[]]];
 	}
 	
 	return [self systemWithBarycentre:[SPACEPlanet performSelector:selector withObject:nil] satellites:moons];
@@ -66,14 +66,14 @@
 	NSMutableArray *moons = [NSMutableArray new];
 	NSUInteger moonCount = SPACERandomIntegerInInterval(2, 6);
 	for (NSUInteger i = 0; i < moonCount; i++) {
-        NSUInteger moonType = SPACERandomIntegerInInterval(1, 4);
-        if (moonType == 1) {
-            [moons addObject:[self smallPlanetarySystem]];
-        }
-        else {
-            [moons addObject:[self systemWithBarycentre:[SPACEPlanet randomMoon] satellites:@[]]];
-        }
-    }
+		NSUInteger moonType = SPACERandomIntegerInInterval(1, 4);
+		if (moonType == 1) {
+			[moons addObject:[self smallPlanetarySystem]];
+		}
+		else {
+			[moons addObject:[self systemWithBarycentre:[SPACEPlanet randomMoon] satellites:@[]]];
+		}
+	}
 	
 	SPACESystem *system = [self systemWithBarycentre:[SPACEPlanet randomGasGiant] satellites:moons];
 	system.barycentre.physicsBody.angularVelocity = 0; // gas giants oughtn’t rotate
@@ -81,23 +81,23 @@
 }
 
 +(instancetype)randomPlanetarySystem {
-    NSUInteger planetarySystemType = SPACERandomIntegerInInterval(0, 1);
-    if (planetarySystemType == 0) {
-        return [self largePlanetarySystem];
-    }
-    else {
-        return [self smallPlanetarySystem];
-    }
+	NSUInteger planetarySystemType = SPACERandomIntegerInInterval(0, 1);
+	if (planetarySystemType == 0) {
+		return [self largePlanetarySystem];
+	}
+	else {
+		return [self smallPlanetarySystem];
+	}
 }
-    
+	
 +(instancetype)randomStarSystem {
 	SEL selectors[] = {
-        @selector(randomSuperGiant),
-        @selector(randomRedGiant),
-        @selector(randomWhiteDwarf),
-    };
-    SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
-    
+		@selector(randomSuperGiant),
+		@selector(randomRedGiant),
+		@selector(randomWhiteDwarf),
+	};
+	SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
+	
 	NSMutableArray *planets = [NSMutableArray new];
 	NSUInteger planetCount = SPACERandomIntegerInInterval(0, 5);
 	for (NSUInteger i = 0; i < planetCount; i++) {
@@ -108,7 +108,7 @@
 }
 
 +(instancetype)randomSystem {
-    return [self randomStarSystem];
+	return [self randomStarSystem];
 }
 
 
@@ -124,18 +124,18 @@
 #pragma mark SKBarycentre
 
 -(void)updateWithSystem:(SPACESystem *)origin overInterval:(CFTimeInterval)time {
-    [self.barycentre updateWithSystem:origin overInterval:time];
+	[self.barycentre updateWithSystem:origin overInterval:time];
 	
 	self.position = SPACEPointWithPolarPoint([self.orbit updatePositionOverInterval:time]);
 	
-    for (SPACESystem *system in self.satellites) {
-        [system updateWithSystem:origin overInterval:time];
-    }
+	for (SPACESystem *system in self.satellites) {
+		[system updateWithSystem:origin overInterval:time];
+	}
 }
 
 @end
 
-    
+	
 /*
 SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
 SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];

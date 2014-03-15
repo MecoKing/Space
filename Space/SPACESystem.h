@@ -25,7 +25,7 @@
 
 
 // - star system (of various sizes/kinds)
-    // - planetary systems orbiting them
+	// - planetary systems orbiting them
 // - binary star system
 
 // - gas giant w/teensy moons
