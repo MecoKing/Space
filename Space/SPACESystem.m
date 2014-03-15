@@ -23,6 +23,9 @@
 	if ((self = [super init])) {
 		if (barycentre) {
 			_barycentre = barycentre;
+			
+			_barycentre.physicsBody.angularVelocity = SPACERandomInInterval(0.01, 0.3) * 2 * M_PI;
+			
 			[self addChild:barycentre];
 		}
 		
@@ -72,7 +75,9 @@
         }
     }
 	
-	return [self systemWithBarycentre:[SPACEPlanet randomGasGiant] satellites:moons];
+	SPACESystem *system = [self systemWithBarycentre:[SPACEPlanet randomGasGiant] satellites:moons];
+	system.barycentre.physicsBody.angularVelocity = 0; // gas giants oughtn’t rotate
+	return system;
 }
 
 +(instancetype)randomPlanetarySystem {
