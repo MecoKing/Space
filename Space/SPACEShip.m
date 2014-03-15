@@ -105,8 +105,15 @@
         }
     }
     
+    if (self.allegiance == 3) {
+        if (closestEnemy == NULL) {
+            closestEnemy = self.scene.playerShip;
+        }
+        else if (SPACEDistanceBetweenPoints(self.scene.playerShip.position, self.position) < SPACEDistanceBetweenPoints(closestEnemy.position, self.position)) {
+            closestEnemy = self.scene.playerShip;
+        }
+    }
     
-    SPACEMyScene *scene = (SPACEMyScene*)self.scene;
     if (closestEnemy != NULL) {
         [self huntShip:closestEnemy];
     }
