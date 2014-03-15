@@ -2,6 +2,8 @@
 
 #import "SPACEPlanet.h"
 #import "SPACEFunction.h"
+#import "SPACEMyScene.h"
+#import "SPACESystem.h"
 
 @implementation SPACEPlanet {
 	SKSpriteNode *sprite;
@@ -38,8 +40,23 @@
 		mask.path = path;
 		CGPathRelease(path);
 		
+        SKShapeNode *shadow = [SKShapeNode new];
+        shadow.path = mask.path;
+        shadow.fillColor = [SKColor colorWithCalibratedWhite:0 alpha:0.99];
+        shadow.strokeColor = [SKColor colorWithCalibratedWhite:0 alpha:0.9];
+        shadow.glowWidth = shadow.frame.size.width * 0.2;
+        
+        CGSize containerSize = {
+            .width = size.width * 1.4,
+            .height = size.height * 1.4,
+        };
+        SKSpriteNode *shadowContainer = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:containerSize];
+        [shadowContainer addChild:shadow];
+        
 		crop.maskNode = [SKSpriteNode spriteNodeWithTexture:[[self.class textureRenderingView] textureFromNode:mask]];
-		
+        
+        self.shadow = [SKSpriteNode spriteNodeWithTexture:[[self.class textureRenderingView] textureFromNode:shadowContainer]];
+        [crop addChild:self.shadow];
 		[self addChild:crop];
 	}
 	return self;
@@ -47,7 +64,7 @@
 
 
 +(instancetype)randomMoon {
-	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0 texture:nil];
 	planet.name = @"Moon";
 	return planet;
 }
@@ -73,6 +90,20 @@
 	return planet;
 }
 
+
+-(void) updateWithSystem: (SPACESystem*) origin {
+    //Today I speak good english yes.
+    SKNode *node = self;
+    CGFloat totalRotation = 0;
+    
+    while (node != origin) {
+        totalRotation += node.zRotation;
+        node = node.parent;
+    }
+    SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(origin.position, [origin convertPoint:self.position fromNode:self])), -0.35 * self.radius));
+    polarPoint.phi -= totalRotation;
+    self.shadow.position = SPACEPointWithPolarPoint(polarPoint);
+}
 
 
 @synthesize haloColour = _haloColour;
