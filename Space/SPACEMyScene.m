@@ -11,6 +11,7 @@
 #import "SPACEShip.h"
 #import "SPACEStellarBody.h"
 #import "SPACESystem.h"
+#import "SPACEHUD.h"
 #import "SPACEPlanet.h"
 
 
@@ -46,6 +47,7 @@
 
 -(void)addPlayerShip {
     self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+    self.playerShip.allegiance = 1;
 	self.playerShip.faction = SPACEPlayerFaction;
     [self.universe addChild:self.playerShip];
 }
@@ -109,6 +111,8 @@
 -(void) generateSolarSystem {
     self.system = [SPACESystem randomSystem];
     [self.universe addChild:self.system];
+    self.compassHUD = [SPACEHUD compassHUDAtPosition:CGPointMake(-150, -150)];
+    [self addChild:self.compassHUD];
 }
 
 
@@ -131,7 +135,7 @@
    
         cloud.path = CGPathCreateWithEllipseInRect(bounds, NULL);
         
-        cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
+        cloud.strokeColor = [SKColor colorWithWhite:1 alpha:0.01];
         cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
    
         [self addChild:cloud];
@@ -192,8 +196,11 @@
 	}
     
     
+    [self.compassHUD updateDotsOnCompass];
+
+
 	[self.system updateWithSystem:self.system overInterval:interval];
-    
+	   
 	
     for (SKNode *projectile in self.laserManager.children) {
         //if the laser is off screen remove it...

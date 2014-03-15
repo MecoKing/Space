@@ -15,6 +15,10 @@
 		CB27AE6C18D35180001C65B5 /* MoltenPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6918D35180001C65B5 /* MoltenPlanetTexture03.png */; };
 		CB2A1A3818B565A300B36AA1 /* SPACESystem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2A1A3718B565A300B36AA1 /* SPACESystem.m */; };
 		CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB335D9218A10E1C00AF7A33 /* HumanCargo.png */; };
+		CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */; };
+		CB3A0D7318D4AC4400E3D1F7 /* MoonPlanetTexture01.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A0D7018D4AC4400E3D1F7 /* MoonPlanetTexture01.png */; };
+		CB3A0D7418D4AC4400E3D1F7 /* MoonPlanetTexture02.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A0D7118D4AC4400E3D1F7 /* MoonPlanetTexture02.png */; };
+		CB3A0D7518D4AC4400E3D1F7 /* MoonPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A0D7218D4AC4400E3D1F7 /* MoonPlanetTexture03.png */; };
 		CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27918A0305200D0F466 /* RogueFighter.png */; };
 		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
@@ -69,6 +73,11 @@
 		CB2A1A3618B565A300B36AA1 /* SPACESystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACESystem.h; sourceTree = "<group>"; };
 		CB2A1A3718B565A300B36AA1 /* SPACESystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACESystem.m; sourceTree = "<group>"; };
 		CB335D9218A10E1C00AF7A33 /* HumanCargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanCargo.png; path = Images/HumanCargo.png; sourceTree = SOURCE_ROOT; };
+		CB3A0D6D18D48E6A00E3D1F7 /* SPACEHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEHUD.h; sourceTree = "<group>"; };
+		CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEHUD.m; sourceTree = "<group>"; };
+		CB3A0D7018D4AC4400E3D1F7 /* MoonPlanetTexture01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoonPlanetTexture01.png; path = Images/MoonPlanetTexture01.png; sourceTree = SOURCE_ROOT; };
+		CB3A0D7118D4AC4400E3D1F7 /* MoonPlanetTexture02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoonPlanetTexture02.png; path = Images/MoonPlanetTexture02.png; sourceTree = SOURCE_ROOT; };
+		CB3A0D7218D4AC4400E3D1F7 /* MoonPlanetTexture03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoonPlanetTexture03.png; path = Images/MoonPlanetTexture03.png; sourceTree = SOURCE_ROOT; };
 		CB47C27918A0305200D0F466 /* RogueFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueFighter.png; path = Images/RogueFighter.png; sourceTree = SOURCE_ROOT; };
 		CB47C27B18A0328A00D0F466 /* SPACEShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEShip.h; sourceTree = "<group>"; };
 		CB47C27C18A0328A00D0F466 /* SPACEShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEShip.m; sourceTree = "<group>"; };
@@ -169,6 +178,9 @@
 				CB27AE6718D35180001C65B5 /* MoltenPlanetTexture01.png */,
 				CB27AE6818D35180001C65B5 /* MoltenPlanetTexture02.png */,
 				CB27AE6918D35180001C65B5 /* MoltenPlanetTexture03.png */,
+				CB3A0D7018D4AC4400E3D1F7 /* MoonPlanetTexture01.png */,
+				CB3A0D7118D4AC4400E3D1F7 /* MoonPlanetTexture02.png */,
+				CB3A0D7218D4AC4400E3D1F7 /* MoonPlanetTexture03.png */,
 			);
 			name = PlanetTextures;
 			sourceTree = "<group>";
@@ -240,6 +252,8 @@
 				D41A625018D3AD950065B6D0 /* SPACEProjectile.m */,
 				CBC0C08B1899A615005E2507 /* SPACEAppDelegate.h */,
 				CBC0C0891899A615005E2507 /* SPACEAppDelegate.m */,
+				CB3A0D6D18D48E6A00E3D1F7 /* SPACEHUD.h */,
+				CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */,
 				CBC0C08C1899A615005E2507 /* Spaceship.png */,
 				CBAF1FC0189AA82B00F747FD /* Graphics */,
 				CBC0C08E1899A615005E2507 /* Images.xcassets */,
@@ -373,8 +387,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBE2F8A818D28237005B8B25 /* GasPlanetTexture01.png in Resources */,
+				CB3A0D7318D4AC4400E3D1F7 /* MoonPlanetTexture01.png in Resources */,
 				CB27AE6A18D35180001C65B5 /* MoltenPlanetTexture01.png in Resources */,
+				CB3A0D7518D4AC4400E3D1F7 /* MoonPlanetTexture03.png in Resources */,
 				CB47C27F18A033ED00D0F466 /* Laser.png in Resources */,
+				CB3A0D7418D4AC4400E3D1F7 /* MoonPlanetTexture02.png in Resources */,
 				CBC0C08D1899A615005E2507 /* Spaceship.png in Resources */,
 				CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */,
 				CBC0C08F1899A615005E2507 /* Images.xcassets in Resources */,
@@ -413,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */,
 				D41A625818D499520065B6D0 /* SPACEOrbit.m in Sources */,
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */,
