@@ -64,7 +64,8 @@
 
 
 +(instancetype)randomMoon {
-	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0 texture:nil];
+	NSArray *planetTextures = @[ @"MoonPlanetTexture01", @"MoonPlanetTexture02", @"MoonPlanetTexture03" ];
+	SPACEPlanet *planet = [[self alloc] initWithRadius:SPACERandomInInterval(5, 15) mass:SPACERandomInInterval(1e15, 1e23) colour:SPACEAverageDarkColour() haloWidthRatio:0 texture:[SKTexture textureWithImageNamed:planetTextures[SPACERandomIntegerInInterval(0, 2)]]];
 	planet.name = @"Moon";
 	return planet;
 }
