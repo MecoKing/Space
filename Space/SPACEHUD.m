@@ -52,13 +52,7 @@
             shipDot.fillColor = [SKColor colorWithRed:0 green:1 blue:0 alpha:0.6];
         }
         else if (ship.allegiance == 2) {
-            shipDot.fillColor = [SKColor colorWithRed:1 green:1 blue:0 alpha:0.6];
-        }
-        else if (ship.allegiance == 3) {
             shipDot.fillColor = [SKColor colorWithWhite:0.5 alpha:0.6];
-        }
-        else if (ship.allegiance == 4) {
-            shipDot.fillColor = [SKColor colorWithRed:1 green:0.5 blue:0 alpha:0.6];
         }
         else {
             shipDot.fillColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:0.6];

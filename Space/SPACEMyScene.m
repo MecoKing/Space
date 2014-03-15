@@ -47,6 +47,7 @@
 
 -(void)addPlayerShip {
     self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+    self.playerShip.allegiance = 1;
 	self.playerShip.faction = SPACEPlayerFaction;
     [self.universe addChild:self.playerShip];
 }

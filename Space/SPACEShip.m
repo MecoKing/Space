@@ -22,10 +22,7 @@
         self.texture.filteringMode = SKTextureFilteringNearest;
         self.angularMagnitude = 10;
         self.linearMagnitude = 10000;
-        self.allegiance = SPACERandomIntegerInInterval(1, 5);
-        
-//        [self activateThrusters];
-        //Eventually Have the spaceship texture based on allegiance
+        self.allegiance = SPACERandomIntegerInInterval(1, 3);
     }
     return self;
 }
@@ -83,9 +80,38 @@
 -(void) runAutoPilot {
     [self releaseDirectionalThrusters];
     
+    
+    SPACEShip *closestEnemy = NULL;
+    for (SPACEShip *ship in self.scene.AIShips) {
+        if (self.allegiance == 1) {
+            if (ship.allegiance == 3) {
+                if (closestEnemy == NULL) {
+                    closestEnemy = ship;
+                }
+                else if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(closestEnemy.position, self.position)) {
+                    closestEnemy = ship;
+                }
+            }
+        }
+        else if (self.allegiance == 3) {
+            if (ship.allegiance == 1) {
+                if (closestEnemy == NULL) {
+                    closestEnemy = ship;
+                }
+                else if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(closestEnemy.position, self.position)) {
+                    closestEnemy = ship;
+                }
+            }
+        }
+    }
+    
+    
     SPACEMyScene *scene = (SPACEMyScene*)self.scene;
-    if (true) {
-        [self huntShip:scene.playerShip];
+    if (closestEnemy != NULL) {
+        [self huntShip:closestEnemy];
+    }
+    else {
+        [self wander];
     }
 }
 
@@ -96,6 +122,19 @@
     }
     if (SPACERandomIntegerInInterval(1, 1000) == 1) {
         [self fireMissileAtPoint:ship.position];
+    }
+}
+
+-(void) wander {
+    NSUInteger action = SPACERandomIntegerInInterval(1, 100);
+    if (action <= 35) {
+        [self activateDirectionalThrustersLeft];
+    }
+    else if (action <= 70) {
+        [self activateDirectionalThrustersRight];
+    }
+    else {
+        [self activateThrusters];
     }
 }
 
