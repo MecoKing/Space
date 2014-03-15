@@ -42,8 +42,8 @@
 		
         SKShapeNode *shadow = [SKShapeNode new];
         shadow.path = mask.path;
-        shadow.fillColor = [SKColor colorWithCalibratedWhite:0 alpha:0.9];
-        shadow.strokeColor = [SKColor colorWithCalibratedWhite:0 alpha:0.75];
+        shadow.fillColor = [SKColor colorWithCalibratedWhite:0 alpha:0.99];
+        shadow.strokeColor = [SKColor colorWithCalibratedWhite:0 alpha:0.9];
         shadow.glowWidth = shadow.frame.size.width * 0.2;
         
         CGSize containerSize = {
