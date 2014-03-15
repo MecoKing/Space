@@ -6,98 +6,15 @@
 //  Copyright (c) 2014 [pixelmonster]. All rights reserved.
 //
 
+#import "SPACEFunction.h"
 #import "SPACEMyScene.h"
+#import "SPACEShip.h"
 #import "SPACEStellarBody.h"
-
-#pragma mark Stuff!
-static inline CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
-    CGFloat value = ((CGFloat)random()) / (CGFloat)RAND_MAX;
-    return value * fabs(to - from) + from;
-}
-
-static inline NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to) {
-    return random() % (to - from + 1) + from;
-}
-
-static inline SKColor *SPACERandomColour() {
-    return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
-}
-
-static inline SKColor *SPACERandomDarkColour() {
-    return [SKColor colorWithRed:SPACERandomInInterval(0, 0.5) green:SPACERandomInInterval(0, 0.5) blue:SPACERandomInInterval(0, 0.5) alpha:1];
-}
-
-static inline SKColor *SPACEInverseOfColour(SKColor *colour) {
-    return [SKColor colorWithRed: 1 - colour.redComponent green: 1 - colour.greenComponent blue: 1 - colour.blueComponent alpha:1];
-}
-
-static inline CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageColourComponent){
-    CGFloat baseAfterAveraging;
-    if (baseColourComponent > averageColourComponent + 0.1)
-        baseAfterAveraging = averageColourComponent + 0.1;
-    else if (baseColourComponent < averageColourComponent - 0.1)
-        baseAfterAveraging = averageColourComponent - 0.1;
-    else
-        baseAfterAveraging = baseColourComponent;
-    
-    return baseAfterAveraging;
-}
-
-static inline SKColor *SPACEAverageDarkColour () {
-    SKColor *baseColour = SPACERandomDarkColour();
-    CGFloat averageColour = (baseColour.redComponent + baseColour.blueComponent + baseColour.greenComponent) / 3;
-    
-    return [SKColor colorWithRed:SPACEFloatCloseToAverage(baseColour.redComponent, averageColour) green:SPACEFloatCloseToAverage(baseColour.greenComponent, averageColour) blue:SPACEFloatCloseToAverage(baseColour.blueComponent, averageColour) alpha:1];
-}
-
-static inline CGPoint SPACESubtractPoint(CGPoint a, CGPoint b) {
-    return (CGPoint){
-        .x = a.x - b.x,
-        .y = a.y - b.y,
-    };
-}
-
-static inline CGFloat SPACEMagnitudeOfPoint(CGPoint a) {
-    return sqrt(a.x * a.x + a.y * a.y);
-}
-
-static inline CGFloat SPACEDistanceBetweenPoints(CGPoint a, CGPoint b) {
-    return SPACEMagnitudeOfPoint(SPACESubtractPoint(a, b));
-}
-
-static inline CGPoint SPACEMultiplyPoint(CGPoint a, CGPoint b) {
-    return (CGPoint){
-    	.x = a.x * b.x,
-        .y = a.y * b.y,
-    };
-}
-
-static inline CGPoint SPACEMultiplyPointByScalar(CGPoint a, CGFloat s) {
-    return (CGPoint){
-    	.x = a.x * s,
-        .y = a.y * s,
-    };
-}
-
-static inline CGPoint SPACEDividePointByScalar(CGPoint a, CGFloat s) {
-    return (CGPoint){
-    	.x = a.x / s,
-        .y = a.y / s,
-    };
-}
-
-static inline CGPoint SPACENormalizePoint(CGPoint a) {
-    CGFloat magnitude = SPACEMagnitudeOfPoint(a);
-    return SPACEDividePointByScalar(a, magnitude);
-}
+#import "SPACESystem.h"
 
 
 #pragma mark
 #pragma mark Scene
-
-@interface SPACEMyScene ()
-@property NSTimeInterval previousTime;
-@end
 
 @implementation SPACEMyScene
 
@@ -106,89 +23,188 @@ static inline CGPoint SPACENormalizePoint(CGPoint a) {
 }
 
 -(instancetype)initWithSize:(CGSize)size {
-    if (self = [super initWithSize:size]) {
+    if ((self = [super initWithSize:size])) {
         /* Setup your scene here */
+
         
+        self.anchorPoint = (CGPoint){ 0.5, 0.5 };
         //Should be decided based on:
         //average star colour ± SPACERandoomInInterval(-0.2, 0.2);
-        self.backgroundColor = SPACEAverageDarkColour();
-        
         self.physicsWorld.gravity = CGVectorMake(0, 0);
+        [self generateNebula];
+        self.universe = [SKNode node];
+        self.laserManager = [SKNode node];
+        [self addChild:self.universe];
+        [self.universe addChild:self.laserManager];
+        [self addPlayerShip];
+        [self addStarShips];
         [self generateSolarSystem];
     }
     return self;
 }
 
--(void) generateSolarSystem {
-    NSUInteger starCount = SPACERandomIntegerInInterval(1, 3);
-    NSUInteger planetCount = [self planetCountBasedOnStars:starCount];
-    for (NSUInteger i = 0; i < planetCount; i++) {
-        CGFloat planetType = SPACERandomInInterval(1, 100);
-        if (planetType >= 66)
-            [self addChild:[SPACEStellarBody moonWithSize:self.size].shape];
-        else if (planetType >= 33)
-            [self addChild:[SPACEStellarBody terraPlanetWithSize:self.size].shape];
-        else
-            [self addChild:[SPACEStellarBody gasPlanetWithSize:self.size].shape];
+-(void)addPlayerShip {
+    self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+	self.playerShip.faction = SPACEPlayerFaction;
+    [self.universe addChild:self.playerShip];
+}
+
+-(void) addStarShips {
+    SPACEShip *alien = [SPACEShip shipWithImageNamed:@"AlienFighter"];
+    SPACEShip *rogue = [SPACEShip shipWithImageNamed:@"RogueFighter"];
+    SPACEShip *rebel = [SPACEShip shipWithImageNamed:@"RebelFighter"];
+    SPACEShip *razor = [SPACEShip shipWithImageNamed:@"RazorFighter"];
+    self.AIShips = @[
+        alien,
+        rogue,
+        rebel,
+        razor
+    ];
+    for (SPACEShip *ship in self.AIShips) {
+		ship.faction = SPACEEnemyFaction;
+        [self.universe addChild:ship];
     }
-    for (NSUInteger i = 0; i < starCount; i++) {
-        CGFloat starType = SPACERandomInInterval(1, 1000);
-        if (starType >= 975)//2.5% chance
-            [self addChild:[SPACEStellarBody supernovaWithSize:self.size].shape];
-        else if (starType >= 950)//2.5% chance
-            [self addChild:[SPACEStellarBody redGiantWithSize:self.size].shape];
-        else
-            [self addChild:[SPACEStellarBody whiteDwarfWithSize:self.size].shape];
-    }
+}
+
+#pragma mark
+#pragma mark Player controls
+
+-(void)keyDown:(NSEvent *)event {
+    unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
     
-    SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-    planetCountLabel.position = CGPointMake(50, 20);
-    starCountLabel.position = CGPointMake(50, 50);
-    planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-    starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-    planetCountLabel.fontSize = 14;
-    starCountLabel.fontSize = 14;
-    planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
-    starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-    [self addChild:planetCountLabel];
-    [self addChild:starCountLabel];
+    if ((key == 'd' || key == NSRightArrowFunctionKey) && !event.isARepeat)
+        [self.playerShip activateDirectionalThrustersRight];
+    else if ((key == 'a' || key == NSLeftArrowFunctionKey) && !event.isARepeat)
+        [self.playerShip activateDirectionalThrustersLeft];
+    else if (key == 'w' || key == NSUpArrowFunctionKey) {
+        [self.playerShip activateThrusters];
+    }
+    if (key == ' ') {
+        [self.playerShip fireLaser];
+    }
+    if (key == 'r') {
+        [self refreshSolarSystem];
+    }
+}
+
+-(void)keyUp:(NSEvent *)event {
+    unichar key = [event.charactersIgnoringModifiers characterAtIndex:0];
+    
+    if (key == 'd' || key == NSRightArrowFunctionKey || key == 'a' || key == NSLeftArrowFunctionKey)
+        [self.playerShip releaseDirectionalThrusters];
+}
+
+-(void) mouseDown:(NSEvent *)click {
+    CGPoint locationInViewCoordinates = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
+	CGPoint locationInSceneCoordinates = [self.scene.view convertPoint:locationInViewCoordinates toScene:self.scene];
+	CGPoint locationInUniverseCoordinates = [self.universe convertPoint:locationInSceneCoordinates fromNode:self.scene];
+    [self.playerShip fireMissileAtPoint:locationInUniverseCoordinates];
+}
+
+
+#pragma mark
+#pragma mark Procedural generation
+
+-(void) generateSolarSystem {
+    [self.universe addChild:[SPACESystem randomSystem]];
+}
+
+
+-(void) generateNebula {
+//    return;
+    self.backgroundColor = SPACEAverageDarkColour();
+    int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
+
+    for (int i = 0; i < numberOfClouds; i++) {
+        
+        SKShapeNode *cloud = [SKShapeNode node];
+        int cloudSize = SPACERandomInInterval(50, 200);
+        
+        CGRect bounds = {
+            .origin.x = SPACERandomInInterval((cloudSize / -2) - (self.size.width / 2), self.size.width),
+            .origin.y = SPACERandomInInterval((cloudSize / -2) - (self.size.height / 2), self.size.height),
+            .size.width = cloudSize * 2,
+            .size.height = cloudSize * 2,
+        };
+   
+        cloud.path = CGPathCreateWithEllipseInRect(bounds, NULL);
+        
+        cloud.strokeColor = [SKColor colorWithRed:1 green:1 blue:1 alpha:0.01];
+        cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
+   
+        [self addChild:cloud];
+    }
 }
 
 
 -(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
-    int planetCount = SPACERandomInInterval(1, 9);//Alway at least one planet per system
+    int planetCount = SPACERandomInInterval(1, 9);//Always at least one planet per system
     for (int i = 0; i < starCount - 1; i++) {
         planetCount += SPACERandomInInterval(0, 9);//possible to have one planet for 3 stars
     }
     return planetCount;
 }
 
--(void) keyDown:(NSEvent *)theEvent {
+-(void) refreshSolarSystem {
+    [self.laserManager removeAllChildren];
+    [self.universe removeAllChildren];
     [self removeAllChildren];
+    [self generateNebula];
+    [self addChild:self.universe];
+    [self.universe addChild:self.laserManager];
+    [self addPlayerShip];
+    [self addStarShips];
     [self generateSolarSystem];
 }
 
-// multiply by currentTime
 -(void)update:(CFTimeInterval)currentTime {
-    for (SKNode *a in self.children) {
+//    return;
+    if (self.previousTime == 0) self.previousTime = currentTime;
+    const CGFloat gravitationalConstant = 6e-19;
+    CFTimeInterval interval = currentTime - self.previousTime;
+    for (SKNode *a in self.universe.children) {
         CGPoint centreOfGravity = a.position;
         CGFloat mass = a.physicsBody.mass;
         
-        for (SKNode *b in self.children) {
+        for (SKNode *b in self.universe.children) {
             if (a == b) continue;
             CGPoint position = b.position;
             CGFloat distance = SPACEDistanceBetweenPoints(centreOfGravity, position);
             if (distance == 0) continue;
             
-            CGFloat magnitude = (mass * b.physicsBody.mass) / (distance * distance);
+            CGFloat magnitude = gravitationalConstant * ((mass * b.physicsBody.mass) / (distance * distance));
             CGPoint direction = SPACENormalizePoint(SPACESubtractPoint(centreOfGravity, position));
             
             [b.physicsBody applyForce:(CGVector){
-                .dx = direction.x * magnitude,
-                .dy = direction.y * magnitude,
+                .dx = direction.x * magnitude * interval,
+                .dy = direction.y * magnitude * interval,
             }];
 //            f = g * (m1 * m2 / r^2)
+        }
+    }
+    self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
+    
+//    if (fmod(currentTime, 1) < 0.1) {
+        for (SPACEShip *ship in self.AIShips) {
+            [ship runAutoPilot];
+        }
+//    }
+    
+    self.previousTime = currentTime;
+    
+    
+    for (SKNode *projectile in self.laserManager.children)
+    {
+        //if the laser is off screen remove it...
+        CGRect windowRect = CGRectMake(
+            self.playerShip.position.x - (self.view.window.frame.size.width / 2),
+            self.playerShip.position.y - (self.view.window.frame.size.height / 2),
+            self.view.window.frame.size.width,
+            self.view.window.frame.size.height
+        );
+        if (!CGRectContainsPoint(windowRect, projectile.position))
+        {
+            [projectile removeFromParent];
         }
     }
 }
