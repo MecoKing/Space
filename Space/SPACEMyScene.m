@@ -45,6 +45,7 @@
 
 -(void)addPlayerShip {
     self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+	self.playerShip.faction = SPACEPlayerFaction;
     [self.universe addChild:self.playerShip];
 }
 
@@ -60,6 +61,7 @@
         razor
     ];
     for (SPACEShip *ship in self.AIShips) {
+		ship.faction = SPACEEnemyFaction;
         [self.universe addChild:ship];
     }
 }

@@ -110,6 +110,7 @@
 		CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEFunction.m; sourceTree = "<group>"; };
 		D41A624F18D3AD950065B6D0 /* SPACEProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEProjectile.h; sourceTree = "<group>"; };
 		D41A625018D3AD950065B6D0 /* SPACEProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEProjectile.m; sourceTree = "<group>"; };
+		D41A625218D3CEBF0065B6D0 /* SPACEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEDefines.h; sourceTree = "<group>"; };
 		D47912CA18D2134F00015495 /* SPACEStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStar.h; sourceTree = "<group>"; };
 		D47912CB18D2134F00015495 /* SPACEStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStar.m; sourceTree = "<group>"; };
 		D47912CD18D21FB200015495 /* SPACEPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEPlanet.h; sourceTree = "<group>"; };
@@ -229,6 +230,7 @@
 				D41A624E18D3AD6C0065B6D0 /* Star systems */,
 				CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */,
 				CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */,
+				D41A625218D3CEBF0065B6D0 /* SPACEDefines.h */,
 				CB47C27B18A0328A00D0F466 /* SPACEShip.h */,
 				CB47C27C18A0328A00D0F466 /* SPACEShip.m */,
 				D41A624F18D3AD950065B6D0 /* SPACEProjectile.h */,

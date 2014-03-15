@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
+#import "SPACEDefines.h"
+
 @class SPACEMyScene;
 
 @interface SPACEShip : SKSpriteNode
@@ -17,6 +19,7 @@
 @property CGFloat angularMagnitude;
 @property SKSpriteNode *sprite;
 @property NSUInteger allegiance;//Number 1-5 | 1 = Loyal to the Player, 3 = Neutral, 5 = Loyal to not the Player
+@property SPACEFaction faction;
 
 @property CGPoint relativePoint;
 @property CGFloat angleToFace;

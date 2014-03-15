@@ -3,8 +3,6 @@
 #import "SPACEProjectile.h"
 #import "SPACEFunction.h"
 
-
-
 @implementation SPACEProjectile
 
 +(instancetype)missileOriginatingFromNode:(SKNode *)node {
@@ -23,16 +21,23 @@
 }
 
 
-
 -(instancetype)initWithTexture:(SKTexture *)texture color:(NSColor *)color size:(CGSize)size {
 	if ((self = [super initWithTexture:texture color:color size:size])) {
 		self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
 		self.physicsBody.friction = 0;
 		self.physicsBody.angularDamping = 1;
-		self.physicsBody.categoryBitMask = 1;
-		self.physicsBody.collisionBitMask = UINT_MAX ^ self.physicsBody.categoryBitMask;
 	}
 	return self;
+}
+
+
+-(SPACEFaction)faction {
+	return self.physicsBody.categoryBitMask;
+}
+
+-(void)setFaction:(SPACEFaction)faction {
+	self.physicsBody.categoryBitMask = faction;
+	self.physicsBody.collisionBitMask = UINT_MAX ^ faction;
 }
 
 @end
