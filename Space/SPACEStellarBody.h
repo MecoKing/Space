@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "SPACEBarycentre.h"
 
-@interface SPACEStellarBody : SKShapeNode <SPACEBarycentre>
+@interface SPACEStellarBody : SKNode <SPACEBarycentre>
 
 -(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 

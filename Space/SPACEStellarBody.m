@@ -65,4 +65,9 @@
 	return nil;
 }
 
+#pragma mark barycentre
+-(void) updateWithSystem: (SPACESystem*) origin {
+    
+}
+
 @end

@@ -2,6 +2,8 @@
 
 #import "SPACEStellarBody.h"
 
+@class SPACESystem;
+
 @interface SPACEPlanet : SPACEStellarBody
 
 +(instancetype)randomMoon;
@@ -9,6 +11,9 @@
 +(instancetype)randomMoltenPlanet;
 +(instancetype)randomGasGiant;
 
+-(void) updateWithSystem: (SPACESystem*) origin;
+
+@property SKSpriteNode *shadow;
 @property (readonly) SKTexture *texture;
 
 @end

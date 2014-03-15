@@ -68,7 +68,7 @@
 
 -(void) fireMissileAtPoint: (CGPoint)destination {
 	CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
-    CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi - M_PI_2;
+    CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi;
 	
 	SPACEProjectile *missile = [SPACEProjectile missileOriginatingFromNode:self];
 	missile.faction = self.faction;
@@ -102,7 +102,7 @@
 -(void) goToPoint: (CGPoint) destination {
     self.relativePoint = SPACESubtractPoint(destination, self.position);
     self.angleToFace = SPACEPolarPointWithPoint(self.relativePoint).phi;
-    self.currentAngle = self.zRotation + M_PI_2;
+    self.currentAngle = self.zRotation;
     if (self.currentAngle < (self.angleToFace - 0.2)) {
         [self activateDirectionalThrustersLeft];
     }
