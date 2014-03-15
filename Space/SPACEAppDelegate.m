@@ -9,23 +9,25 @@
 #import "SPACEAppDelegate.h"
 #import "SPACEMyScene.h"
 
+@interface SPACEAppDelegate ()
+
+@property IBOutlet NSWindowController *windowController;
+
+@end
+
 @implementation SPACEAppDelegate
 
 @synthesize window = _window;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    /* Pick a size for the scene */
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
     CGSize size = [self.window contentRectForFrameRect:self.window.frame].size;
     SKScene *scene = [SPACEMyScene sceneWithSize:size];
-
-    /* Set the scale mode to scale to fit the window */
+	
     scene.scaleMode = SKSceneScaleModeResizeFill;
-
+	
     [self.skView presentScene:scene];
-
-//    self.skView.showsFPS = YES;
-//    self.skView.showsNodeCount = YES;
+	
+	[self.windowController showWindow:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
