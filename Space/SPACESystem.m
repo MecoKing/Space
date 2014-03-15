@@ -32,7 +32,7 @@
 			
 			CGFloat min = self.barycentre.radius + satellite.radius * 2;
 			CGFloat radius = SPACERandomInInterval(min, min * 2);
-			SPACEOrbit *orbit = [SPACEOrbit orbitWithRadius:radius azimuth:SPACERandomInInterval(0, 2 * M_PI) period:1/SPACERandomInInterval(30, 120) * radius];
+			SPACEOrbit *orbit = [SPACEOrbit orbitWithRadius:radius azimuth:SPACERandomInInterval(0, 2 * M_PI) period:SPACERandomInInterval(1.0/5.0, 1.0/20.0) * radius];
 			satellite.orbit = orbit;
 			satellite.position = SPACEPointWithPolarPoint(orbit.currentPosition);
             satellite.zRotation = SPACERandomInInterval(0, 2 * M_PI);
