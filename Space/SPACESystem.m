@@ -9,6 +9,7 @@
 #import "SPACEFunction.h"
 #import "SPACESystem.h"
 #import "SPACEStar.h"
+#import "SPACEOrbit.h"
 #import "SPACEPlanet.h"
 #import "SPACEMyScene.h"
 
@@ -30,11 +31,13 @@
 			[self addChild:satellite];
 			
 			CGFloat min = self.barycentre.radius + satellite.radius * 2;
-			SPACEPolarPoint polarPoint = (SPACEPolarPoint){
-				.r = SPACERandomInInterval(min, min * 2),
-				.phi = SPACERandomInInterval(0, 2 * M_PI),
-			};
-			satellite.position = SPACEPointWithPolarPoint(polarPoint);
+//			SPACEPolarPoint polarPoint = (SPACEPolarPoint){
+//				.r = SPACERandomInInterval(min, min * 2),
+//				.phi = SPACERandomInInterval(0, 2 * M_PI),
+//			};
+			SPACEOrbit *orbit = [SPACEOrbit orbitWithRadius:SPACERandomInInterval(min, min * 2) azimuth:SPACERandomInInterval(0, 2 * M_PI) period:60];
+			satellite.orbit = orbit;
+			satellite.position = SPACEPointWithPolarPoint(orbit.currentPosition);
             satellite.zRotation = SPACERandomInInterval(0, 2 * M_PI);
 		}
 		
@@ -120,6 +123,8 @@
 
 -(void)updateWithSystem:(SPACESystem *)origin overInterval:(CFTimeInterval)time {
     [self.barycentre updateWithSystem:origin overInterval:time];
+	
+	self.position = SPACEPointWithPolarPoint([self.orbit updatePositionOverInterval:time]);
 	
     for (SPACESystem *system in self.satellites) {
         [system updateWithSystem:origin overInterval:time];

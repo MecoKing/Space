@@ -44,6 +44,7 @@
 		CBF74C2C18C288D100A41A2A /* RazorFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF74C2B18C288D100A41A2A /* RazorFighter.png */; };
 		CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */; };
 		D41A625118D3AD950065B6D0 /* SPACEProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = D41A625018D3AD950065B6D0 /* SPACEProjectile.m */; };
+		D41A625818D499520065B6D0 /* SPACEOrbit.m in Sources */ = {isa = PBXBuildFile; fileRef = D41A625718D499520065B6D0 /* SPACEOrbit.m */; };
 		D47912CC18D2134F00015495 /* SPACEStar.m in Sources */ = {isa = PBXBuildFile; fileRef = D47912CB18D2134F00015495 /* SPACEStar.m */; };
 		D47912CF18D21FB200015495 /* SPACEPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = D47912CE18D21FB200015495 /* SPACEPlanet.m */; };
 /* End PBXBuildFile section */
@@ -111,6 +112,8 @@
 		D41A624F18D3AD950065B6D0 /* SPACEProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEProjectile.h; sourceTree = "<group>"; };
 		D41A625018D3AD950065B6D0 /* SPACEProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEProjectile.m; sourceTree = "<group>"; };
 		D41A625218D3CEBF0065B6D0 /* SPACEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEDefines.h; sourceTree = "<group>"; };
+		D41A625618D499520065B6D0 /* SPACEOrbit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEOrbit.h; sourceTree = "<group>"; };
+		D41A625718D499520065B6D0 /* SPACEOrbit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEOrbit.m; sourceTree = "<group>"; };
 		D47912CA18D2134F00015495 /* SPACEStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStar.h; sourceTree = "<group>"; };
 		D47912CB18D2134F00015495 /* SPACEStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStar.m; sourceTree = "<group>"; };
 		D47912CD18D21FB200015495 /* SPACEPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEPlanet.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				CB2A1A3618B565A300B36AA1 /* SPACESystem.h */,
 				CB2A1A3718B565A300B36AA1 /* SPACESystem.m */,
 				D47912D018D26BDE00015495 /* SPACEBarycentre.h */,
+				D41A625618D499520065B6D0 /* SPACEOrbit.h */,
+				D41A625718D499520065B6D0 /* SPACEOrbit.m */,
 			);
 			name = "Star systems";
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41A625818D499520065B6D0 /* SPACEOrbit.m in Sources */,
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */,
 				D47912CF18D21FB200015495 /* SPACEPlanet.m in Sources */,
