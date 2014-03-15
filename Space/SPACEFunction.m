@@ -141,7 +141,7 @@ CGPoint SPACEPointWithPolarPoint(SPACEPolarPoint p) {
 SPACEPolarPoint SPACEPolarPointWithPoint(CGPoint p) {
 	return (SPACEPolarPoint){
 		.r = SPACEMagnitudeOfPoint(p),
-		.phi = atan2(p.y, p.x),
+		.phi = atan2(p.y, p.x) - M_PI_2,
 	};
 }
 
