@@ -11,8 +11,6 @@
 +(instancetype)randomMoltenPlanet;
 +(instancetype)randomGasGiant;
 
--(void) updateWithSystem: (SPACESystem*) origin;
-
 @property SKSpriteNode *shadow;
 @property (readonly) SKTexture *texture;
 

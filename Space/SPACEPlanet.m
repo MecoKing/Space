@@ -91,7 +91,18 @@
 }
 
 
--(void) updateWithSystem: (SPACESystem*) origin {
+#pragma mark Properties
+
+@synthesize haloColour = _haloColour;
+
+-(NSColor *)haloColour {
+	return _haloColour ?: (_haloColour = [[self.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25]);
+}
+
+
+#pragma mark SKBarycentre
+
+-(void)updateWithSystem:(SPACESystem *)origin overInterval:(CFTimeInterval)time {
     //Today I speak good english yes.
     SKNode *node = self;
     CGFloat totalRotation = 0;
@@ -103,13 +114,6 @@
     SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(origin.position, [origin convertPoint:self.position fromNode:self])), -0.35 * self.radius));
     polarPoint.phi -= totalRotation;
     self.shadow.position = SPACEPointWithPolarPoint(polarPoint);
-}
-
-
-@synthesize haloColour = _haloColour;
-
--(NSColor *)haloColour {
-	return _haloColour ?: (_haloColour = [[self.colour blendedColorWithFraction:0.75 ofColor:[SKColor colorWithRed:0.73 green:0.81 blue:1 alpha:1]] colorWithAlphaComponent:0.25]);
 }
 
 @end

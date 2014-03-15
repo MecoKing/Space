@@ -192,7 +192,7 @@
 	}
     
     
-	[self.system updateWithSystem:self.system];
+	[self.system updateWithSystem:self.system overInterval:interval];
     
 	
     for (SKNode *projectile in self.laserManager.children) {

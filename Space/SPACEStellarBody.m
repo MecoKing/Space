@@ -65,9 +65,9 @@
 	return nil;
 }
 
-#pragma mark barycentre
--(void) updateWithSystem: (SPACESystem*) origin {
-    
-}
+
+#pragma mark SKBarycentre
+
+-(void)updateWithSystem:(SPACESystem *)origin overInterval:(CFTimeInterval)time {}
 
 @end
