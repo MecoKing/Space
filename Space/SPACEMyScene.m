@@ -46,6 +46,7 @@
 
 -(void)addPlayerShip {
     self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+	self.playerShip.faction = SPACEPlayerFaction;
     [self.universe addChild:self.playerShip];
 }
 
@@ -61,6 +62,7 @@
         razor
     ];
     for (SPACEShip *ship in self.AIShips) {
+		ship.faction = SPACEEnemyFaction;
         [self.universe addChild:ship];
     }
 }
@@ -94,8 +96,10 @@
 }
 
 -(void) mouseDown:(NSEvent *)click {
-    CGPoint target = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
-    [self.playerShip fireMissileAtPoint:target];
+    CGPoint locationInViewCoordinates = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
+	CGPoint locationInSceneCoordinates = [self.scene.view convertPoint:locationInViewCoordinates toScene:self.scene];
+	CGPoint locationInUniverseCoordinates = [self.universe convertPoint:locationInSceneCoordinates fromNode:self.scene];
+    [self.playerShip fireMissileAtPoint:locationInUniverseCoordinates];
 }
 
 

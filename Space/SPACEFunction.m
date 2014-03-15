@@ -8,8 +8,6 @@
 
 #import "SPACEFunction.h"
 
-
-#pragma mark
 #pragma mark CGFloat
 
 CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
@@ -29,14 +27,14 @@ CGFloat SPACEFloatCloseToAverage (CGFloat baseColourComponent, CGFloat averageCo
     return baseAfterAveraging;
 }
 
-#pragma mark
+
 #pragma mark NSUInteger
 
 NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to) {
     return random() % (to - from + 1) + from;
 }
 
-#pragma mark
+
 #pragma mark SKColor
 
 SKColor *SPACERandomColour() {
@@ -62,8 +60,13 @@ SKColor *SPACEAverageDarkColour () {
     return [SKColor colorWithRed:SPACEFloatCloseToAverage(baseColour.redComponent, averageColour) green:SPACEFloatCloseToAverage(baseColour.greenComponent, averageColour) blue:SPACEFloatCloseToAverage(baseColour.blueComponent, averageColour) alpha:1];
 }
 
-#pragma mark
+
 #pragma mark CGPoint
+
+CGPoint SPACEPointWithVector(CGVector v) {
+	return (CGPoint){ .x = v.dx, .y = v.dy };
+}
+
 
 CGPoint SPACESubtractPoint(CGPoint a, CGPoint b) {
     return (CGPoint){
@@ -114,12 +117,24 @@ CGPoint SPACERandomInSize(CGSize size) {
 }
 
 
+#pragma mark CGVector
+
+CGVector SPACEVectorWithPoint(CGPoint p) {
+	return (CGVector){ .dx = p.x, .dy = p.y };
+}
+
+
+CGVector SPACEMultiplyVectorByScalar(CGVector v, CGFloat s) {
+	return (CGVector){ .dx = v.dx * s, .dy = v.dy * s };
+}
+
+
 #pragma mark Polar coordinates
 
 CGPoint SPACEPointWithPolarPoint(SPACEPolarPoint p) {
 	return (CGPoint){
-		.x = p.r * cos(p.phi),
-		.y = p.r * sin(p.phi),
+		.x = p.r * -sin(p.phi),
+		.y = p.r * cos(p.phi),
 	};
 }
 
@@ -128,4 +143,13 @@ SPACEPolarPoint SPACEPolarPointWithPoint(CGPoint p) {
 		.r = SPACEMagnitudeOfPoint(p),
 		.phi = atan2(p.y, p.x),
 	};
+}
+
+
+CGVector SPACEVectorWithPolarPoint(SPACEPolarPoint p) {
+	return SPACEVectorWithPoint(SPACEPointWithPolarPoint(p));
+}
+
+SPACEPolarPoint SPACEPolarPointWithVector(CGVector v) {
+	return SPACEPolarPointWithPoint(SPACEPointWithVector(v));
 }
