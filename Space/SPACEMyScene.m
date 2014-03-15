@@ -186,23 +186,16 @@
     }
     self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
     
-//    if (fmod(currentTime, 1) < 0.1) {
-        for (SPACEShip *ship in self.AIShips) {
-            [ship runAutoPilot];
-        }
-//    }
-    
-    self.previousTime = currentTime;
+	
+	for (SPACEShip *ship in self.AIShips) {
+		[ship runAutoPilot];
+	}
     
     
-    for (SPACEPlanet *planet in self.system.satellites) {
-        [planet updateWithSystem:self.system];
-    }
+	[self.system updateWithSystem:self.system];
     
-    
-    
-    for (SKNode *projectile in self.laserManager.children)
-    {
+	
+    for (SKNode *projectile in self.laserManager.children) {
         //if the laser is off screen remove it...
         CGRect windowRect = CGRectMake(
             self.playerShip.position.x - (self.view.window.frame.size.width / 2),
@@ -215,6 +208,8 @@
             [projectile removeFromParent];
         }
     }
+
+	self.previousTime = currentTime;
 }
 
 @end
