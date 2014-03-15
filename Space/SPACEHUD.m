@@ -10,6 +10,7 @@
 #import "SPACEMyScene.h"
 #import "SPACEFunction.h"
 #import "SPACEShip.h"
+#import "SPACESystem.h"
 
 @implementation SPACEHUD
 
@@ -32,28 +33,43 @@
 }
 
 -(void) drawDots {
-    CGPathRef starDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x, self.compass.position.y, 20, 20), NULL);
-    CGPathRef shipDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x, self.compass.position.y, 4, 4), NULL);
+    CGPathRef starDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x - 10, self.compass.position.y - 10, 20, 20), NULL);
+    CGPathRef shipDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x - 5, self.compass.position.y - 5, 10, 10), NULL);
     
     SKShapeNode *starDot = [SKShapeNode new];
     starDot.path = starDotPath;
     starDot.strokeColor = self.compass.strokeColor;
+    SPACEPolarPoint starPolarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(self.scene.system.position, self.scene.playerShip.position)), 150));
+    starDot.position = SPACEPointWithPolarPoint(starPolarPoint);
+    
     [self.compass addChild:starDot];
     
     for (SPACEShip *ship in self.scene.AIShips) {
         SKShapeNode *shipDot = [SKShapeNode new];
         shipDot.path = shipDotPath;
         
-        if (ship.allegiance == 1)
-            shipDot.fillColor = [SKColor greenColor];
-        else if (ship.allegiance == 2)
-            shipDot.fillColor = [SKColor yellowColor];
-        else if (ship.allegiance == 3)
-            shipDot.fillColor = [SKColor grayColor];
-        else if (ship.allegiance == 4)
-            shipDot.fillColor = [SKColor orangeColor];
-        else
-            shipDot.fillColor = [SKColor redColor];
+        if (ship.allegiance == 1) {
+            shipDot.fillColor = [SKColor colorWithRed:0 green:1 blue:0 alpha:0.6];
+        }
+        else if (ship.allegiance == 2) {
+            shipDot.fillColor = [SKColor colorWithRed:1 green:1 blue:0 alpha:0.6];
+        }
+        else if (ship.allegiance == 3) {
+            shipDot.fillColor = [SKColor colorWithWhite:0.5 alpha:0.6];
+        }
+        else if (ship.allegiance == 4) {
+            shipDot.fillColor = [SKColor colorWithRed:1 green:0.5 blue:0 alpha:0.6];
+        }
+        else {
+            shipDot.fillColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:0.6];
+        }
+        
+        shipDot.strokeColor = [SKColor clearColor];
+        
+        
+        SPACEPolarPoint shipPolarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(ship.position, self.scene.playerShip.position)), 150));
+        shipDot.position = SPACEPointWithPolarPoint(shipPolarPoint);
+        
         
         [self.compass addChild:shipDot];
     }
