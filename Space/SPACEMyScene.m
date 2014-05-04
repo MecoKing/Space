@@ -46,22 +46,24 @@
 }
 
 -(void)addPlayerShip {
-	self.playerShip = [SPACEShip shipWithImageNamed:@"HumanFighter"];
+	self.playerShip = [SPACEShip randomShip];
 	self.playerShip.allegiance = 1;
 	self.playerShip.faction = SPACEPlayerFaction;
 	[self.universe addChild:self.playerShip];
 }
 
 -(void) addStarShips {
-	SPACEShip *alien = [SPACEShip shipWithImageNamed:@"AlienFighter"];
-	SPACEShip *rogue = [SPACEShip shipWithImageNamed:@"RogueFighter"];
-	SPACEShip *rebel = [SPACEShip shipWithImageNamed:@"RebelFighter"];
-	SPACEShip *razor = [SPACEShip shipWithImageNamed:@"RazorFighter"];
+	SPACEShip *alien = [SPACEShip randomShip];
+	SPACEShip *rogue = [SPACEShip randomShip];
+	SPACEShip *rebel = [SPACEShip randomShip];
+	SPACEShip *razor = [SPACEShip randomShip];
+	SPACEShip *cargo = [SPACEShip randomShip];
 	self.AIShips = @[
 		alien,
 		rogue,
 		rebel,
-		razor
+		razor,
+		cargo
 	];
 	for (SPACEShip *ship in self.AIShips) {
 		ship.faction = SPACEEnemyFaction;

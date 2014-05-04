@@ -31,6 +31,58 @@
 	return [[self alloc] initWithImageNamed:imageName];
 }
 
++(instancetype) randomShip {
+	SPACEShip *ship = [SPACEShip new];
+	
+	ship.position = CGPointMake(0, 500);
+	
+	ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
+	ship.physicsBody.friction = 0;
+	ship.physicsBody.angularDamping = 0;
+	ship.physicsBody.mass = 100;
+	ship.angularMagnitude = 10;
+	ship.linearMagnitude = 10000;
+	ship.allegiance = SPACERandomIntegerInInterval(1, 3);
+	
+	
+	ship.hullImages = @[
+		@"SingleHull",
+		@"NeedleHull",
+		@"SplitHull"
+	];
+	ship.wingImages = @[
+		@"HawkWings",
+		@"SlicerWings",
+		@"ZipperWings"
+	];
+	ship.thrustImages = @[
+		@"IonThruster",
+		@"TwinIonThruster",
+		@"TriFusionThruster"
+	];
+	
+	SKColor *shipColour = SPACERandomColour();
+	ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:ship.wingImages[SPACERandomIntegerInInterval(0, 2)]];
+	ship.sprite.texture.filteringMode = SKTextureFilteringNearest;
+	ship.sprite.colorBlendFactor = 1;
+	ship.sprite.color = [SKColor colorWithRed:(shipColour.redComponent - 0.1) green:(shipColour.greenComponent - 0.1) blue:(shipColour.blueComponent - 0.1) alpha:1];
+	
+	SKSpriteNode *hull = [SKSpriteNode spriteNodeWithImageNamed:ship.hullImages[SPACERandomIntegerInInterval(0, 2)]];
+	hull.texture.filteringMode = SKTextureFilteringNearest;
+	hull.colorBlendFactor = 1;
+	hull.color = shipColour;
+	
+	SKSpriteNode *thruster = [SKSpriteNode spriteNodeWithImageNamed:ship.thrustImages[SPACERandomIntegerInInterval(0, 2)]];
+	thruster.texture.filteringMode = SKTextureFilteringNearest;
+	
+	
+	[ship addChild: ship.sprite];
+	[ship addChild: thruster];
+	[ship addChild: hull];
+	
+	return ship;
+}
+
 
 @dynamic scene;
 
