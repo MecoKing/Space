@@ -33,6 +33,7 @@
 
 +(instancetype) randomShip {
 	SPACEShip *ship = [SPACEShip new];
+	//Eventually this will be done in a factions class, and then handed to all ships in said faction.
 	
 	ship.position = CGPointMake(0, 500);
 	
@@ -60,6 +61,7 @@
 		@"TwinIonThruster",
 		@"TriFusionThruster"
 	];
+	//Eventually different parts will have different stats (Weight, Speed, Durability)
 	
 	SKColor *shipColour = SPACERandomColour();
 	ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:ship.wingImages[SPACERandomIntegerInInterval(0, 2)]];
