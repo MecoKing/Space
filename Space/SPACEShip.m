@@ -35,7 +35,9 @@
 	SPACEShip *ship = [SPACEShip new];
 	//Eventually this will be done in a factions class, and then handed to all ships in said faction.
 	
-	ship.position = CGPointMake(0, 500);
+	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
+		ship.position = CGPointMake(SPACERandomInInterval(-1000, 1000), SPACERandomInInterval(-1000, 1000));
+	}
 	
 	ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
 	ship.physicsBody.friction = 0;
@@ -63,7 +65,7 @@
 	];
 	//Eventually different parts will have different stats (Weight, Speed, Durability)
 	
-	SKColor *shipColour = SPACERandomColour();
+	SKColor *shipColour = SPACERandomDarkColour();
 	ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:ship.wingImages[SPACERandomIntegerInInterval(0, 2)]];
 	ship.sprite.texture.filteringMode = SKTextureFilteringNearest;
 	ship.sprite.colorBlendFactor = 1;
