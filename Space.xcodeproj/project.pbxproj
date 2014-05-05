@@ -14,21 +14,14 @@
 		CB27AE6B18D35180001C65B5 /* MoltenPlanetTexture02.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6818D35180001C65B5 /* MoltenPlanetTexture02.png */; };
 		CB27AE6C18D35180001C65B5 /* MoltenPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6918D35180001C65B5 /* MoltenPlanetTexture03.png */; };
 		CB2A1A3818B565A300B36AA1 /* SPACESystem.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2A1A3718B565A300B36AA1 /* SPACESystem.m */; };
-		CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB335D9218A10E1C00AF7A33 /* HumanCargo.png */; };
 		CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */; };
 		CB3A0D7318D4AC4400E3D1F7 /* MoonPlanetTexture01.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A0D7018D4AC4400E3D1F7 /* MoonPlanetTexture01.png */; };
 		CB3A0D7418D4AC4400E3D1F7 /* MoonPlanetTexture02.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A0D7118D4AC4400E3D1F7 /* MoonPlanetTexture02.png */; };
 		CB3A0D7518D4AC4400E3D1F7 /* MoonPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3A0D7218D4AC4400E3D1F7 /* MoonPlanetTexture03.png */; };
-		CB3C851F1912F0A2007AF1CC /* RogueStarship.png in Resources */ = {isa = PBXBuildFile; fileRef = CB3C851E1912F0A2007AF1CC /* RogueStarship.png */; };
-		CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27918A0305200D0F466 /* RogueFighter.png */; };
 		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
 		CB4830F718DB94DD00A5657A /* SPACERadarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4830F618DB94DD00A5657A /* SPACERadarNode.m */; };
-		CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC2189B524E0012B45F /* AlienFighter.png */; };
-		CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB7C6BC3189B524E0012B45F /* HumanFighter.png */; };
-		CB830A2F18A7BCA10050FE42 /* RogueGunship.png in Resources */ = {isa = PBXBuildFile; fileRef = CB830A2E18A7BCA10050FE42 /* RogueGunship.png */; };
 		CB93C45F18D39151008D90FE /* Missile.png in Resources */ = {isa = PBXBuildFile; fileRef = CB93C45E18D39151008D90FE /* Missile.png */; };
-		CB9F60AB18C0041200639141 /* RebelFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CB9F60AA18C0041200639141 /* RebelFighter.png */; };
 		CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA2394D18A27C8100351847 /* SPACEStellarBody.m */; };
 		CBC0C0711899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C0731899A615005E2507 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0721899A615005E2507 /* SpriteKit.framework */; };
@@ -44,20 +37,25 @@
 		CBC0C0971899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C09F1899A615005E2507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC0C09D1899A615005E2507 /* InfoPlist.strings */; };
 		CBC0C0A11899A615005E2507 /* SpaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC0C0A01899A615005E2507 /* SpaceTests.m */; };
-		CBDE12011916E8D000F9FBB7 /* TwinIonThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11F81916E8D000F9FBB7 /* TwinIonThruster.png */; };
-		CBDE12021916E8D000F9FBB7 /* HawkWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11F91916E8D000F9FBB7 /* HawkWings.png */; };
-		CBDE12031916E8D000F9FBB7 /* IonThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11FA1916E8D000F9FBB7 /* IonThruster.png */; };
-		CBDE12041916E8D000F9FBB7 /* NeedleHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11FB1916E8D000F9FBB7 /* NeedleHull.png */; };
-		CBDE12051916E8D000F9FBB7 /* SingleHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11FC1916E8D000F9FBB7 /* SingleHull.png */; };
-		CBDE12061916E8D000F9FBB7 /* SlicerWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11FD1916E8D000F9FBB7 /* SlicerWings.png */; };
-		CBDE12071916E8D000F9FBB7 /* SplitHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11FE1916E8D000F9FBB7 /* SplitHull.png */; };
-		CBDE12081916E8D000F9FBB7 /* TriFusionThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE11FF1916E8D000F9FBB7 /* TriFusionThruster.png */; };
-		CBDE12091916E8D000F9FBB7 /* ZipperWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBDE12001916E8D000F9FBB7 /* ZipperWings.png */; };
 		CBE2F8A818D28237005B8B25 /* GasPlanetTexture01.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A518D28237005B8B25 /* GasPlanetTexture01.png */; };
 		CBE2F8A918D28237005B8B25 /* GasPlanetTexture02.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A618D28237005B8B25 /* GasPlanetTexture02.png */; };
 		CBE2F8AA18D28237005B8B25 /* GasPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A718D28237005B8B25 /* GasPlanetTexture03.png */; };
-		CBF74C2C18C288D100A41A2A /* RazorFighter.png in Resources */ = {isa = PBXBuildFile; fileRef = CBF74C2B18C288D100A41A2A /* RazorFighter.png */; };
 		CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */; };
+		CBFB46551916FA79000C3D77 /* HawkWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB464A1916FA79000C3D77 /* HawkWings.png */; };
+		CBFB46561916FA79000C3D77 /* IonThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB464B1916FA79000C3D77 /* IonThruster.png */; };
+		CBFB46571916FA79000C3D77 /* MantaHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB464C1916FA79000C3D77 /* MantaHull.png */; };
+		CBFB46581916FA79000C3D77 /* NeedleHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB464D1916FA79000C3D77 /* NeedleHull.png */; };
+		CBFB46591916FA79000C3D77 /* SingleHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB464E1916FA79000C3D77 /* SingleHull.png */; };
+		CBFB465A1916FA79000C3D77 /* SlicerWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB464F1916FA79000C3D77 /* SlicerWings.png */; };
+		CBFB465B1916FA79000C3D77 /* SplitHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB46501916FA79000C3D77 /* SplitHull.png */; };
+		CBFB465C1916FA79000C3D77 /* TriFusionThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB46511916FA79000C3D77 /* TriFusionThruster.png */; };
+		CBFB465D1916FA79000C3D77 /* TwinFusionThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB46521916FA79000C3D77 /* TwinFusionThruster.png */; };
+		CBFB465E1916FA79000C3D77 /* TwinIonThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB46531916FA79000C3D77 /* TwinIonThruster.png */; };
+		CBFB465F1916FA79000C3D77 /* ZipperWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB46541916FA79000C3D77 /* ZipperWings.png */; };
+		CBFB466419171622000C3D77 /* CoPilotHull.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB466019171622000C3D77 /* CoPilotHull.png */; };
+		CBFB466519171622000C3D77 /* DualWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB466119171622000C3D77 /* DualWings.png */; };
+		CBFB466619171622000C3D77 /* RocketWings.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB466219171622000C3D77 /* RocketWings.png */; };
+		CBFB466719171622000C3D77 /* TwinElectronThruster.png in Resources */ = {isa = PBXBuildFile; fileRef = CBFB466319171622000C3D77 /* TwinElectronThruster.png */; };
 		D41A625118D3AD950065B6D0 /* SPACEProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = D41A625018D3AD950065B6D0 /* SPACEProjectile.m */; };
 		D41A625818D499520065B6D0 /* SPACEOrbit.m in Sources */ = {isa = PBXBuildFile; fileRef = D41A625718D499520065B6D0 /* SPACEOrbit.m */; };
 		D47912CC18D2134F00015495 /* SPACEStar.m in Sources */ = {isa = PBXBuildFile; fileRef = D47912CB18D2134F00015495 /* SPACEStar.m */; };
@@ -83,24 +81,17 @@
 		CB27AE6918D35180001C65B5 /* MoltenPlanetTexture03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoltenPlanetTexture03.png; path = Images/MoltenPlanetTexture03.png; sourceTree = SOURCE_ROOT; };
 		CB2A1A3618B565A300B36AA1 /* SPACESystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACESystem.h; sourceTree = "<group>"; };
 		CB2A1A3718B565A300B36AA1 /* SPACESystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACESystem.m; sourceTree = "<group>"; };
-		CB335D9218A10E1C00AF7A33 /* HumanCargo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanCargo.png; path = Images/HumanCargo.png; sourceTree = SOURCE_ROOT; };
 		CB3A0D6D18D48E6A00E3D1F7 /* SPACEHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEHUD.h; sourceTree = "<group>"; };
 		CB3A0D6E18D48E6A00E3D1F7 /* SPACEHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEHUD.m; sourceTree = "<group>"; };
 		CB3A0D7018D4AC4400E3D1F7 /* MoonPlanetTexture01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoonPlanetTexture01.png; path = Images/MoonPlanetTexture01.png; sourceTree = SOURCE_ROOT; };
 		CB3A0D7118D4AC4400E3D1F7 /* MoonPlanetTexture02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoonPlanetTexture02.png; path = Images/MoonPlanetTexture02.png; sourceTree = SOURCE_ROOT; };
 		CB3A0D7218D4AC4400E3D1F7 /* MoonPlanetTexture03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MoonPlanetTexture03.png; path = Images/MoonPlanetTexture03.png; sourceTree = SOURCE_ROOT; };
-		CB3C851E1912F0A2007AF1CC /* RogueStarship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueStarship.png; path = Images/RogueStarship.png; sourceTree = SOURCE_ROOT; };
-		CB47C27918A0305200D0F466 /* RogueFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueFighter.png; path = Images/RogueFighter.png; sourceTree = SOURCE_ROOT; };
 		CB47C27B18A0328A00D0F466 /* SPACEShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEShip.h; sourceTree = "<group>"; };
 		CB47C27C18A0328A00D0F466 /* SPACEShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEShip.m; sourceTree = "<group>"; };
 		CB47C27E18A033ED00D0F466 /* Laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Laser.png; path = Images/Laser.png; sourceTree = SOURCE_ROOT; };
 		CB4830F518DB94DD00A5657A /* SPACERadarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACERadarNode.h; sourceTree = "<group>"; };
 		CB4830F618DB94DD00A5657A /* SPACERadarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACERadarNode.m; sourceTree = "<group>"; };
-		CB7C6BC2189B524E0012B45F /* AlienFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AlienFighter.png; path = Images/AlienFighter.png; sourceTree = SOURCE_ROOT; };
-		CB7C6BC3189B524E0012B45F /* HumanFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HumanFighter.png; path = Images/HumanFighter.png; sourceTree = SOURCE_ROOT; };
-		CB830A2E18A7BCA10050FE42 /* RogueGunship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RogueGunship.png; path = Images/RogueGunship.png; sourceTree = SOURCE_ROOT; };
 		CB93C45E18D39151008D90FE /* Missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Missile.png; path = Images/Missile.png; sourceTree = SOURCE_ROOT; };
-		CB9F60AA18C0041200639141 /* RebelFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RebelFighter.png; path = Images/RebelFighter.png; sourceTree = SOURCE_ROOT; };
 		CBA2394C18A27C8100351847 /* SPACEStellarBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStellarBody.h; sourceTree = "<group>"; };
 		CBA2394D18A27C8100351847 /* SPACEStellarBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStellarBody.m; sourceTree = "<group>"; };
 		CBC0C06D1899A615005E2507 /* Space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Space.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,21 +117,26 @@
 		CBC0C09C1899A615005E2507 /* SpaceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpaceTests-Info.plist"; sourceTree = "<group>"; };
 		CBC0C09E1899A615005E2507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CBC0C0A01899A615005E2507 /* SpaceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceTests.m; sourceTree = "<group>"; };
-		CBDE11F81916E8D000F9FBB7 /* TwinIonThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwinIonThruster.png; path = ../../../../Desktop/SpaceShipParts/TwinIonThruster.png; sourceTree = "<group>"; };
-		CBDE11F91916E8D000F9FBB7 /* HawkWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HawkWings.png; path = ../../../../Desktop/SpaceShipParts/HawkWings.png; sourceTree = "<group>"; };
-		CBDE11FA1916E8D000F9FBB7 /* IonThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IonThruster.png; path = ../../../../Desktop/SpaceShipParts/IonThruster.png; sourceTree = "<group>"; };
-		CBDE11FB1916E8D000F9FBB7 /* NeedleHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeedleHull.png; path = ../../../../Desktop/SpaceShipParts/NeedleHull.png; sourceTree = "<group>"; };
-		CBDE11FC1916E8D000F9FBB7 /* SingleHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SingleHull.png; path = ../../../../Desktop/SpaceShipParts/SingleHull.png; sourceTree = "<group>"; };
-		CBDE11FD1916E8D000F9FBB7 /* SlicerWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SlicerWings.png; path = ../../../../Desktop/SpaceShipParts/SlicerWings.png; sourceTree = "<group>"; };
-		CBDE11FE1916E8D000F9FBB7 /* SplitHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SplitHull.png; path = ../../../../Desktop/SpaceShipParts/SplitHull.png; sourceTree = "<group>"; };
-		CBDE11FF1916E8D000F9FBB7 /* TriFusionThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TriFusionThruster.png; path = ../../../../Desktop/SpaceShipParts/TriFusionThruster.png; sourceTree = "<group>"; };
-		CBDE12001916E8D000F9FBB7 /* ZipperWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZipperWings.png; path = ../../../../Desktop/SpaceShipParts/ZipperWings.png; sourceTree = "<group>"; };
 		CBE2F8A518D28237005B8B25 /* GasPlanetTexture01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture01.png; path = Images/GasPlanetTexture01.png; sourceTree = SOURCE_ROOT; };
 		CBE2F8A618D28237005B8B25 /* GasPlanetTexture02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture02.png; path = Images/GasPlanetTexture02.png; sourceTree = SOURCE_ROOT; };
 		CBE2F8A718D28237005B8B25 /* GasPlanetTexture03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture03.png; path = Images/GasPlanetTexture03.png; sourceTree = SOURCE_ROOT; };
-		CBF74C2B18C288D100A41A2A /* RazorFighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RazorFighter.png; path = Images/RazorFighter.png; sourceTree = SOURCE_ROOT; };
 		CBFA00AC18B7BA5800E743B6 /* SPACEFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEFunction.h; sourceTree = "<group>"; };
 		CBFA00AD18B7BA5800E743B6 /* SPACEFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEFunction.m; sourceTree = "<group>"; };
+		CBFB464A1916FA79000C3D77 /* HawkWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HawkWings.png; path = Images/HawkWings.png; sourceTree = SOURCE_ROOT; };
+		CBFB464B1916FA79000C3D77 /* IonThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IonThruster.png; path = Images/IonThruster.png; sourceTree = SOURCE_ROOT; };
+		CBFB464C1916FA79000C3D77 /* MantaHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MantaHull.png; path = Images/MantaHull.png; sourceTree = SOURCE_ROOT; };
+		CBFB464D1916FA79000C3D77 /* NeedleHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeedleHull.png; path = Images/NeedleHull.png; sourceTree = SOURCE_ROOT; };
+		CBFB464E1916FA79000C3D77 /* SingleHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SingleHull.png; path = Images/SingleHull.png; sourceTree = SOURCE_ROOT; };
+		CBFB464F1916FA79000C3D77 /* SlicerWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SlicerWings.png; path = Images/SlicerWings.png; sourceTree = SOURCE_ROOT; };
+		CBFB46501916FA79000C3D77 /* SplitHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SplitHull.png; path = Images/SplitHull.png; sourceTree = SOURCE_ROOT; };
+		CBFB46511916FA79000C3D77 /* TriFusionThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TriFusionThruster.png; path = Images/TriFusionThruster.png; sourceTree = SOURCE_ROOT; };
+		CBFB46521916FA79000C3D77 /* TwinFusionThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwinFusionThruster.png; path = Images/TwinFusionThruster.png; sourceTree = SOURCE_ROOT; };
+		CBFB46531916FA79000C3D77 /* TwinIonThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwinIonThruster.png; path = Images/TwinIonThruster.png; sourceTree = SOURCE_ROOT; };
+		CBFB46541916FA79000C3D77 /* ZipperWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZipperWings.png; path = Images/ZipperWings.png; sourceTree = SOURCE_ROOT; };
+		CBFB466019171622000C3D77 /* CoPilotHull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CoPilotHull.png; path = Images/CoPilotHull.png; sourceTree = SOURCE_ROOT; };
+		CBFB466119171622000C3D77 /* DualWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DualWings.png; path = Images/DualWings.png; sourceTree = SOURCE_ROOT; };
+		CBFB466219171622000C3D77 /* RocketWings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RocketWings.png; path = Images/RocketWings.png; sourceTree = SOURCE_ROOT; };
+		CBFB466319171622000C3D77 /* TwinElectronThruster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TwinElectronThruster.png; path = Images/TwinElectronThruster.png; sourceTree = SOURCE_ROOT; };
 		D41A624F18D3AD950065B6D0 /* SPACEProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEProjectile.h; sourceTree = "<group>"; };
 		D41A625018D3AD950065B6D0 /* SPACEProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEProjectile.m; sourceTree = "<group>"; };
 		D41A625218D3CEBF0065B6D0 /* SPACEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEDefines.h; sourceTree = "<group>"; };
@@ -175,21 +171,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CB27AE6D18D361C5001C65B5 /* Ships */ = {
-			isa = PBXGroup;
-			children = (
-				CB7C6BC2189B524E0012B45F /* AlienFighter.png */,
-				CB335D9218A10E1C00AF7A33 /* HumanCargo.png */,
-				CB7C6BC3189B524E0012B45F /* HumanFighter.png */,
-				CB3C851E1912F0A2007AF1CC /* RogueStarship.png */,
-				CB47C27918A0305200D0F466 /* RogueFighter.png */,
-				CB830A2E18A7BCA10050FE42 /* RogueGunship.png */,
-				CB9F60AA18C0041200639141 /* RebelFighter.png */,
-				CBF74C2B18C288D100A41A2A /* RazorFighter.png */,
-			);
-			name = Ships;
-			sourceTree = "<group>";
-		};
 		CB27AE6E18D361CC001C65B5 /* PlanetTextures */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +206,6 @@
 			children = (
 				CBDE11F71916E8B500F9FBB7 /* ShipParts */,
 				CB27AE6E18D361CC001C65B5 /* PlanetTextures */,
-				CB27AE6D18D361C5001C65B5 /* Ships */,
 				CB47C27E18A033ED00D0F466 /* Laser.png */,
 				CB93C45E18D39151008D90FE /* Missile.png */,
 			);
@@ -330,15 +310,21 @@
 		CBDE11F71916E8B500F9FBB7 /* ShipParts */ = {
 			isa = PBXGroup;
 			children = (
-				CBDE11FA1916E8D000F9FBB7 /* IonThruster.png */,
-				CBDE11F81916E8D000F9FBB7 /* TwinIonThruster.png */,
-				CBDE11FF1916E8D000F9FBB7 /* TriFusionThruster.png */,
-				CBDE11FC1916E8D000F9FBB7 /* SingleHull.png */,
-				CBDE11FB1916E8D000F9FBB7 /* NeedleHull.png */,
-				CBDE11FE1916E8D000F9FBB7 /* SplitHull.png */,
-				CBDE11F91916E8D000F9FBB7 /* HawkWings.png */,
-				CBDE11FD1916E8D000F9FBB7 /* SlicerWings.png */,
-				CBDE12001916E8D000F9FBB7 /* ZipperWings.png */,
+				CBFB46541916FA79000C3D77 /* ZipperWings.png */,
+				CBFB464F1916FA79000C3D77 /* SlicerWings.png */,
+				CBFB466119171622000C3D77 /* DualWings.png */,
+				CBFB466219171622000C3D77 /* RocketWings.png */,
+				CBFB464A1916FA79000C3D77 /* HawkWings.png */,
+				CBFB464C1916FA79000C3D77 /* MantaHull.png */,
+				CBFB464D1916FA79000C3D77 /* NeedleHull.png */,
+				CBFB464E1916FA79000C3D77 /* SingleHull.png */,
+				CBFB46501916FA79000C3D77 /* SplitHull.png */,
+				CBFB466019171622000C3D77 /* CoPilotHull.png */,
+				CBFB46521916FA79000C3D77 /* TwinFusionThruster.png */,
+				CBFB46511916FA79000C3D77 /* TriFusionThruster.png */,
+				CBFB464B1916FA79000C3D77 /* IonThruster.png */,
+				CBFB46531916FA79000C3D77 /* TwinIonThruster.png */,
+				CBFB466319171622000C3D77 /* TwinElectronThruster.png */,
 			);
 			name = ShipParts;
 			sourceTree = "<group>";
@@ -437,42 +423,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBDE12091916E8D000F9FBB7 /* ZipperWings.png in Resources */,
+				CBFB466619171622000C3D77 /* RocketWings.png in Resources */,
+				CBFB46591916FA79000C3D77 /* SingleHull.png in Resources */,
 				CBE2F8A818D28237005B8B25 /* GasPlanetTexture01.png in Resources */,
 				CB3A0D7318D4AC4400E3D1F7 /* MoonPlanetTexture01.png in Resources */,
 				CB27AE6A18D35180001C65B5 /* MoltenPlanetTexture01.png in Resources */,
+				CBFB46561916FA79000C3D77 /* IonThruster.png in Resources */,
+				CBFB465B1916FA79000C3D77 /* SplitHull.png in Resources */,
+				CBFB465F1916FA79000C3D77 /* ZipperWings.png in Resources */,
 				CB3A0D7518D4AC4400E3D1F7 /* MoonPlanetTexture03.png in Resources */,
 				CB47C27F18A033ED00D0F466 /* Laser.png in Resources */,
-				CBDE12071916E8D000F9FBB7 /* SplitHull.png in Resources */,
+				CBFB46581916FA79000C3D77 /* NeedleHull.png in Resources */,
 				CB3A0D7418D4AC4400E3D1F7 /* MoonPlanetTexture02.png in Resources */,
 				CBC0C08D1899A615005E2507 /* Spaceship.png in Resources */,
-				CB7C6BC5189B524E0012B45F /* HumanFighter.png in Resources */,
-				CBDE12041916E8D000F9FBB7 /* NeedleHull.png in Resources */,
 				CBC0C08F1899A615005E2507 /* Images.xcassets in Resources */,
-				CBDE12021916E8D000F9FBB7 /* HawkWings.png in Resources */,
+				CBFB465D1916FA79000C3D77 /* TwinFusionThruster.png in Resources */,
+				CBFB466519171622000C3D77 /* DualWings.png in Resources */,
 				CB27AE6618D33FCB001C65B5 /* TerraPlanetTexture03.png in Resources */,
-				CBDE12081916E8D000F9FBB7 /* TriFusionThruster.png in Resources */,
 				CB27AE6C18D35180001C65B5 /* MoltenPlanetTexture03.png in Resources */,
 				CBE2F8AA18D28237005B8B25 /* GasPlanetTexture03.png in Resources */,
-				CB47C27A18A0305200D0F466 /* RogueFighter.png in Resources */,
-				CBF74C2C18C288D100A41A2A /* RazorFighter.png in Resources */,
+				CBFB465A1916FA79000C3D77 /* SlicerWings.png in Resources */,
 				CB27AE6B18D35180001C65B5 /* MoltenPlanetTexture02.png in Resources */,
-				CBDE12061916E8D000F9FBB7 /* SlicerWings.png in Resources */,
+				CBFB465C1916FA79000C3D77 /* TriFusionThruster.png in Resources */,
+				CBFB466719171622000C3D77 /* TwinElectronThruster.png in Resources */,
 				CBC0C07D1899A615005E2507 /* InfoPlist.strings in Resources */,
-				CB335D9318A10E1C00AF7A33 /* HumanCargo.png in Resources */,
-				CB7C6BC4189B524E0012B45F /* AlienFighter.png in Resources */,
-				CBDE12011916E8D000F9FBB7 /* TwinIonThruster.png in Resources */,
 				CBE2F8A918D28237005B8B25 /* GasPlanetTexture02.png in Resources */,
 				CBC0C0831899A615005E2507 /* Credits.rtf in Resources */,
-				CB830A2F18A7BCA10050FE42 /* RogueGunship.png in Resources */,
-				CBDE12051916E8D000F9FBB7 /* SingleHull.png in Resources */,
-				CB9F60AB18C0041200639141 /* RebelFighter.png in Resources */,
-				CB3C851F1912F0A2007AF1CC /* RogueStarship.png in Resources */,
+				CBFB466419171622000C3D77 /* CoPilotHull.png in Resources */,
 				CB93C45F18D39151008D90FE /* Missile.png in Resources */,
 				CB27AE6418D33FCB001C65B5 /* TerraPlanetTexture01.png in Resources */,
-				CBDE12031916E8D000F9FBB7 /* IonThruster.png in Resources */,
 				CB27AE6518D33FCB001C65B5 /* TerraPlanetTexture02.png in Resources */,
 				CBC0C0851899A615005E2507 /* MainMenu.xib in Resources */,
+				CBFB46571916FA79000C3D77 /* MantaHull.png in Resources */,
+				CBFB46551916FA79000C3D77 /* HawkWings.png in Resources */,
+				CBFB465E1916FA79000C3D77 /* TwinIonThruster.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

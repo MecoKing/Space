@@ -51,32 +51,38 @@
 	ship.hullImages = @[
 		@"SingleHull",
 		@"NeedleHull",
-		@"SplitHull"
+		@"SplitHull",
+		@"MantaHull",
+		@"CoPilotHull",
 	];
 	ship.wingImages = @[
 		@"HawkWings",
 		@"SlicerWings",
-		@"ZipperWings"
+		@"ZipperWings",
+		@"DualWings",
+		@"RocketWings",
 	];
 	ship.thrustImages = @[
 		@"IonThruster",
 		@"TwinIonThruster",
-		@"TriFusionThruster"
+		@"TwinFusionThruster",
+		@"TriFusionThruster",
+		@"TwinElectronThruster",
 	];
 	//Eventually different parts will have different stats (Weight, Speed, Durability)
 	
 	SKColor *shipColour = SPACERandomDarkColour();
-	ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:ship.wingImages[SPACERandomIntegerInInterval(0, 2)]];
+	ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:ship.wingImages[SPACERandomIntegerInInterval(0, 4)]];
 	ship.sprite.texture.filteringMode = SKTextureFilteringNearest;
 	ship.sprite.colorBlendFactor = 1;
 	ship.sprite.color = [SKColor colorWithRed:(shipColour.redComponent - 0.1) green:(shipColour.greenComponent - 0.1) blue:(shipColour.blueComponent - 0.1) alpha:1];
 	
-	SKSpriteNode *hull = [SKSpriteNode spriteNodeWithImageNamed:ship.hullImages[SPACERandomIntegerInInterval(0, 2)]];
+	SKSpriteNode *hull = [SKSpriteNode spriteNodeWithImageNamed:ship.hullImages[SPACERandomIntegerInInterval(0, 4)]];
 	hull.texture.filteringMode = SKTextureFilteringNearest;
 	hull.colorBlendFactor = 1;
 	hull.color = shipColour;
 	
-	SKSpriteNode *thruster = [SKSpriteNode spriteNodeWithImageNamed:ship.thrustImages[SPACERandomIntegerInInterval(0, 2)]];
+	SKSpriteNode *thruster = [SKSpriteNode spriteNodeWithImageNamed:ship.thrustImages[SPACERandomIntegerInInterval(0, 4)]];
 	thruster.texture.filteringMode = SKTextureFilteringNearest;
 	
 	
