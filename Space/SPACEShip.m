@@ -10,6 +10,7 @@
 #import "SPACEFunction.h"
 #import "SPACEMyScene.h"
 #import "SPACEProjectile.h"
+#import "SPACEFaction.h"
 
 @implementation SPACEShip
 
@@ -27,11 +28,45 @@
 	return self;
 }
 
-+(instancetype) shipWithImageNamed: (NSString*)imageName {
-	return [[self alloc] initWithImageNamed:imageName];
++(instancetype) shipOfFaction: (SPACEFaction*)faction {
+	SPACEShip *ship = [SPACEShip new];
+	
+	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
+		ship.position = CGPointMake(SPACERandomInInterval(-1000, 1000), SPACERandomInInterval(-1000, 1000));
+	}
+	
+	ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
+	ship.physicsBody.friction = 0;
+	ship.physicsBody.angularDamping = 0;
+	ship.physicsBody.mass = 100;
+	ship.angularMagnitude = 10;
+	ship.linearMagnitude = 10000;
+	
+	ship.faction = faction;
+	
+	//Switch faction's parts too NSString, derive the image name from the faction and declare the sprites here!!!
+	
+	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingSpriteName];
+	ship.wings.texture.filteringMode = SKTextureFilteringNearest;
+	ship.wings.colorBlendFactor = 1;
+	ship.wings.color = [SKColor colorWithRed:(faction.shipColour.redComponent - 0.1) green:(faction.shipColour.greenComponent - 0.1) blue:(faction.shipColour.blueComponent - 0.1) alpha:1];
+	
+	ship.hull = [SKSpriteNode spriteNodeWithImageNamed:faction.hullSpriteName];
+	ship.hull.texture.filteringMode = SKTextureFilteringNearest;
+	ship.hull.colorBlendFactor = 1;
+	ship.hull.color = faction.shipColour;
+	
+	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterSpriteName];
+	ship.thruster.texture.filteringMode = SKTextureFilteringNearest;
+
+	[ship addChild: ship.wings];
+	[ship addChild: ship.thruster];
+	[ship addChild: ship.hull];
+	
+	return ship;
 }
 
-+(instancetype) randomShip {
++(instancetype) randomFighterWithColour: (SKColor*)shipColour {
 	SPACEShip *ship = [SPACEShip new];
 	//Eventually this will be done in a factions class, and then handed to all ships in said faction.
 	
@@ -48,47 +83,12 @@
 	ship.allegiance = SPACERandomIntegerInInterval(1, 3);
 	
 	
-	ship.hullImages = @[
-		@"SingleHull",
-		@"NeedleHull",
-		@"SplitHull",
-		@"MantaHull",
-		@"CoPilotHull",
-	];
-	ship.wingImages = @[
-		@"HawkWings",
-		@"SlicerWings",
-		@"ZipperWings",
-		@"DualWings",
-		@"RocketWings",
-	];
-	ship.thrustImages = @[
-		@"IonThruster",
-		@"TwinIonThruster",
-		@"TwinFusionThruster",
-		@"TriFusionThruster",
-		@"TwinElectronThruster",
-	];
-	//Eventually different parts will have different stats (Weight, Speed, Durability)
-	
-	SKColor *shipColour = SPACERandomDarkColour();
-	ship.sprite = [SKSpriteNode spriteNodeWithImageNamed:ship.wingImages[SPACERandomIntegerInInterval(0, 4)]];
-	ship.sprite.texture.filteringMode = SKTextureFilteringNearest;
-	ship.sprite.colorBlendFactor = 1;
-	ship.sprite.color = [SKColor colorWithRed:(shipColour.redComponent - 0.1) green:(shipColour.greenComponent - 0.1) blue:(shipColour.blueComponent - 0.1) alpha:1];
-	
-	SKSpriteNode *hull = [SKSpriteNode spriteNodeWithImageNamed:ship.hullImages[SPACERandomIntegerInInterval(0, 4)]];
-	hull.texture.filteringMode = SKTextureFilteringNearest;
-	hull.colorBlendFactor = 1;
-	hull.color = shipColour;
-	
-	SKSpriteNode *thruster = [SKSpriteNode spriteNodeWithImageNamed:ship.thrustImages[SPACERandomIntegerInInterval(0, 4)]];
-	thruster.texture.filteringMode = SKTextureFilteringNearest;
 	
 	
-	[ship addChild: ship.sprite];
-	[ship addChild: thruster];
-	[ship addChild: hull];
+	
+	[ship addChild: ship.wings];
+	[ship addChild: ship.thruster];
+	[ship addChild: ship.hull];
 	
 	return ship;
 }
@@ -145,8 +145,8 @@
 	
 	SPACEShip *closestEnemy = NULL;
 	for (SPACEShip *ship in self.scene.AIShips) {
-		if (self.allegiance == 1) {
-			if (ship.allegiance == 3) {
+		
+			if (ship.faction != self.faction) {
 				if (closestEnemy == NULL) {
 					closestEnemy = ship;
 				}
@@ -154,26 +154,7 @@
 					closestEnemy = ship;
 				}
 			}
-		}
-		else if (self.allegiance == 3) {
-			if (ship.allegiance == 1) {
-				if (closestEnemy == NULL) {
-					closestEnemy = ship;
-				}
-				else if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(closestEnemy.position, self.position)) {
-					closestEnemy = ship;
-				}
-			}
-		}
-	}
-	
-	if (self.allegiance == 3) {
-		if (closestEnemy == NULL) {
-			closestEnemy = self.scene.playerShip;
-		}
-		else if (SPACEDistanceBetweenPoints(self.scene.playerShip.position, self.position) < SPACEDistanceBetweenPoints(closestEnemy.position, self.position)) {
-			closestEnemy = self.scene.playerShip;
-		}
+		
 	}
 	
 	if (closestEnemy != NULL) {

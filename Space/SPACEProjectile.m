@@ -30,14 +30,4 @@
 	return self;
 }
 
-
--(SPACEFaction)faction {
-	return self.physicsBody.categoryBitMask;
-}
-
--(void)setFaction:(SPACEFaction)faction {
-	self.physicsBody.categoryBitMask = faction;
-	self.physicsBody.collisionBitMask = UINT_MAX ^ faction;
-}
-
 @end

@@ -22,5 +22,6 @@
 @property SKNode *universe;
 @property SKNode *laserManager;
 @property SPACEHUD *compassHUD;
+@property NSArray* factions;
 
 @end

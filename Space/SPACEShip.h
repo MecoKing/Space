@@ -12,17 +12,18 @@
 #import "SPACEDefines.h"
 
 @class SPACEMyScene;
+@class SPACEFaction;
 
 @interface SPACEShip : SKSpriteNode
 
 @property CGFloat linearMagnitude;
 @property CGFloat angularMagnitude;
-@property SKSpriteNode *sprite;
+@property SKSpriteNode *wings;
+@property SKSpriteNode *hull;
+@property SKSpriteNode *thruster;
 @property NSUInteger allegiance;//Number 1-5 | 1 = Loyal to the Player, 3 = Neutral, 5 = Loyal to not the Player
-@property SPACEFaction faction;
-@property NSArray *hullImages;
-@property NSArray *wingImages;
-@property NSArray *thrustImages;
+@property SPACEFaction* faction;
+
 
 
 @property CGPoint relativePoint;
@@ -38,7 +39,7 @@
 -(void) runAutoPilot;
 -(void) fireLaser;
 -(void) fireMissileAtPoint: (CGPoint) destination;
-+(instancetype) shipWithImageNamed: (NSString*) imageName;
-+(instancetype) randomShip;
++(instancetype) shipOfFaction: (SPACEFaction*)faction;
++(instancetype) randomFighterWithColour: (SKColor*)shipColour;
 
 @end

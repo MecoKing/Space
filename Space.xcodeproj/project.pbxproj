@@ -37,6 +37,7 @@
 		CBC0C0971899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
 		CBC0C09F1899A615005E2507 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBC0C09D1899A615005E2507 /* InfoPlist.strings */; };
 		CBC0C0A11899A615005E2507 /* SpaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBC0C0A01899A615005E2507 /* SpaceTests.m */; };
+		CBDF5D90193A667E00CC0BBA /* SPACEFaction.m in Sources */ = {isa = PBXBuildFile; fileRef = CBDF5D8F193A667E00CC0BBA /* SPACEFaction.m */; };
 		CBE2F8A818D28237005B8B25 /* GasPlanetTexture01.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A518D28237005B8B25 /* GasPlanetTexture01.png */; };
 		CBE2F8A918D28237005B8B25 /* GasPlanetTexture02.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A618D28237005B8B25 /* GasPlanetTexture02.png */; };
 		CBE2F8AA18D28237005B8B25 /* GasPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CBE2F8A718D28237005B8B25 /* GasPlanetTexture03.png */; };
@@ -117,6 +118,8 @@
 		CBC0C09C1899A615005E2507 /* SpaceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpaceTests-Info.plist"; sourceTree = "<group>"; };
 		CBC0C09E1899A615005E2507 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CBC0C0A01899A615005E2507 /* SpaceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpaceTests.m; sourceTree = "<group>"; };
+		CBDF5D8E193A667E00CC0BBA /* SPACEFaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEFaction.h; sourceTree = "<group>"; };
+		CBDF5D8F193A667E00CC0BBA /* SPACEFaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEFaction.m; sourceTree = "<group>"; };
 		CBE2F8A518D28237005B8B25 /* GasPlanetTexture01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture01.png; path = Images/GasPlanetTexture01.png; sourceTree = SOURCE_ROOT; };
 		CBE2F8A618D28237005B8B25 /* GasPlanetTexture02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture02.png; path = Images/GasPlanetTexture02.png; sourceTree = SOURCE_ROOT; };
 		CBE2F8A718D28237005B8B25 /* GasPlanetTexture03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GasPlanetTexture03.png; path = Images/GasPlanetTexture03.png; sourceTree = SOURCE_ROOT; };
@@ -265,6 +268,8 @@
 				D41A625218D3CEBF0065B6D0 /* SPACEDefines.h */,
 				CB47C27B18A0328A00D0F466 /* SPACEShip.h */,
 				CB47C27C18A0328A00D0F466 /* SPACEShip.m */,
+				CBDF5D8E193A667E00CC0BBA /* SPACEFaction.h */,
+				CBDF5D8F193A667E00CC0BBA /* SPACEFaction.m */,
 				D41A624F18D3AD950065B6D0 /* SPACEProjectile.h */,
 				D41A625018D3AD950065B6D0 /* SPACEProjectile.m */,
 				CBC0C08B1899A615005E2507 /* SPACEAppDelegate.h */,
@@ -478,6 +483,7 @@
 				CB4830F718DB94DD00A5657A /* SPACERadarNode.m in Sources */,
 				CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */,
 				D41A625818D499520065B6D0 /* SPACEOrbit.m in Sources */,
+				CBDF5D90193A667E00CC0BBA /* SPACEFaction.m in Sources */,
 				CBC0C07F1899A615005E2507 /* main.m in Sources */,
 				CBFA00AE18B7BA5800E743B6 /* SPACEFunction.m in Sources */,
 				D47912CF18D21FB200015495 /* SPACEPlanet.m in Sources */,

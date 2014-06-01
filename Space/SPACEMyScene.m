@@ -13,6 +13,7 @@
 #import "SPACESystem.h"
 #import "SPACEHUD.h"
 #import "SPACEPlanet.h"
+#import "SPACEFaction.h"
 
 
 #pragma mark
@@ -27,13 +28,12 @@
 -(instancetype)initWithSize:(CGSize)size {
 	if ((self = [super initWithSize:size])) {
 		/* Setup your scene here */
-
-		
 		self.anchorPoint = (CGPoint){ 0.5, 0.5 };
 		//Should be decided based on:
 		//average star colour ± SPACERandoomInInterval(-0.2, 0.2);
 		self.physicsWorld.gravity = CGVectorMake(0, 0);
 		[self generateNebula];
+		[self generateFactions];
 		self.universe = [SKNode node];
 		self.laserManager = [SKNode node];
 		[self addChild:self.universe];
@@ -46,18 +46,17 @@
 }
 
 -(void)addPlayerShip {
-	self.playerShip = [SPACEShip randomShip];
-	self.playerShip.allegiance = 1;
-	self.playerShip.faction = SPACEPlayerFaction;
+	self.playerShip = [SPACEShip shipOfFaction:self.factions[0]];
 	[self.universe addChild:self.playerShip];
 }
 
 -(void) addStarShips {
-	for (int i = 0; i < SPACERandomIntegerInInterval(16, 64); i++) {
-		SPACEShip *ship = [SPACEShip randomShip];
-		self.AIShips = [NSArray arrayWithArray:[self.AIShips arrayByAddingObject:ship]];
-		ship.faction = SPACEEnemyFaction;
-		[self.universe addChild:ship];
+	for (SPACEFaction *faction in self.factions) {
+		for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
+			SPACEShip *ship = [SPACEShip shipOfFaction:faction];
+			self.AIShips = [NSArray arrayWithArray:[self.AIShips arrayByAddingObject:ship]];
+			[self.universe addChild:ship];
+		}
 	}
 }
 
@@ -108,6 +107,14 @@
 }
 
 
+-(void) generateFactions {
+	NSUInteger numberOfFactions = SPACERandomIntegerInInterval(4, 8);
+	for (int i = 0; i < numberOfFactions; i++) {
+		self.factions = [NSArray arrayWithArray:[self.factions arrayByAddingObject:[SPACEFaction randomFaction]]];
+	}
+}
+
+
 -(void) generateNebula {
 //	return;
 	self.backgroundColor = SPACEAverageDarkColour();
@@ -146,8 +153,10 @@
 -(void) refreshSolarSystem {
 	[self.laserManager removeAllChildren];
 	[self.universe removeAllChildren];
+	self.factions = nil;
 	[self removeAllChildren];
 	[self generateNebula];
+	[self generateFactions];
 	[self addChild:self.universe];
 	[self.universe addChild:self.laserManager];
 	[self addPlayerShip];

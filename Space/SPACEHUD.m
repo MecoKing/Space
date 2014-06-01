@@ -10,6 +10,7 @@
 #import "SPACEHUD.h"
 #import "SPACEFunction.h"
 #import "SPACEShip.h"
+#import "SPACEFaction.h"
 #import "SPACESystem.h"
 
 @implementation SPACEHUD
@@ -48,15 +49,7 @@
 		SKShapeNode *shipDot = [SKShapeNode new];
 		shipDot.path = shipDotPath;
 		
-		if (ship.allegiance == 1) {
-			shipDot.fillColor = [SKColor colorWithRed:0 green:1 blue:0 alpha:0.6];
-		}
-		else if (ship.allegiance == 2) {
-			shipDot.fillColor = [SKColor colorWithWhite:0.5 alpha:0.6];
-		}
-		else {
-			shipDot.fillColor = [SKColor colorWithRed:1 green:0 blue:0 alpha:0.6];
-		}
+		shipDot.fillColor = ship.faction.shipColour;
 		
 		shipDot.strokeColor = [SKColor clearColor];
 		
