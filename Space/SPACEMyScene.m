@@ -46,14 +46,14 @@
 }
 
 -(void)addPlayerShip {
-	self.playerShip = [SPACEShip shipOfFaction:self.factions[0]];
+	self.playerShip = [SPACEShip randomFighterOfFaction:self.factions[0]];
 	[self.universe addChild:self.playerShip];
 }
 
 -(void) addStarShips {
 	for (SPACEFaction *faction in self.factions) {
 		for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
-			SPACEShip *ship = [SPACEShip shipOfFaction:faction];
+			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
 			self.AIShips = [NSArray arrayWithArray:[self.AIShips arrayByAddingObject:ship]];
 			[self.universe addChild:ship];
 		}

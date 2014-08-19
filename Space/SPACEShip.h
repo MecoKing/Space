@@ -21,8 +21,13 @@
 @property SKSpriteNode *wings;
 @property SKSpriteNode *hull;
 @property SKSpriteNode *thruster;
-@property NSUInteger allegiance;//Number 1-5 | 1 = Loyal to the Player, 3 = Neutral, 5 = Loyal to not the Player
 @property SPACEFaction* faction;
+
+
+//WIP AI rework
+@property NSInteger *rank;
+@property NSString *targetPriority;
+@property NSString *superiorPriority;
 
 
 
@@ -39,7 +44,6 @@
 -(void) runAutoPilot;
 -(void) fireLaser;
 -(void) fireMissileAtPoint: (CGPoint) destination;
-+(instancetype) shipOfFaction: (SPACEFaction*)faction;
-+(instancetype) randomFighterWithColour: (SKColor*)shipColour;
++(instancetype) randomFighterOfFaction: (SPACEFaction*)faction;
 
 @end

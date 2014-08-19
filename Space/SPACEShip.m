@@ -23,12 +23,11 @@
 		self.texture.filteringMode = SKTextureFilteringNearest;
 		self.angularMagnitude = 10;
 		self.linearMagnitude = 10000;
-		self.allegiance = SPACERandomIntegerInInterval(1, 3);
 	}
 	return self;
 }
 
-+(instancetype) shipOfFaction: (SPACEFaction*)faction {
++(instancetype) randomFighterOfFaction: (SPACEFaction*)faction {
 	SPACEShip *ship = [SPACEShip new];
 	
 	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
@@ -201,6 +200,34 @@
 	else {
 		[self activateThrusters];
 	}
+}
+
+
+
+//WIP AI rework
+-(SPACEShip*) target:(bool) useSuperior {
+	SPACEShip *targetShip = NULL;
+	
+	for (SPACEShip *ship in self.scene.AIShips) {
+		
+		if (ship.faction != self.faction) {
+			if (targetShip == NULL) {
+				targetShip = ship;
+			}
+			else {
+				NSString *priority = (useSuperior) ? self.superiorPriority : self.targetPriority;
+				if ([priority  isEqual: @"Closest"]) {
+					if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
+						targetShip = ship;
+					}
+				}
+				else if ([priority isEqual: @"Value"]) {
+					
+				}
+			}
+		}
+	}
+	return targetShip;
 }
 
 @end
