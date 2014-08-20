@@ -25,9 +25,11 @@
 
 
 //WIP AI rework
-@property NSInteger *rank;
+@property NSUInteger rank;
 @property NSString *targetPriority;
 @property NSString *superiorPriority;
+@property NSUInteger value;
+@property SKLabelNode *info;
 
 
 

@@ -121,23 +121,32 @@
 	int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
 
 	for (int i = 0; i < numberOfClouds; i++) {
-		
 		SKShapeNode *cloud = [SKShapeNode node];
 		int cloudSize = SPACERandomInInterval(50, 200);
-		
 		CGRect bounds = {
 			.origin.x = SPACERandomInInterval((cloudSize / -2) - (self.size.width / 2), self.size.width),
 			.origin.y = SPACERandomInInterval((cloudSize / -2) - (self.size.height / 2), self.size.height),
 			.size.width = cloudSize * 2,
 			.size.height = cloudSize * 2,
 		};
-   
 		cloud.path = CGPathCreateWithEllipseInRect(bounds, NULL);
-		
 		cloud.strokeColor = [SKColor colorWithWhite:1 alpha:0.01];
 		cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
-   
 		[self addChild:cloud];
+		
+		SKShapeNode *star = [SKShapeNode node];
+		int starSize = SPACERandomInInterval(1, 3);
+		CGRect starBounds = {
+			.origin.x = SPACERandomInInterval((starSize / -2) - (self.size.width / 2), self.size.width),
+			.origin.y = SPACERandomInInterval((starSize / -2) - (self.size.height / 2), self.size.height),
+			.size.width = starSize * 2,
+			.size.height = starSize * 2,
+		};
+		star.path = CGPathCreateWithEllipseInRect(starBounds, NULL);
+		star.strokeColor = [SKColor  colorWithWhite:1 alpha:0.2];
+		star.fillColor = [SKColor whiteColor];
+		star.glowWidth = starSize * SPACERandomInInterval(0.25, 0.75);
+		[self addChild:star];
 	}
 }
 
@@ -194,7 +203,9 @@
 	
 	for (SPACEShip *ship in self.AIShips) {
 		[ship runAutoPilot];
+		ship.info.zRotation = 0 - ship.zRotation;
 	}
+	self.playerShip.info.zRotation = 0 - self.playerShip.zRotation;
 	
 	
 	[self.compassHUD updateDotsOnCompass];

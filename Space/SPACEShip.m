@@ -41,6 +41,9 @@
 	ship.angularMagnitude = 10;
 	ship.linearMagnitude = 10000;
 	
+	ship.rank = SPACERandomIntegerInInterval(1, 10);
+	ship.value = SPACERandomIntegerInInterval(50, 100);
+	
 	ship.faction = faction;
 	
 	//Switch faction's parts too NSString, derive the image name from the faction and declare the sprites here!!!
@@ -58,9 +61,17 @@
 	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterSpriteName];
 	ship.thruster.texture.filteringMode = SKTextureFilteringNearest;
 
+	ship.info = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+	ship.info.text = [NSString stringWithFormat:@"V:%lu R:%lu", (unsigned long)ship.value, (unsigned long)ship.rank];
+	ship.info.fontColor = [SKColor whiteColor];
+	ship.info.fontSize = 10;
+	ship.info.position = CGPointMake(ship.info.position.x, ship.info.position.y - 20);
+	
 	[ship addChild: ship.wings];
 	[ship addChild: ship.thruster];
 	[ship addChild: ship.hull];
+	
+//	[ship addChild:ship.info];
 	
 	return ship;
 }
@@ -79,7 +90,6 @@
 	ship.physicsBody.mass = 100;
 	ship.angularMagnitude = 10;
 	ship.linearMagnitude = 10000;
-	ship.allegiance = SPACERandomIntegerInInterval(1, 3);
 	
 	
 	
@@ -142,22 +152,11 @@
 	[self releaseDirectionalThrusters];
 	
 	
-	SPACEShip *closestEnemy = NULL;
-	for (SPACEShip *ship in self.scene.AIShips) {
-		
-			if (ship.faction != self.faction) {
-				if (closestEnemy == NULL) {
-					closestEnemy = ship;
-				}
-				else if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(closestEnemy.position, self.position)) {
-					closestEnemy = ship;
-				}
-			}
-		
-	}
+	SPACEShip *target = [self targetShipByPriority:@"Closest"];
 	
-	if (closestEnemy != NULL) {
-		[self huntShip:closestEnemy];
+	
+	if (target != NULL) {
+		[self huntShip:target];
 	}
 	else {
 		[self wander];
@@ -205,7 +204,7 @@
 
 
 //WIP AI rework
--(SPACEShip*) target:(bool) useSuperior {
+-(SPACEShip*) targetShipByPriority:(NSString*)priority {
 	SPACEShip *targetShip = NULL;
 	
 	for (SPACEShip *ship in self.scene.AIShips) {
@@ -215,14 +214,46 @@
 				targetShip = ship;
 			}
 			else {
-				NSString *priority = (useSuperior) ? self.superiorPriority : self.targetPriority;
+				
+				/*
+				 Closest
+				 Value
+				 Speed
+				 Rank
+				 Health
+				 Shields
+				 Weapons
+				 Energy
+				*/
 				if ([priority  isEqual: @"Closest"]) {
 					if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
 						targetShip = ship;
 					}
 				}
 				else if ([priority isEqual: @"Value"]) {
-					
+					if (ship.value > targetShip.value) {
+						targetShip = ship;
+					}
+					//In case of ties...
+					else if (ship.value == targetShip.value) {
+						if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
+							targetShip = ship;
+						}
+					}
+				}
+				else if ([priority isEqual: @"Rank"]) {
+					if (ship.rank > targetShip.rank) {
+						targetShip = ship;
+					}
+					//In case of ties...
+					else if (ship.rank == targetShip.rank) {
+						if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
+							targetShip = ship;
+						}
+					}
+				}
+				else {
+					return NULL;
 				}
 			}
 		}
