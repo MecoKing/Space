@@ -53,6 +53,7 @@
 }
 
 -(void) addStarShips {
+//	return;
 	for (SPACEFaction *faction in self.factions) {
 		for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
@@ -124,8 +125,8 @@
 
 
 -(void) generateNebula {
-//	return;
 	self.backgroundColor = SPACEAverageDarkColour();
+	return;
 	int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
 
 	for (int i = 0; i < numberOfClouds; i++) {
