@@ -99,7 +99,7 @@
 	SEL selector = selectors[SPACERandomIntegerInInterval(0, sizeof selectors / sizeof *selectors - 1)];
 	
 	NSMutableArray *planets = [NSMutableArray new];
-	NSUInteger planetCount = SPACERandomIntegerInInterval(0, 5);
+	NSUInteger planetCount = SPACERandomIntegerInInterval(1, 12);
 	for (NSUInteger i = 0; i < planetCount; i++) {
 		[planets addObject:[self randomPlanetarySystem]];
 	}
@@ -110,7 +110,6 @@
 +(instancetype)randomSystem {
 	return [self randomStarSystem];
 }
-
 
 -(CGFloat)radius {
 	CGFloat radius = self.barycentre.radius;
