@@ -46,6 +46,14 @@
 	
 	ship.faction = faction;
 	
+	NSArray *possiblePriorities = @[
+		@"Closest",
+		@"Value",
+		@"Rank",
+		@"Nothing",
+		];
+	ship.targetPriority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
+	
 	//Switch faction's parts too NSString, derive the image name from the faction and declare the sprites here!!!
 	
 	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingSpriteName];
@@ -152,7 +160,7 @@
 	[self releaseDirectionalThrusters];
 	
 	
-	SPACEShip *target = [self targetShipByPriority:@"Closest"];
+	SPACEShip *target = [self targetShipByPriority:self.targetPriority];
 	
 	
 	if (target != NULL) {
