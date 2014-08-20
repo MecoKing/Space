@@ -84,33 +84,6 @@
 	return ship;
 }
 
-+(instancetype) randomFighterWithColour: (SKColor*)shipColour {
-	SPACEShip *ship = [SPACEShip new];
-	//Eventually this will be done in a factions class, and then handed to all ships in said faction.
-	
-	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
-		ship.position = CGPointMake(SPACERandomInInterval(-1000, 1000), SPACERandomInInterval(-1000, 1000));
-	}
-	
-	ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
-	ship.physicsBody.friction = 0;
-	ship.physicsBody.angularDamping = 0;
-	ship.physicsBody.mass = 100;
-	ship.angularMagnitude = 10;
-	ship.linearMagnitude = 10000;
-	
-	
-	
-	
-	
-	[ship addChild: ship.wings];
-	[ship addChild: ship.thruster];
-	[ship addChild: ship.hull];
-	
-	return ship;
-}
-
-
 @dynamic scene;
 
 
