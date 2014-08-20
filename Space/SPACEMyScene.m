@@ -32,6 +32,7 @@
 		//Should be decided based on:
 		//average star colour ± SPACERandoomInInterval(-0.2, 0.2);
 		self.physicsWorld.gravity = CGVectorMake(0, 0);
+		self.playerEnginePower = 0;
 		[self generateNebula];
 		[self generateFactions];
 		self.universe = [SKNode node];
@@ -41,6 +42,7 @@
 		[self addPlayerShip];
 		[self addStarShips];
 		[self generateSolarSystem];
+		[self drawHUD];
 	}
 	return self;
 }
@@ -72,6 +74,8 @@
 		[self.playerShip activateDirectionalThrustersLeft];
 	else if (key == 'w' || key == NSUpArrowFunctionKey) {
 		[self.playerShip activateThrusters];
+		self.playerEnginePower+=10;
+		if (self.playerEnginePower > 100) self.playerEnginePower = 100;
 	}
 	if (key == ' ') {
 		[self.playerShip fireLaser];
@@ -102,10 +106,14 @@
 -(void) generateSolarSystem {
 	self.system = [SPACESystem randomSystem];
 	[self.universe addChild:self.system];
-	self.compassHUD = [SPACEHUD compassHUDAtPosition:CGPointMake(-150, -150)];
-	[self addChild:self.compassHUD];
 }
 
+-(void) drawHUD {
+	self.compassHUD = [SPACEHUD compassHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(-150, -150)];
+	[self addChild:self.compassHUD];
+	self.engineHUD = [SPACEHUD engineHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(0, -200)];
+	[self addChild:self.engineHUD];
+}
 
 -(void) generateFactions {
 	NSUInteger numberOfFactions = SPACERandomIntegerInInterval(4, 8);
@@ -160,6 +168,7 @@
 }
 
 -(void) refreshSolarSystem {
+	self.playerEnginePower = 0;
 	[self.laserManager removeAllChildren];
 	[self.universe removeAllChildren];
 	self.factions = nil;
@@ -171,6 +180,7 @@
 	[self addPlayerShip];
 	[self addStarShips];
 	[self generateSolarSystem];
+	[self drawHUD];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -206,9 +216,11 @@
 		ship.info.zRotation = 0 - ship.zRotation;
 	}
 	self.playerShip.info.zRotation = 0 - self.playerShip.zRotation;
+	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	
 	
 	[self.compassHUD updateDotsOnCompass];
+	[self.engineHUD updateEngineHUD];
 
 
 	[self.system updateWithSystem:self.system overInterval:interval];

@@ -13,11 +13,15 @@
 @interface SPACEHUD : SKNode
 
 @property SKShapeNode *compass;
+@property SKLabelNode *thrusterCapacity;
+@property SKColor *colour;
 
 @property (SK_NONATOMIC_IOSONLY, readonly) SPACEMyScene *scene;
 
 
-+(instancetype) compassHUDAtPosition: (CGPoint) position;
++(instancetype) compassHUDWithColour:(SKColor*)colour atPosition: (CGPoint) position;
++(instancetype) engineHUDWithColour:(SKColor*)colour atPosition: (CGPoint)position;
 -(void) updateDotsOnCompass;
+-(void) updateEngineHUD;
 
 @end
