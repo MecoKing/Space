@@ -173,6 +173,7 @@
 	[self.laserManager removeAllChildren];
 	[self.universe removeAllChildren];
 	self.factions = nil;
+	self.AIShips = nil;
 	[self removeAllChildren];
 	[self generateNebula];
 	[self generateFactions];
