@@ -28,7 +28,7 @@
 -(instancetype)initWithSize:(CGSize)size {
 	if ((self = [super initWithSize:size])) {
 		/* Setup your scene here */
-		self.anchorPoint = (CGPoint){ 0.5, 0.5 };
+		self.anchorPoint = (CGPoint){ 0.5, 0.5 };		
 		//Should be decided based on:
 		//average star colour ± SPACERandoomInInterval(-0.2, 0.2);
 		self.physicsWorld.gravity = CGVectorMake(0, 0);
