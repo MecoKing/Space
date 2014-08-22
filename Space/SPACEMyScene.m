@@ -39,7 +39,6 @@
 		self.laserManager = [SKNode node];
 		[self addChild:self.universe];
 		[self.universe addChild:self.laserManager];
-		[self addPlayerShip];
 		[self addStarShips];
 		[self generateSolarSystem];
 		[self drawHUD];
@@ -47,13 +46,11 @@
 	return self;
 }
 
--(void)addPlayerShip {
-	self.playerShip = [SPACEShip randomFighterOfFaction:self.factions[0]];
-	[self.universe addChild:self.playerShip];
-}
-
 -(void) addStarShips {
 //	return;
+	self.playerShip = [SPACEShip randomFighterOfFaction:self.factions[0]];
+	[self.universe addChild:self.playerShip];
+	
 	for (SPACEFaction *faction in self.factions) {
 		for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
@@ -179,7 +176,6 @@
 	[self generateFactions];
 	[self addChild:self.universe];
 	[self.universe addChild:self.laserManager];
-	[self addPlayerShip];
 	[self addStarShips];
 	[self generateSolarSystem];
 	[self drawHUD];
@@ -212,14 +208,12 @@
 	}
 	self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
 	
-	
 	for (SPACEShip *ship in self.AIShips) {
-		[ship runAutoPilot];
-		[ship updateShipStats];
+		if (ship != self.playerShip) {
+			[ship runAutoPilot];
+		}
 	}
-	[self.playerShip updateShipStats];
 	if (self.playerEnginePower > 0) self.playerEnginePower--;
-	
 	
 	[self.compassHUD updateDotsOnCompass];
 	[self.engineHUD updateEngineHUD];
