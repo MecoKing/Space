@@ -21,6 +21,8 @@
 		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
 		CB4830F718DB94DD00A5657A /* SPACERadarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4830F618DB94DD00A5657A /* SPACERadarNode.m */; };
+		CB5AC00019A77D8400722962 /* Explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5ABFFE19A77D8400722962 /* Explosion.png */; };
+		CB5AC00119A77D8400722962 /* Healthbar.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5ABFFF19A77D8400722962 /* Healthbar.png */; };
 		CB93C45F18D39151008D90FE /* Missile.png in Resources */ = {isa = PBXBuildFile; fileRef = CB93C45E18D39151008D90FE /* Missile.png */; };
 		CBA2394E18A27C8100351847 /* SPACEStellarBody.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA2394D18A27C8100351847 /* SPACEStellarBody.m */; };
 		CBC0C0711899A615005E2507 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC0C0701899A615005E2507 /* Cocoa.framework */; };
@@ -92,6 +94,8 @@
 		CB47C27E18A033ED00D0F466 /* Laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Laser.png; path = Images/Laser.png; sourceTree = SOURCE_ROOT; };
 		CB4830F518DB94DD00A5657A /* SPACERadarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACERadarNode.h; sourceTree = "<group>"; };
 		CB4830F618DB94DD00A5657A /* SPACERadarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACERadarNode.m; sourceTree = "<group>"; };
+		CB5ABFFE19A77D8400722962 /* Explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explosion.png; path = Images/Explosion.png; sourceTree = SOURCE_ROOT; };
+		CB5ABFFF19A77D8400722962 /* Healthbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Healthbar.png; path = Images/Healthbar.png; sourceTree = SOURCE_ROOT; };
 		CB93C45E18D39151008D90FE /* Missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Missile.png; path = Images/Missile.png; sourceTree = SOURCE_ROOT; };
 		CBA2394C18A27C8100351847 /* SPACEStellarBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStellarBody.h; sourceTree = "<group>"; };
 		CBA2394D18A27C8100351847 /* SPACEStellarBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEStellarBody.m; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				CB27AE6E18D361CC001C65B5 /* PlanetTextures */,
 				CB47C27E18A033ED00D0F466 /* Laser.png */,
 				CB93C45E18D39151008D90FE /* Missile.png */,
+				CB5ABFFE19A77D8400722962 /* Explosion.png */,
+				CB5ABFFF19A77D8400722962 /* Healthbar.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -441,11 +447,13 @@
 				CBFB46581916FA79000C3D77 /* NeedleHull.png in Resources */,
 				CB3A0D7418D4AC4400E3D1F7 /* MoonPlanetTexture02.png in Resources */,
 				CBC0C08D1899A615005E2507 /* Spaceship.png in Resources */,
+				CB5AC00019A77D8400722962 /* Explosion.png in Resources */,
 				CBC0C08F1899A615005E2507 /* Images.xcassets in Resources */,
 				CBFB465D1916FA79000C3D77 /* TwinFusionThruster.png in Resources */,
 				CBFB466519171622000C3D77 /* DualWings.png in Resources */,
 				CB27AE6618D33FCB001C65B5 /* TerraPlanetTexture03.png in Resources */,
 				CB27AE6C18D35180001C65B5 /* MoltenPlanetTexture03.png in Resources */,
+				CB5AC00119A77D8400722962 /* Healthbar.png in Resources */,
 				CBE2F8AA18D28237005B8B25 /* GasPlanetTexture03.png in Resources */,
 				CBFB465A1916FA79000C3D77 /* SlicerWings.png in Resources */,
 				CB27AE6B18D35180001C65B5 /* MoltenPlanetTexture02.png in Resources */,
