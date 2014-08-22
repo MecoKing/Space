@@ -7,8 +7,8 @@
 
 @interface SPACEProjectile : SKSpriteNode
 
-+(instancetype)missileOriginatingFromNode:(SKNode *)node;
-+(instancetype)laserOriginatingFromNode:(SKNode *)node;
++(instancetype)missileOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction;
++(instancetype)laserOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction;
 
 @property SPACEFaction* faction;
 

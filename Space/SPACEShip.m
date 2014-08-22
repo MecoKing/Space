@@ -105,7 +105,7 @@
 }
 
 -(void) fireLaser {
-	SPACEProjectile *laser = [SPACEProjectile laserOriginatingFromNode:self];
+	SPACEProjectile *laser = [SPACEProjectile laserOriginatingFromNode:self withFaction:self.faction];
 	laser.faction = self.faction;
 	[self.scene.laserManager addChild:laser];
 	laser.physicsBody.velocity = self.physicsBody.velocity;
@@ -116,7 +116,7 @@
 	CGPoint relativePoint = SPACESubtractPoint(destination, self.position);
 	CGFloat firingAngle = SPACEPolarPointWithPoint(relativePoint).phi;
 	
-	SPACEProjectile *missile = [SPACEProjectile missileOriginatingFromNode:self];
+	SPACEProjectile *missile = [SPACEProjectile missileOriginatingFromNode:self withFaction:self.faction];
 	missile.faction = self.faction;
 	
 	[self.scene.laserManager addChild:missile];

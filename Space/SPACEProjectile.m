@@ -5,18 +5,20 @@
 
 @implementation SPACEProjectile
 
-+(instancetype)missileOriginatingFromNode:(SKNode *)node {
++(instancetype)missileOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction {
 	SPACEProjectile *missile = [self spriteNodeWithImageNamed:@"Missile"];
 	missile.position = node.position;
 	missile.physicsBody.mass = 10;
+	missile.faction = faction;
 	return missile;
 }
 
-+(instancetype)laserOriginatingFromNode:(SKNode *)node {
++(instancetype)laserOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction {
 	SPACEProjectile *laser = [self spriteNodeWithImageNamed:@"Laser"];
 	laser.position = node.position;
 	laser.zRotation = node.zRotation;
 	laser.physicsBody.mass = 1;
+	laser.faction = faction;
 	return laser;
 }
 
