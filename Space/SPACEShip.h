@@ -13,6 +13,7 @@
 
 @class SPACEMyScene;
 @class SPACEFaction;
+@class SPACEStat;
 
 @interface SPACEShip : SKSpriteNode
 
@@ -23,7 +24,7 @@
 @property SKSpriteNode *thruster;
 @property SPACEFaction *faction;
 @property NSInteger health;
-@property SKSpriteNode *healthBar;
+@property SPACEStat *statDisplay;
 
 
 //WIP AI rework
@@ -31,7 +32,6 @@
 @property NSString *targetPriority;
 @property NSString *superiorPriority;
 @property NSUInteger value;
-@property SKLabelNode *info;
 
 
 

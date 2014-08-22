@@ -11,6 +11,7 @@
 #import "SPACEMyScene.h"
 #import "SPACEProjectile.h"
 #import "SPACEFaction.h"
+#import "SPACEStat.h"
 
 @implementation SPACEShip
 
@@ -76,7 +77,9 @@
 	[ship addChild: ship.thruster];
 	[ship addChild: ship.hull];
 	
-//	[ship addChild:ship.info];
+	ship.statDisplay = [SPACEStat statsForShip:ship];
+	[ship.scene.physicsWorld addJoint:[SKPhysicsJointPin jointWithBodyA:ship.physicsBody bodyB:ship.statDisplay.physicsBody anchor:CGPointMake(ship.position.x, ship.position.y)]];
+//	[ship addChild:ship.statDisplay];
 	
 	return ship;
 }
@@ -179,24 +182,8 @@
 }
 
 -(void) updateShipStats {
-	[self.info removeFromParent];
-	self.info = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-	self.info.text = [NSString stringWithFormat:@"V:%lu R:%lu", (unsigned long)self.value, (unsigned long)self.rank];
-	self.info.fontColor = SPACEInverseOfColour(self.scene.backgroundColor);
-	self.info.fontSize = 10;
-	self.info.position = CGPointMake(0, -35);
-	self.info.zRotation = 0 - self.zRotation;
-	[self addChild:self.info];
-	
-	[self.healthBar removeFromParent];
-	CGRect healthFrame = CGRectMake(self.health*0.25, 0, 0.25, 1);
-	self.healthBar = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithRect:healthFrame inTexture:[SKTexture textureWithImageNamed:@"Healthbar"]]];
-	self.healthBar.position = CGPointMake(0, -20);
-	self.healthBar.texture.filteringMode = SKTextureFilteringNearest;
-	self.healthBar.zRotation = 0 - self.zRotation;
-	[self addChild:self.healthBar];
+	[self.statDisplay updateAllShipStats];
 }
-
 
 
 //WIP AI rework
