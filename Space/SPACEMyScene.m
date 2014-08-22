@@ -187,7 +187,7 @@
 
 -(void)update:(CFTimeInterval)currentTime {
 //	return;
-	if (self.previousTime == 0) self.previousTime = currentTime;
+//	if (self.previousTime == 0) self.previousTime = currentTime;
 	const CGFloat gravitationalConstant = 6e-19;
 	CFTimeInterval interval = currentTime - self.previousTime;
 	for (SKNode *a in self.universe.children) {
@@ -215,9 +215,9 @@
 	
 	for (SPACEShip *ship in self.AIShips) {
 		[ship runAutoPilot];
-		ship.info.zRotation = 0 - ship.zRotation;
+		[ship updateShipStats];
 	}
-	self.playerShip.info.zRotation = 0 - self.playerShip.zRotation;
+	[self.playerShip updateShipStats];
 	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	
 	

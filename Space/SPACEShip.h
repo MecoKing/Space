@@ -21,7 +21,9 @@
 @property SKSpriteNode *wings;
 @property SKSpriteNode *hull;
 @property SKSpriteNode *thruster;
-@property SPACEFaction* faction;
+@property SPACEFaction *faction;
+@property NSInteger health;
+@property SKSpriteNode *healthBar;
 
 
 //WIP AI rework
@@ -46,6 +48,7 @@
 -(void) runAutoPilot;
 -(void) fireLaser;
 -(void) fireMissileAtPoint: (CGPoint) destination;
+-(void) updateShipStats;
 +(instancetype) randomFighterOfFaction: (SPACEFaction*)faction;
 
 @end

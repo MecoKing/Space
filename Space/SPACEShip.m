@@ -41,6 +41,7 @@
 	ship.angularMagnitude = 10;
 	ship.linearMagnitude = 10000;
 	
+	ship.health = SPACERandomInInterval(1, 4);
 	ship.rank = SPACERandomIntegerInInterval(1, 10);
 	ship.value = SPACERandomIntegerInInterval(50, 100);
 	
@@ -69,11 +70,7 @@
 	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterSpriteName];
 	ship.thruster.texture.filteringMode = SKTextureFilteringNearest;
 
-	ship.info = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-	ship.info.text = [NSString stringWithFormat:@"V:%lu R:%lu", (unsigned long)ship.value, (unsigned long)ship.rank];
-	ship.info.fontColor = [SKColor whiteColor];
-	ship.info.fontSize = 10;
-	ship.info.position = CGPointMake(ship.info.position.x, ship.info.position.y - 20);
+
 	
 	[ship addChild: ship.wings];
 	[ship addChild: ship.thruster];
@@ -128,7 +125,6 @@
 	[missile.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = firingAngle, .r = self.linearMagnitude })];
 }
 
-
 -(void) runAutoPilot {
 	[self releaseDirectionalThrusters];
 	
@@ -182,6 +178,25 @@
 	}
 }
 
+-(void) updateShipStats {
+	[self.info removeFromParent];
+	self.info = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+	self.info.text = [NSString stringWithFormat:@"V:%lu R:%lu", (unsigned long)self.value, (unsigned long)self.rank];
+	self.info.fontColor = SPACEInverseOfColour(self.scene.backgroundColor);
+	self.info.fontSize = 10;
+	self.info.position = CGPointMake(0, -35);
+	self.info.zRotation = 0 - self.zRotation;
+	[self addChild:self.info];
+	
+	[self.healthBar removeFromParent];
+	CGRect healthFrame = CGRectMake(self.health*0.25, 0, 0.25, 1);
+	self.healthBar = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithRect:healthFrame inTexture:[SKTexture textureWithImageNamed:@"Healthbar"]]];
+	self.healthBar.position = CGPointMake(0, -20);
+	self.healthBar.texture.filteringMode = SKTextureFilteringNearest;
+	self.healthBar.zRotation = 0 - self.zRotation;
+	[self addChild:self.healthBar];
+}
+
 
 
 //WIP AI rework
@@ -216,6 +231,7 @@
 						targetShip = ship;
 					}
 					//In case of ties...
+					//should eventually check the captain's priority and break ties with the ship's priority...
 					else if (ship.value == targetShip.value) {
 						if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
 							targetShip = ship;
@@ -227,6 +243,7 @@
 						targetShip = ship;
 					}
 					//In case of ties...
+					//should eventually check the captain's priority and break ties with the ship's priority...
 					else if (ship.rank == targetShip.rank) {
 						if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
 							targetShip = ship;
