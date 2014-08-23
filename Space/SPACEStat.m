@@ -12,10 +12,12 @@
 
 @implementation SPACEStat
 
+#pragma mark ShipStats
+
 +(instancetype) statsForShip:(SPACEShip*)ship {
 	SPACEStat *stat = [SPACEStat new];
+	stat.position = ship.position;
 	stat.shipObject = ship;
-	[stat printNameInfo];
 	[stat updateAllShipStats];
 	return stat;
 }
@@ -48,7 +50,9 @@
 }
 
 -(void) updateAllShipStats {
-	self.zRotation = 0 - self.shipObject.zRotation;
+	self.position = [self.parent convertPoint:self.shipObject.position fromNode:self.shipObject.parent];
+	self.zRotation = 0;
+	[self printNameInfo];
 	[self updateHealthBarInfo];
 	[self updateShipStatInfo];
 }

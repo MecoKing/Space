@@ -80,7 +80,7 @@
 	[ship addChild: ship.hull];
 	
 	ship.statDisplay = [SPACEStat statsForShip:ship];
-	[ship addChild:ship.statDisplay];
+//	[ship addChild:ship.statDisplay];
 	
 	return ship;
 }
@@ -191,7 +191,7 @@
 -(SPACEShip*) targetShipByPriority:(NSString*)priority {
 	SPACEShip *targetShip = NULL;
 	
-	for (SPACEShip *ship in self.scene.AIShips) {
+	for (SPACEShip *ship in self.scene.ships) {
 		
 		if (ship.faction != self.faction) {
 			if (targetShip == NULL) {

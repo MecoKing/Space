@@ -18,7 +18,8 @@
 
 @property SPACEShip *playerShip;
 @property int playerEnginePower;
-@property NSArray* AIShips;
+@property NSArray* ships;
+@property NSArray* shipStats;
 @property SPACESystem* system;
 @property SKNode *universe;
 @property SKNode *laserManager;

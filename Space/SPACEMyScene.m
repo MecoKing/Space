@@ -59,17 +59,23 @@
 
 -(void) addStarShips {
 //	return;
-//	self.playerShip = [SPACEShip randomFighterOfFaction:self.factions[0]];
-//	[self.universe addChild:self.playerShip];
-	
+	self.ships = @[];
+	self.shipStats = @[];
 	for (SPACEFaction *faction in self.factions) {
-		for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
+		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
+		count = 2;
+		for (int i = 0; i < count; i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
-			self.AIShips = [NSArray arrayWithArray:[self.AIShips arrayByAddingObject:ship]];
+			self.ships = [self.ships arrayByAddingObject:ship];
 			[self.universe addChild:ship];
+			
+			SPACEStat *stat = [SPACEStat statsForShip:ship];
+			self.shipStats = [self.shipStats arrayByAddingObject:stat];
+			[self addChild:stat];
 		}
+		break;
 	}
-	self.playerShip = self.AIShips[0];
+	self.playerShip = self.ships[0];
 }
 
 #pragma mark
@@ -204,11 +210,13 @@
 	}
 	self.universe.position = SPACEMultiplyPointByScalar(self.playerShip.position, -1);
 	
-	for (SPACEShip *ship in self.AIShips) {
+	for (SPACEShip *ship in self.ships) {
 		if (ship != self.playerShip) {
 			[ship runAutoPilot];
 		}
-		[ship.statDisplay updateAllShipStats];
+	}
+	for (SPACEStat *stat in self.shipStats) {
+		[stat updateAllShipStats];
 	}
 	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	
