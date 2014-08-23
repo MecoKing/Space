@@ -34,8 +34,8 @@
 -(NSString*) generateName {
 	NSArray *name1 = @[@"Iron",@"Alpha",@"Hydro",@"Solar",@"Aero"];
 	NSArray *name2 = @[@"wolf",@"branch",@"core",@"tech",@"corp."];
-	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Delta",@"Exploration"];
-	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Ltd."];
+	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Privateer",@"Exploration"];
+	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@""];
 	return [NSString stringWithFormat:@"%@%@ %@ %@",
 			name1[SPACERandomIntegerInInterval(0, 4)],
 			name2[SPACERandomIntegerInInterval(0, 4)],
