@@ -39,7 +39,7 @@
 @property CGFloat angleToFace;
 @property CGFloat currentAngle;
 
-@property (SK_NONATOMIC_IOSONLY, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *scene;
 
 -(void) releaseDirectionalThrusters;
 -(void) activateDirectionalThrustersRight;

@@ -16,7 +16,7 @@
 @property SKLabelNode *thrusterCapacity;
 @property SKColor *colour;
 
-@property (SK_NONATOMIC_IOSONLY, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *scene;
 
 
 +(instancetype) compassHUDWithColour:(SKColor*)colour atPosition: (CGPoint) position;
