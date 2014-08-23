@@ -60,4 +60,11 @@
 			jobType[SPACERandomIntegerInInterval(0, 4)],
 			class[SPACERandomIntegerInInterval(0, 4)]];
 }
+
+-(void) generateShips {
+	for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
+		[self.ships arrayByAddingObject:[SPACEShip randomFighterOfFaction:self]];
+	}
+}
+
 @end
