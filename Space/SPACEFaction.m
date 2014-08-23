@@ -16,29 +16,11 @@
 	SPACEFaction *faction = [SPACEFaction new];
 //	faction.fighterShip = [SPACEShip randomFighterWithColour:SPACERandomDarkColour()];
 	faction.shipColour = SPACERandomColour();
-	
-	NSArray *hullImages = @[
-		@"SingleHull",
-		@"NeedleHull",
-		@"SplitHull",
-		@"MantaHull",
-		@"CoPilotHull",
-	];
-	NSArray *wingImages = @[
-		@"HawkWings",
-		@"SlicerWings",
-		@"ZipperWings",
-		@"DualWings",
-		@"RocketWings",
-	];
-	NSArray *thrustImages = @[
-		@"IonThruster",
-		@"TwinIonThruster",
-		@"TwinFusionThruster",
-		@"TriFusionThruster",
-		@"TwinElectronThruster",
-	];
 	faction.name = [faction generateName];
+
+	NSArray *hullImages = @[@"SingleHull",@"NeedleHull",@"SplitHull",@"MantaHull",@"CoPilotHull",];
+	NSArray *wingImages = @[@"HawkWings",@"SlicerWings",@"ZipperWings",@"DualWings",@"RocketWings",];
+	NSArray *thrustImages = @[@"IonThruster",@"TwinIonThruster",@"TwinFusionThruster",@"TriFusionThruster",@"TwinElectronThruster",];
 	//Eventually different parts will have different stats (Weight, Speed, Durability, Value)
 	
 	faction.wingSpriteName = wingImages[SPACERandomIntegerInInterval(0, 4)];

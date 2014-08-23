@@ -54,7 +54,7 @@
 	CGPathRef planetDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x -10, self.compass.position.y - 10, 20, 20), NULL);
 
 	for (SPACEShip *ship in self.scene.AIShips) {
-		[self solidDotForNode:ship withFaction:ship.faction andPath:shipDotPath];
+		[self solidDotForShip:ship withFaction:ship.faction andPath:shipDotPath];
 	}
 	[self solidDotForNode:self.scene.system withColour:self.colour path:starDotPath andGlow:YES];
 	for (SPACESystem *planet in self.scene.system.satellites) {
@@ -73,14 +73,14 @@
 	dot.position = SPACEPointWithPolarPoint(polarPoint);
 	[self.compass addChild:dot];
 }
--(void) solidDotForNode:(SKNode*)node withFaction:(SPACEFaction*)faction andPath:(CGPathRef)path {
+-(void) solidDotForShip:(SPACEShip*)ship withFaction:(SPACEFaction*)faction andPath:(CGPathRef)path {
 	SKShapeNode *dot = [SKShapeNode new];
 	dot.path = path;
 	dot.fillColor = faction.shipColour;
 	if (faction == self.scene.playerShip.faction) dot.strokeColor = [SKColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5];
 	else dot.strokeColor = [SKColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
-	dot.glowWidth = 0.1;
-	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(node.position, self.scene.playerShip.position)), 150));
+	dot.glowWidth = 0.05;
+	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(ship.position, self.scene.playerShip.position)), 150));
 	dot.position = SPACEPointWithPolarPoint(polarPoint);
 	[self.compass addChild:dot];
 }
