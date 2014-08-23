@@ -38,6 +38,7 @@
 		@"TriFusionThruster",
 		@"TwinElectronThruster",
 	];
+	faction.name = [faction generateName];
 	//Eventually different parts will have different stats (Weight, Speed, Durability, Value)
 	
 	faction.wingSpriteName = wingImages[SPACERandomIntegerInInterval(0, 4)];
@@ -48,4 +49,15 @@
 	return faction;
 }
 
+-(NSString*) generateName {
+	NSArray *name1 = @[@"Iron",@"Alpha",@"Hydro",@"Solar",@"Aero"];
+	NSArray *name2 = @[@"wolf",@"branch",@"core",@"tech",@"corp."];
+	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Delta",@"Exploration"];
+	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Ltd."];
+	return [NSString stringWithFormat:@"%@%@ %@ %@",
+			name1[SPACERandomIntegerInInterval(0, 4)],
+			name2[SPACERandomIntegerInInterval(0, 4)],
+			jobType[SPACERandomIntegerInInterval(0, 4)],
+			class[SPACERandomIntegerInInterval(0, 4)]];
+}
 @end

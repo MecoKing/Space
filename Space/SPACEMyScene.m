@@ -14,6 +14,7 @@
 #import "SPACEHUD.h"
 #import "SPACEPlanet.h"
 #import "SPACEFaction.h"
+#import "SPACEStat.h"
 
 
 #pragma mark
@@ -48,8 +49,8 @@
 
 -(void) addStarShips {
 //	return;
-	self.playerShip = [SPACEShip randomFighterOfFaction:self.factions[0]];
-	[self.universe addChild:self.playerShip];
+//	self.playerShip = [SPACEShip randomFighterOfFaction:self.factions[0]];
+//	[self.universe addChild:self.playerShip];
 	
 	for (SPACEFaction *faction in self.factions) {
 		for (int i = 0; i < SPACERandomIntegerInInterval(4, 8); i++) {
@@ -58,6 +59,7 @@
 			[self.universe addChild:ship];
 		}
 	}
+	self.playerShip = self.AIShips[0];
 }
 
 #pragma mark
@@ -212,6 +214,7 @@
 		if (ship != self.playerShip) {
 			[ship runAutoPilot];
 		}
+		[ship.statDisplay updateAllShipStats];
 	}
 	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	

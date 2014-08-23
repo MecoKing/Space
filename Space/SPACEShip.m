@@ -31,6 +31,8 @@
 +(instancetype) randomFighterOfFaction: (SPACEFaction*)faction {
 	SPACEShip *ship = [SPACEShip new];
 	
+	ship.name = @"Bob";
+	
 	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
 		ship.position = CGPointMake(SPACERandomInInterval(-1000, 1000), SPACERandomInInterval(-1000, 1000));
 	}
@@ -78,8 +80,7 @@
 	[ship addChild: ship.hull];
 	
 	ship.statDisplay = [SPACEStat statsForShip:ship];
-	[ship.scene.physicsWorld addJoint:[SKPhysicsJointPin jointWithBodyA:ship.physicsBody bodyB:ship.statDisplay.physicsBody anchor:CGPointMake(ship.position.x, ship.position.y)]];
-//	[ship addChild:ship.statDisplay];
+	[ship addChild:ship.statDisplay];
 	
 	return ship;
 }

@@ -15,12 +15,20 @@
 +(instancetype) statsForShip:(SPACEShip*)ship {
 	SPACEStat *stat = [SPACEStat new];
 	stat.shipObject = ship;
-	stat.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
-	stat.physicsBody.allowsRotation = false;
+	[stat printNameInfo];
 	[stat updateAllShipStats];
 	return stat;
 }
 
+-(void) printNameInfo {
+	[self.title removeFromParent];
+	self.title = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	self.title.text = [NSString stringWithFormat:@"%@",self.shipObject.faction.name];
+	self.title.fontColor = self.shipObject.faction.shipColour;
+	self.title.fontSize = 10;
+	self.title.position = CGPointMake(0, -45);
+	[self addChild:self.title];
+}
 -(void) updateShipStatInfo {
 	[self.info removeFromParent];
 	self.info = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
@@ -40,6 +48,7 @@
 }
 
 -(void) updateAllShipStats {
+	self.zRotation = 0 - self.shipObject.zRotation;
 	[self updateHealthBarInfo];
 	[self updateShipStatInfo];
 }
