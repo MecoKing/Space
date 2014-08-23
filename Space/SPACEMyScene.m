@@ -63,7 +63,7 @@
 	self.shipStats = @[];
 	for (SPACEFaction *faction in self.factions) {
 		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
-		count = 2;
+//		count = 2;
 		for (int i = 0; i < count; i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
 			self.ships = [self.ships arrayByAddingObject:ship];
@@ -73,7 +73,6 @@
 			self.shipStats = [self.shipStats arrayByAddingObject:stat];
 			[self addChild:stat];
 		}
-		break;
 	}
 	self.playerShip = self.ships[0];
 }
