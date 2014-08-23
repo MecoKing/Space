@@ -33,18 +33,28 @@
 		//Should be decided based on:
 		//average star colour ± SPACERandoomInInterval(-0.2, 0.2);
 		self.physicsWorld.gravity = CGVectorMake(0, 0);
-		self.playerEnginePower = 0;
-		[self generateNebula];
-		[self generateFactions];
 		self.universe = [SKNode node];
 		self.laserManager = [SKNode node];
-		[self addChild:self.universe];
-		[self.universe addChild:self.laserManager];
-		[self addStarShips];
-		[self generateSolarSystem];
-		[self drawHUD];
+		[self refreshSolarSystem];
 	}
 	return self;
+}
+
+-(void) refreshSolarSystem {
+	self.playerEnginePower = 0;
+	[self.laserManager removeAllChildren];
+	[self.universe removeAllChildren];
+	[self removeAllChildren];
+	self.factions = nil;
+	self.ships = nil;
+	self.shipStats = nil;
+	[self generateNebula];
+	[self generateFactions];
+	[self addChild:self.universe];
+	[self.universe addChild:self.laserManager];
+	[self addStarShips];
+	[self generateSolarSystem];
+	[self drawHUD];
 }
 
 -(void) addStarShips {
@@ -165,22 +175,6 @@
 		planetCount += SPACERandomInInterval(0, 9);//possible to have one planet for 3 stars
 	}
 	return planetCount;
-}
-
--(void) refreshSolarSystem {
-	self.playerEnginePower = 0;
-	[self.laserManager removeAllChildren];
-	[self.universe removeAllChildren];
-	self.factions = nil;
-	self.AIShips = nil;
-	[self removeAllChildren];
-	[self generateNebula];
-	[self generateFactions];
-	[self addChild:self.universe];
-	[self.universe addChild:self.laserManager];
-	[self addStarShips];
-	[self generateSolarSystem];
-	[self drawHUD];
 }
 
 -(void)update:(CFTimeInterval)currentTime {

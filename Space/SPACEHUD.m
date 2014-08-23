@@ -53,7 +53,7 @@
 	CGPathRef shipDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x - 5, self.compass.position.y - 5, 10, 10), NULL);
 	CGPathRef planetDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x -10, self.compass.position.y - 10, 20, 20), NULL);
 
-	for (SPACEShip *ship in self.scene.AIShips) {
+	for (SPACEShip *ship in self.scene.ships) {
 		[self solidDotForShip:ship withFaction:ship.faction andPath:shipDotPath];
 	}
 	[self solidDotForNode:self.scene.system withColour:self.colour path:starDotPath andGlow:YES];
