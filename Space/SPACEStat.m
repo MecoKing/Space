@@ -9,6 +9,7 @@
 #import "SPACEStat.h"
 #import "SPACEShip.h"
 #import "SPACEFaction.h"
+#import "SPACEFunction.h"
 
 @implementation SPACEStat
 
@@ -27,6 +28,7 @@
 	self.title = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
 	self.title.text = [NSString stringWithFormat:@"%@",self.shipObject.faction.name];
 	self.title.fontColor = self.shipObject.faction.shipColour;
+//	self.title.fontColor = SPACEInverseOfColour(self.scene.backgroundColor);
 	self.title.fontSize = 10;
 	self.title.position = CGPointMake(0, -45);
 	[self addChild:self.title];
@@ -35,7 +37,8 @@
 	[self.info removeFromParent];
 	self.info = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
 	self.info.text = [NSString stringWithFormat:@"Value:%lu Rank:%lu", (unsigned long)self.shipObject.value, (unsigned long)self.shipObject.rank];
-	self.info.fontColor = self.shipObject.faction.shipColour;
+//	self.info.fontColor = self.shipObject.faction.shipColour;
+	self.info.fontColor = SPACEInverseOfColour(self.scene.backgroundColor);
 	self.info.fontSize = 10;
 	self.info.position = CGPointMake(0, -35);
 	[self addChild:self.info];
