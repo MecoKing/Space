@@ -35,7 +35,7 @@
 	NSArray *name1 = @[@"Iron",@"Alpha",@"Hydro",@"Solar",@"Aero"];
 	NSArray *name2 = @[@"wolf",@"branch",@"core",@"tech",@"corp."];
 	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Privateer",@"Exploration"];
-	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@""];
+	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Alliance"];
 	return [NSString stringWithFormat:@"%@%@ %@ %@",
 			name1[SPACERandomIntegerInInterval(0, 4)],
 			name2[SPACERandomIntegerInInterval(0, 4)],
