@@ -32,15 +32,15 @@
 }
 
 -(NSString*) generateName {
-	NSArray *name1 = @[@"Iron",@"Alpha",@"Hydro",@"Solar",@"Aero"];
-	NSArray *name2 = @[@"wolf",@"branch",@"core",@"tech",@"corp."];
-	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Privateer",@"Exploration"];
-	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Alliance"];
+	NSArray *name1 = @[@"Nova",@"Alpha",@"Hydro",@"Solar",@"Aero",@"Astro"];
+	NSArray *name2 = @[@"plant",@"branch",@"core",@"tech",@"corp.",@"base"];
+	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Privateer",@"Engineering",@"Research"];
+	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Alliance",@"Division"];
 	return [NSString stringWithFormat:@"%@%@ %@ %@",
-			name1[SPACERandomIntegerInInterval(0, 4)],
-			name2[SPACERandomIntegerInInterval(0, 4)],
-			jobType[SPACERandomIntegerInInterval(0, 4)],
-			class[SPACERandomIntegerInInterval(0, 4)]];
+			name1[SPACERandomIntegerInInterval(0, 5)],
+			name2[SPACERandomIntegerInInterval(0, 5)],
+			jobType[SPACERandomIntegerInInterval(0, 5)],
+			class[SPACERandomIntegerInInterval(0, 5)]];
 }
 
 -(void) generateShips {
