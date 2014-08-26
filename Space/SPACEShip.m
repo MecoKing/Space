@@ -15,6 +15,8 @@
 
 @implementation SPACEShip
 
+#pragma mark Instance Methods
+
 -(instancetype)initWithImageNamed:(NSString *)name {
 	if ((self = [super initWithImageNamed:name])) {
 		self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
@@ -57,6 +59,7 @@
 		@"Nothing",
 		];
 	ship.targetPriority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
+//	ship.targetPriority = @"Nothing";
 	
 	//Switch faction's parts too NSString, derive the image name from the faction and declare the sprites here!!!
 	
@@ -87,7 +90,9 @@
 
 @dynamic scene;
 
-
+#pragma mark
+#pragma mark Actions
+#pragma mark -General
 -(void) releaseDirectionalThrusters {
 	self.physicsBody.angularVelocity = 0;
 }
@@ -129,20 +134,7 @@
 	[missile.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = firingAngle, .r = self.linearMagnitude })];
 }
 
--(void) runAutoPilot {
-	[self releaseDirectionalThrusters];
-	
-	
-	SPACEShip *target = [self targetShipByPriority:self.targetPriority];
-	
-	
-	if (target != NULL) {
-		[self huntShip:target];
-	}
-	else {
-		[self wander];
-	}
-}
+#pragma mark -AI
 
 -(void) huntShip: (SPACEShip*) ship {
 	[self goToPoint:ship.position];
@@ -182,12 +174,22 @@
 	}
 }
 
--(void) updateShipStats {
-	[self.statDisplay updateAllShipStats];
+#pragma mark
+#pragma mark AI
+
+-(void) runAutoPilot {
+	[self releaseDirectionalThrusters];
+	
+	SPACEShip *target = [self targetShipByPriority:self.targetPriority];
+	
+	if (target != NULL) {
+		[self huntShip:target];
+	}
+	else {
+		[self wander];
+	}
 }
 
-
-//WIP AI rework
 -(SPACEShip*) targetShipByPriority:(NSString*)priority {
 	SPACEShip *targetShip = NULL;
 	

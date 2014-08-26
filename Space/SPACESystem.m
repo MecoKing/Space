@@ -133,19 +133,3 @@
 }
 
 @end
-
-	
-/*
-SKLabelNode *planetCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-SKLabelNode *starCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-planetCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 20);
-starCountLabel.position = CGPointMake(self.frame.origin.x + 50, self.frame.origin.y + 50);
-planetCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-starCountLabel.fontColor = SPACEInverseOfColour(self.backgroundColor);
-planetCountLabel.fontSize = 14;
-starCountLabel.fontSize = 14;
-planetCountLabel.text = [NSString stringWithFormat:@"Planets: %lu", (unsigned long)planetCount];
-starCountLabel.text = [NSString stringWithFormat:@"Stars: %lu", (unsigned long)starCount];
-[self addChild:planetCountLabel];
-[self addChild:starCountLabel];
-*/

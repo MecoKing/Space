@@ -18,6 +18,8 @@
 
 @dynamic scene;
 
+#pragma mark Instance Methods
+
 +(instancetype) compassHUDWithColour:(SKColor*)colour atPosition: (CGPoint) position {
 	SPACEHUD *HUD = [SPACEHUD new];
 	
@@ -47,6 +49,8 @@
 	return HUD;
 }
 
+#pragma mark
+#pragma mark CompassHUD
 
 -(void) drawCompassDots {
 	CGPathRef starDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x - 15, self.compass.position.y - 15, 30, 30), NULL);
@@ -89,6 +93,10 @@
 	[self.compass removeAllChildren];
 	[self drawCompassDots];
 }
+
+#pragma mark
+#pragma mark EngineHUD
+
 -(void) updateEngineHUD {
 	self.thrusterCapacity.text = [NSString stringWithFormat:@"EnginePower: %i%%", self.scene.playerEnginePower];
 }

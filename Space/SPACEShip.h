@@ -17,30 +17,30 @@
 
 @interface SPACEShip : SKSpriteNode
 
+@property (nonatomic, readonly) SPACEMyScene *scene;
+//Physics
 @property CGFloat linearMagnitude;
 @property CGFloat angularMagnitude;
+@property CGFloat angleToFace;
+@property CGFloat currentAngle;
+@property CGPoint relativePoint;
+//Visual
 @property SKSpriteNode *wings;
 @property SKSpriteNode *hull;
 @property SKSpriteNode *thruster;
-@property SPACEFaction *faction;
+//Statistics
 @property NSInteger health;
-@property SPACEStat *statDisplay;
-
-
-//WIP AI rework
 @property NSUInteger rank;
+@property NSUInteger value;
+@property SPACEStat *statDisplay;
+@property SPACEFaction *faction;
+//AI
 @property NSString *targetPriority;
 @property NSString *superiorPriority;
-@property NSUInteger value;
+@property CGPoint destination;
 
 
-
-@property CGPoint relativePoint;
-@property CGFloat angleToFace;
-@property CGFloat currentAngle;
-
-@property (nonatomic, readonly) SPACEMyScene *scene;
-
++(instancetype) randomFighterOfFaction: (SPACEFaction*)faction;
 -(void) releaseDirectionalThrusters;
 -(void) activateDirectionalThrustersRight;
 -(void) activateDirectionalThrustersLeft;
@@ -48,7 +48,5 @@
 -(void) runAutoPilot;
 -(void) fireLaser;
 -(void) fireMissileAtPoint: (CGPoint) destination;
--(void) updateShipStats;
-+(instancetype) randomFighterOfFaction: (SPACEFaction*)faction;
 
 @end

@@ -22,6 +22,9 @@
 
 @implementation SPACEMyScene
 
+#pragma mark
+#pragma mark Startup
+
 +(void)initialize {
 	srandomdev();
 }
@@ -29,9 +32,7 @@
 -(instancetype)initWithSize:(CGSize)size {
 	if ((self = [super initWithSize:size])) {
 		/* Setup your scene here */
-		self.anchorPoint = (CGPoint){ 0.5, 0.5 };		
-		//Should be decided based on:
-		//average star colour ± SPACERandoomInInterval(-0.2, 0.2);
+		self.anchorPoint = (CGPoint){ 0.5, 0.5 };
 		self.physicsWorld.gravity = CGVectorMake(0, 0);
 		self.universe = [SKNode node];
 		self.laserManager = [SKNode node];
@@ -48,33 +49,14 @@
 	self.factions = nil;
 	self.ships = nil;
 	self.shipStats = nil;
-	[self generateNebula];
-	[self generateFactions];
+	//-----------------------------------------
 	[self addChild:self.universe];
 	[self.universe addChild:self.laserManager];
+	[self generateNebula];
+	[self generateFactions];
 	[self addStarShips];
 	[self generateSolarSystem];
 	[self drawHUD];
-}
-
--(void) addStarShips {
-//	return;
-	self.ships = @[];
-	self.shipStats = @[];
-	for (SPACEFaction *faction in self.factions) {
-		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
-//		count = 2;
-		for (int i = 0; i < count; i++) {
-			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
-			self.ships = [self.ships arrayByAddingObject:ship];
-			[self.universe addChild:ship];
-			
-			SPACEStat *stat = [SPACEStat statsForShip:ship];
-			self.shipStats = [self.shipStats arrayByAddingObject:stat];
-			[self addChild:stat];
-		}
-	}
-	self.playerShip = self.ships[0];
 }
 
 #pragma mark
@@ -114,35 +96,14 @@
 	[self.playerShip fireMissileAtPoint:locationInUniverseCoordinates];
 }
 
-
 #pragma mark
 #pragma mark Procedural generation
-
--(void) generateSolarSystem {
-	self.system = [SPACESystem randomSystem];
-	[self.universe addChild:self.system];
-}
-
--(void) drawHUD {
-	self.compassHUD = [SPACEHUD compassHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(-150, -150)];
-	[self addChild:self.compassHUD];
-	self.engineHUD = [SPACEHUD engineHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(0, -200)];
-	[self addChild:self.engineHUD];
-}
-
--(void) generateFactions {
-	NSUInteger numberOfFactions = SPACERandomIntegerInInterval(4, 8);
-	for (int i = 0; i < numberOfFactions; i++) {
-		self.factions = [NSArray arrayWithArray:[self.factions arrayByAddingObject:[SPACEFaction randomFaction]]];
-	}
-}
-
 
 -(void) generateNebula {
 	self.backgroundColor = SPACEAverageDarkColour();
 	return;
 	int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
-
+	
 	for (int i = 0; i < numberOfClouds; i++) {
 		SKShapeNode *cloud = [SKShapeNode node];
 		int cloudSize = SPACERandomInInterval(50, 200);
@@ -173,18 +134,51 @@
 	}
 }
 
-
--(NSUInteger) planetCountBasedOnStars: (NSUInteger)starCount {
-	int planetCount = SPACERandomInInterval(1, 9);//Always at least one planet per system
-	for (int i = 0; i < starCount - 1; i++) {
-		planetCount += SPACERandomInInterval(0, 9);//possible to have one planet for 3 stars
+-(void) generateFactions {
+	NSUInteger numberOfFactions = SPACERandomIntegerInInterval(4, 8);
+	for (int i = 0; i < numberOfFactions; i++) {
+		self.factions = [NSArray arrayWithArray:[self.factions arrayByAddingObject:[SPACEFaction randomFaction]]];
 	}
-	return planetCount;
 }
+
+-(void) addStarShips {
+//	return;
+	self.ships = @[];
+	self.shipStats = @[];
+	for (SPACEFaction *faction in self.factions) {
+		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
+//		count = 2;
+		for (int i = 0; i < count; i++) {
+			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
+			self.ships = [self.ships arrayByAddingObject:ship];
+			[self.universe addChild:ship];
+			
+			SPACEStat *stat = [SPACEStat statsForShip:ship];
+			self.shipStats = [self.shipStats arrayByAddingObject:stat];
+			[self addChild:stat];
+		}
+	}
+	self.playerShip = self.ships[0];
+}
+
+-(void) generateSolarSystem {
+	self.system = [SPACESystem randomSystem];
+	[self.universe addChild:self.system];
+}
+
+-(void) drawHUD {
+	self.compassHUD = [SPACEHUD compassHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(-150, -150)];
+	[self addChild:self.compassHUD];
+	self.engineHUD = [SPACEHUD engineHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(0, -200)];
+	[self addChild:self.engineHUD];
+}
+
+#pragma mark
+#pragma mark Update
 
 -(void)update:(CFTimeInterval)currentTime {
 //	return;
-//	if (self.previousTime == 0) self.previousTime = currentTime;
+	if (self.previousTime == 0) self.previousTime = currentTime;
 	const CGFloat gravitationalConstant = 6e-19;
 	CFTimeInterval interval = currentTime - self.previousTime;
 	for (SKNode *a in self.universe.children) {

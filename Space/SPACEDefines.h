@@ -6,3 +6,6 @@
 //	SPACENeutralFaction = 1u << 1,
 //	SPACEEnemyFaction = 1u << 2,
 //} SPACEFaction;
+
+
+//I think We can delete this...
