@@ -156,7 +156,7 @@
 	self.shipStats = [NSMutableArray array];
 	for (SPACEFaction *faction in self.factions) {
 		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
-//		count = 2;
+		count = 2;
 		for (int i = 0; i < count; i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
 			[self.ships addObject:ship];
