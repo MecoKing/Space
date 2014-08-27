@@ -244,4 +244,8 @@
 	return targetShip;
 }
 
+//-(SPACEShip*) testShipsByPriority:(SPACEShip*)shipA (SPACEShip*)shipB (NSString*)priority {
+//	return nil;
+//}
+
 @end
