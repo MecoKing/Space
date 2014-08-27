@@ -35,8 +35,7 @@
 @property SPACEStat *statDisplay;
 @property SPACEFaction *faction;
 //AI
-@property NSString *targetPriority;
-@property NSString *superiorPriority;
+@property NSString *priority;
 @property CGPoint destination;
 
 

@@ -17,6 +17,7 @@
 @property NSString *wingSpriteName;
 @property NSString *hullSpriteName;
 @property NSString *thrusterSpriteName;
+@property NSString *priority;
 @property NSArray *ships;
 
 +(instancetype) randomFaction;

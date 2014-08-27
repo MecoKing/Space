@@ -27,6 +27,13 @@
 	faction.hullSpriteName = hullImages[SPACERandomIntegerInInterval(0, 4)];
 	faction.thrusterSpriteName = thrustImages[SPACERandomIntegerInInterval(0, 4)];
 	
+	NSArray *possiblePriorities = @[
+									@"Closest",
+									@"Value",
+									@"Rank",
+									@"Nothing",
+									];
+	faction.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
 	
 	return faction;
 }

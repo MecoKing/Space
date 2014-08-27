@@ -64,7 +64,7 @@
 		@"Rank",
 		@"Nothing",
 		];
-	ship.targetPriority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
+	ship.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
 	
 	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingSpriteName];
 	ship.wings.texture.filteringMode = SKTextureFilteringNearest;
@@ -175,17 +175,15 @@
 -(void) runAutoPilot {
 	[self releaseDirectionalThrusters];
 	
-	SPACEShip *target = [self targetShipByPriority:self.targetPriority];
-	
-	if (target != NULL) {
-		[self huntShip:target];
+	if ([self target] != nil) {
+		[self huntShip:[self target]];
 	}
 	else {
 		[self wander];
 	}
 }
 
--(SPACEShip*) targetShipByPriority:(NSString*)priority {
+-(SPACEShip*) target {
 	SPACEShip *targetShip = NULL;
 	
 	for (SPACEShip *ship in self.scene.ships) {
@@ -195,7 +193,6 @@
 				targetShip = ship;
 			}
 			else {
-				
 				/*
 				 Closest
 				 Value
@@ -206,37 +203,11 @@
 				 Weapons
 				 Energy
 				*/
-				if ([priority  isEqual: @"Closest"]) {
-					if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
-						targetShip = ship;
-					}
-				}
-				else if ([priority isEqual: @"Value"]) {
-					if (ship.value > targetShip.value) {
-						targetShip = ship;
-					}
-					//In case of ties...
-					//should eventually check the captain's priority and break ties with the ship's priority...
-					else if (ship.value == targetShip.value) {
-						if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
-							targetShip = ship;
-						}
-					}
-				}
-				else if ([priority isEqual: @"Rank"]) {
-					if (ship.rank > targetShip.rank) {
-						targetShip = ship;
-					}
-					//In case of ties...
-					//should eventually check the captain's priority and break ties with the ship's priority...
-					else if (ship.rank == targetShip.rank) {
-						if (SPACEDistanceBetweenPoints(ship.position, self.position) < SPACEDistanceBetweenPoints(targetShip.position, self.position)) {
-							targetShip = ship;
-						}
-					}
+				if ([self testShip:ship againstShip:targetShip withPriority:self.priority] != nil) {
+					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
 				}
 				else {
-					return NULL;
+					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.faction.priority];
 				}
 			}
 		}
@@ -244,8 +215,20 @@
 	return targetShip;
 }
 
-//-(SPACEShip*) testShipsByPriority:(SPACEShip*)shipA (SPACEShip*)shipB (NSString*)priority {
-//	return nil;
-//}
+-(SPACEShip*) testShip:(SPACEShip*)shipA againstShip:(SPACEShip*)shipB withPriority:(NSString*)priority {
+	if ([priority isEqual:@"Closest"]) {
+		if (SPACEDistanceBetweenPoints(shipA.position, self.position) == SPACEDistanceBetweenPoints(shipB.position, self.position)) return nil;
+		else if (SPACEDistanceBetweenPoints(shipA.position, self.position) < SPACEDistanceBetweenPoints(shipB.position, self.position)) return shipA;
+	}
+	else if ([priority isEqual:@"Value"]) {
+		if (shipA.value == shipB.value) return nil;
+		else if (shipA.value > shipB.value) return shipA;
+	}
+	else if ([priority isEqual:@"Rank"]) {
+		if (shipA.rank == shipB.rank) return nil;
+		else if (shipA.rank > shipB.rank) return shipA;
+	}
+	return shipB;
+}
 
 @end
