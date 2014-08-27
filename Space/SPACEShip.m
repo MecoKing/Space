@@ -38,7 +38,7 @@
 	ship.name = @"Starship Enterprise";
 	
 	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
-		ship.position = CGPointMake(SPACERandomInInterval(-1000, 1000), SPACERandomInInterval(-1000, 1000));
+		ship.position = CGPointMake(SPACERandomInInterval(-2000, 2000), SPACERandomInInterval(-2000, 2000));
 	}
 	
 	ship.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
