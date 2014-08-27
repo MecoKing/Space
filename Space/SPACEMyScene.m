@@ -264,8 +264,10 @@
 					ship.health -= 1;
 				}
 			}
+			if (missile.faction != ship.faction) {
+				[missile removeFromParent];
+			}
 		}
-		[missile removeFromParent];
 	}
 }
 

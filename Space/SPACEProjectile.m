@@ -9,7 +9,7 @@
 
 +(instancetype)missileOriginatingFromShip:(SPACEShip *)ship {
 	SPACEProjectile *missile = [self spriteNodeWithImageNamed:@"Missile"];
-	missile.position = CGPointMake(ship.position.x, ship.position.y + 20);
+	missile.position = ship.position;
 	missile.physicsBody.mass = 10;
 	missile.physicsBody.categoryBitMask = projectileCategory;
 	missile.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
@@ -19,7 +19,7 @@
 
 +(instancetype)laserOriginatingFromShip:(SPACEShip *)ship {
 	SPACEProjectile *laser = [self spriteNodeWithImageNamed:@"Laser"];
-	laser.position = CGPointMake(ship.position.x, ship.position.y + 20);
+	laser.position = ship.position;
 	laser.zRotation = ship.zRotation;
 	laser.physicsBody.mass = 1;
 	laser.physicsBody.categoryBitMask = projectileCategory;
