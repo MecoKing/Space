@@ -5,11 +5,12 @@
 
 @class SPACEFaction;
 @class SPACEMyScene;
+@class SPACEShip;
 
 @interface SPACEProjectile : SKSpriteNode
 
-+(instancetype)missileOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction;
-+(instancetype)laserOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction;
++(instancetype)missileOriginatingFromShip:(SPACEShip *)ship;
++(instancetype)laserOriginatingFromShip:(SPACEShip *)ship;
 
 @property (nonatomic, readonly) SPACEMyScene *scene;
 @property SPACEFaction* faction;

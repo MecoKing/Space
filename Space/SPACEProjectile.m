@@ -3,27 +3,28 @@
 #import "SPACEProjectile.h"
 #import "SPACEFunction.h"
 #import "SPACEMyScene.h"
+#import "SPACEShip.h"
 
 @implementation SPACEProjectile
 
-+(instancetype)missileOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction {
++(instancetype)missileOriginatingFromShip:(SPACEShip *)ship {
 	SPACEProjectile *missile = [self spriteNodeWithImageNamed:@"Missile"];
-	missile.position = node.position;
+	missile.position = CGPointMake(ship.position.x, ship.position.y + 20);
 	missile.physicsBody.mass = 10;
 	missile.physicsBody.categoryBitMask = projectileCategory;
 	missile.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
-	missile.faction = faction;
+	missile.faction = ship.faction;
 	return missile;
 }
 
-+(instancetype)laserOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction {
++(instancetype)laserOriginatingFromShip:(SPACEShip *)ship {
 	SPACEProjectile *laser = [self spriteNodeWithImageNamed:@"Laser"];
-	laser.position = CGPointMake(node.position.x, node.position.y + 15);
-	laser.zRotation = node.zRotation;
+	laser.position = CGPointMake(ship.position.x, ship.position.y + 20);
+	laser.zRotation = ship.zRotation;
 	laser.physicsBody.mass = 1;
 	laser.physicsBody.categoryBitMask = projectileCategory;
 	laser.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
-	laser.faction = faction;
+	laser.faction = ship.faction;
 	return laser;
 }
 

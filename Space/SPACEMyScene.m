@@ -15,6 +15,7 @@
 #import "SPACEPlanet.h"
 #import "SPACEFaction.h"
 #import "SPACEStat.h"
+#import "SPACEProjectile.h"
 
 
 #pragma mark
@@ -249,25 +250,46 @@
 	}
 	
 	if ((firstBody.categoryBitMask & projectileCategory) != 0) {
-		[firstBody.node removeFromParent];
+		SPACEProjectile *missile = [self projectileFromNode:firstBody.node inArray:self.laserManager.children];
 		
 		if ((secondBody.categoryBitMask & shipCategory) != 0) {
-			for (SPACEShip *ship in self.ships) {
-				if (secondBody.node == ship) {
-					ship.health -= 1;
-					if (ship.health <= 0 & ship != self.playerShip) {
-						for (SPACEStat *stat in self.shipStats) {
-							if (stat.shipObject == ship) {
-								[stat removeFromParent];
-							}
-						}
-						[ship removeFromParent];
-					}
-					break;
+			SPACEShip *ship = [self shipFromNode:secondBody.node inArray:self.ships];
+			SPACEStat *stat = [self statBelongingToShip:ship inArray:self.shipStats];
+			if (missile.faction != ship.faction) {
+				ship.health -= 1;
+				if (ship.health <= 0 & ship != self.playerShip) {
+					[stat removeFromParent];
+					[ship removeFromParent];
 				}
 			}
+			[missile removeFromParent];
 		}
 	}
+}
+
+-(SPACEStat*) statBelongingToShip:(SPACEShip*)ship inArray:(NSArray*)array {
+	for (SPACEStat *stat in array) {
+		if (stat.shipObject == ship) {
+			return stat;
+		}
+	}
+	return nil;
+}
+-(SPACEShip*) shipFromNode:(SKNode*)node inArray:(NSArray*)array {
+	for (SPACEShip *ship in array) {
+		if (ship == node) {
+			return ship;
+		}
+	}
+	return nil;
+}
+-(SPACEProjectile*) projectileFromNode:(SKNode*)node inArray:(NSArray*)array {
+	for (SPACEProjectile *projectile in array) {
+		if (projectile == node) {
+			return projectile;
+		}
+	}
+	return nil;
 }
 
 @end
