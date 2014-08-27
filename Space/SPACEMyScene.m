@@ -238,14 +238,37 @@
 		}
 	}
 	
-	if (self.playerShip.health <= 0) {
-		SKLabelNode *GameOver = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
-		GameOver.fontColor = [SKColor redColor];
-		GameOver.fontSize = 24;
-		GameOver.text = @"GAME OVER - Hit 'r' for new game!";
-		[self addChild:GameOver];
+	if (self.factions.count == 1 && !self.playerIsDead) {
+		SKLabelNode *Win = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+		SKLabelNode *reset = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+		Win.fontColor = [SKColor greenColor];
+		reset.fontColor = [SKColor greenColor];
+		Win.fontSize = 24;
+		reset.fontSize = 16;
+		Win.position = CGPointMake(0, 12);
+		reset.position = CGPointMake(0, -8);
+		Win.text = [NSString stringWithFormat:@"%@ Wins!", self.playerShip.faction.name];
+		reset.text = @"Hit 'r' For A New Game!";
+		[self addChild:Win];
+		[self addChild:reset];
 		self.playerIsDead = true;
 	}
+	else if (self.playerShip.health <= 0 && !self.playerIsDead) {
+		SKLabelNode *GameOver = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+		SKLabelNode *reset = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+		GameOver.fontColor = [SKColor redColor];
+		reset.fontColor = [SKColor redColor];
+		GameOver.fontSize = 24;
+		reset.fontSize = 16;
+		GameOver.position = CGPointMake(0, 12);
+		reset.position = CGPointMake(0, -8);
+		GameOver.text = @"GAME OVER";
+		reset.text = @"Hit 'r' For A New Game!";
+		[self addChild:GameOver];
+		[self addChild:reset];
+		self.playerIsDead = true;
+	}
+	
 	
 	self.previousTime = currentTime;
 }
