@@ -256,14 +256,16 @@
 			SPACEShip *ship = [self shipFromNode:secondBody.node inArray:self.ships];
 			SPACEStat *stat = [self statBelongingToShip:ship inArray:self.shipStats];
 			if (missile.faction != ship.faction) {
-				ship.health -= 1;
-				if (ship.health <= 0 & ship != self.playerShip) {
+				if (ship.health == 0 & ship != self.playerShip) {
 					[stat removeFromParent];
 					[ship removeFromParent];
 				}
+				else {
+					ship.health -= 1;
+				}
 			}
-			[missile removeFromParent];
 		}
+		[missile removeFromParent];
 	}
 }
 
