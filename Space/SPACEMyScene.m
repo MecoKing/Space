@@ -286,11 +286,11 @@
 			SPACEStat *stat = [self statBelongingToShip:ship inArray:self.shipStats];
 			if (missile.faction != ship.faction) {
 				if (ship.health <= 1 & ship != self.playerShip) {
-					if ([self shipsOfFaction:ship.faction] == 0) [self.factions removeObject:ship.faction];
 					[stat removeFromParent];
 					[self.shipStats removeObject:stat];
 					[ship removeFromParent];
 					[self.ships removeObject:ship];
+					if ([self shipsOfFaction:ship.faction] == 0) [self.factions removeObject:ship.faction];
 				}
 				else {
 					ship.health -= 1;
