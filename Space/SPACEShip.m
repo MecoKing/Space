@@ -132,10 +132,10 @@
 -(void) huntShip: (SPACEShip*) ship {
 	[self goToPoint:ship.position];
 	if (self.currentAngle > (self.angleToFace - 0.1) && self.currentAngle < (self.angleToFace + 0.1)) {
-		[self fireLaser];
+		if (SPACEDistanceBetweenPoints(self.position, ship.position) <= self.scene.size.width) [self fireLaser];
 	}
 	if (SPACERandomIntegerInInterval(1, 1000) == 1) {
-		[self fireMissileAtPoint:ship.position];
+		if (SPACEDistanceBetweenPoints(self.position, ship.position) <= self.scene.size.width) [self fireMissileAtPoint:ship.position];
 	}
 }
 
@@ -185,7 +185,6 @@
 	SPACEShip *targetShip = NULL;
 	
 	for (SPACEShip *ship in self.scene.ships) {
-		
 		if (ship.faction != self.faction) {
 			if (targetShip == NULL) {
 				targetShip = ship;
