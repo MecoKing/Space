@@ -16,6 +16,8 @@
 
 @property NSTimeInterval previousTime;
 
+@property int difficulty;
+
 @property int playerEnginePower;
 @property NSMutableArray* ships;
 @property NSMutableArray* shipStats;

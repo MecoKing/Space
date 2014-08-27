@@ -38,6 +38,7 @@
 		
 		self.physicsWorld.contactDelegate = self;
 		
+		self.difficulty = 1;
 		self.universe = [SKNode node];
 		self.laserManager = [SKNode node];
 		[self refreshSolarSystem];
@@ -87,6 +88,10 @@
 	if (key == 'r') {
 		[self refreshSolarSystem];
 	}
+	
+	if (key == '1') self.difficulty = 1;
+	if (key == '2') self.difficulty = 2;
+	if (key == '3') self.difficulty = 3;
 }
 
 -(void)keyUp:(NSEvent *)event {
@@ -156,7 +161,7 @@
 	self.shipStats = [NSMutableArray array];
 	for (SPACEFaction *faction in self.factions) {
 		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
-		count = 2;
+		count = self.difficulty * 2;
 		for (int i = 0; i < count; i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
 			[self.ships addObject:ship];
