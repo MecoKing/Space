@@ -9,7 +9,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import "SPACEBarycentre.h"
 
+@class SPACEMyScene;
+
 @interface SPACEStellarBody : SKNode <SPACEBarycentre>
+
+@property (readonly) SPACEMyScene *scene;
 
 -(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 

@@ -12,7 +12,7 @@
 @class SPACESystem;
 @class SPACEHUD;
 
-@interface SPACEMyScene : SKScene
+@interface SPACEMyScene : SKScene <SKPhysicsContactDelegate>
 
 @property NSTimeInterval previousTime;
 
@@ -28,3 +28,7 @@
 @property SPACEHUD *engineHUD;
 
 @end
+
+static const uint32_t projectileCategory = 0x1 << 0;
+static const uint32_t shipCategory = 0x1 << 1;
+static const uint32_t stellarBodyCategory = 0x1 << 2;

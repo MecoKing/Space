@@ -35,7 +35,7 @@
 +(instancetype) randomFighterOfFaction: (SPACEFaction*)faction {
 	SPACEShip *ship = [SPACEShip new];
 	
-	ship.name = @"Bob";
+	ship.name = @"Starship Enterprise";
 	
 	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
 		ship.position = CGPointMake(SPACERandomInInterval(-1000, 1000), SPACERandomInInterval(-1000, 1000));
@@ -48,7 +48,11 @@
 	ship.angularMagnitude = 10;
 	ship.linearMagnitude = 10000;
 	
-	ship.health = SPACERandomInInterval(1, 4);
+	ship.physicsBody.categoryBitMask = shipCategory;
+	ship.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
+	ship.physicsBody.collisionBitMask = shipCategory | stellarBodyCategory;
+	
+	ship.health = 3;
 	ship.rank = SPACERandomIntegerInInterval(1, 10);
 	ship.value = SPACERandomIntegerInInterval(50, 100);
 	

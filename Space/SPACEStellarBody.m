@@ -9,6 +9,7 @@
 #import "SPACEStellarBody.h"
 #import "SPACEFunction.h"
 #import "SPACEStar.h"
+#import "SPACEMyScene.h"
 
 @implementation SPACEStellarBody {
 	SKShapeNode *_shape;
@@ -51,6 +52,11 @@
 		
 		self.physicsBody.friction = 0;
 		self.physicsBody.angularDamping = 0;
+		
+		
+		self.physicsBody.categoryBitMask = stellarBodyCategory;
+		self.physicsBody.contactTestBitMask = shipCategory;
+		self.physicsBody.collisionBitMask = stellarBodyCategory;
 	}
 	return self;
 }

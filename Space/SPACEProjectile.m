@@ -2,6 +2,7 @@
 
 #import "SPACEProjectile.h"
 #import "SPACEFunction.h"
+#import "SPACEMyScene.h"
 
 @implementation SPACEProjectile
 
@@ -9,15 +10,19 @@
 	SPACEProjectile *missile = [self spriteNodeWithImageNamed:@"Missile"];
 	missile.position = node.position;
 	missile.physicsBody.mass = 10;
+	missile.physicsBody.categoryBitMask = projectileCategory;
+	missile.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
 	missile.faction = faction;
 	return missile;
 }
 
 +(instancetype)laserOriginatingFromNode:(SKNode *)node withFaction:(SPACEFaction*)faction {
 	SPACEProjectile *laser = [self spriteNodeWithImageNamed:@"Laser"];
-	laser.position = node.position;
+	laser.position = CGPointMake(node.position.x, node.position.y + 15);
 	laser.zRotation = node.zRotation;
 	laser.physicsBody.mass = 1;
+	laser.physicsBody.categoryBitMask = projectileCategory;
+	laser.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
 	laser.faction = faction;
 	return laser;
 }

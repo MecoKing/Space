@@ -34,6 +34,9 @@
 		/* Setup your scene here */
 		self.anchorPoint = (CGPoint){ 0.5, 0.5 };
 		self.physicsWorld.gravity = CGVectorMake(0, 0);
+		
+		self.physicsWorld.contactDelegate = self;
+		
 		self.universe = [SKNode node];
 		self.laserManager = [SKNode node];
 		[self refreshSolarSystem];
@@ -231,6 +234,40 @@
 		}
 	}
 	self.previousTime = currentTime;
+}
+
+-(void) didBeginContact:(SKPhysicsContact *)contact {
+	SKPhysicsBody *firstBody, *secondBody;
+	
+	if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+		firstBody = contact.bodyA;
+		secondBody = contact.bodyB;
+	}
+	else {
+		firstBody = contact.bodyB;
+		secondBody = contact.bodyA;
+	}
+	
+	if ((firstBody.categoryBitMask & projectileCategory) != 0) {
+		[firstBody.node removeFromParent];
+		
+		if ((secondBody.categoryBitMask & shipCategory) != 0) {
+			for (SPACEShip *ship in self.ships) {
+				if (secondBody.node == ship) {
+					ship.health -= 1;
+					if (ship.health <= 0 & ship != self.playerShip) {
+						for (SPACEStat *stat in self.shipStats) {
+							if (stat.shipObject == ship) {
+								[stat removeFromParent];
+							}
+						}
+						[ship removeFromParent];
+					}
+					break;
+				}
+			}
+		}
+	}
 }
 
 @end
