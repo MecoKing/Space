@@ -27,6 +27,8 @@
 @property SPACEHUD *compassHUD;
 @property SPACEHUD *engineHUD;
 
+
+@property bool playerIsDead;
 @end
 
 static const uint32_t projectileCategory = 0x1 << 0;

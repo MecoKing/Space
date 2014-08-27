@@ -46,6 +46,7 @@
 }
 
 -(void) refreshSolarSystem {
+	self.playerIsDead = false;
 	self.playerEnginePower = 0;
 	[self.laserManager removeAllChildren];
 	[self.universe removeAllChildren];
@@ -78,8 +79,10 @@
 		self.playerEnginePower+=10;
 		if (self.playerEnginePower > 100) self.playerEnginePower = 100;
 	}
-	if (key == ' ') {
-		[self.playerShip fireLaser];
+	if (!self.playerIsDead) {
+		if (key == ' ') {
+			[self.playerShip fireLaser];
+		}
 	}
 	if (key == 'r') {
 		[self refreshSolarSystem];
@@ -97,7 +100,7 @@
 	CGPoint locationInViewCoordinates = [self.scene.view convertPoint:click.locationInWindow fromView:nil];
 	CGPoint locationInSceneCoordinates = [self.scene.view convertPoint:locationInViewCoordinates toScene:self.scene];
 	CGPoint locationInUniverseCoordinates = [self.universe convertPoint:locationInSceneCoordinates fromNode:self.scene];
-	[self.playerShip fireMissileAtPoint:locationInUniverseCoordinates];
+	if (!self.playerIsDead) [self.playerShip fireMissileAtPoint:locationInUniverseCoordinates];
 }
 
 #pragma mark
@@ -234,6 +237,16 @@
 			[projectile removeFromParent];
 		}
 	}
+	
+	if (self.playerShip.health <= 0) {
+		SKLabelNode *GameOver = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+		GameOver.fontColor = [SKColor redColor];
+		GameOver.fontSize = 24;
+		GameOver.text = @"GAME OVER - Hit 'r' for new game!";
+		[self addChild:GameOver];
+		self.playerIsDead = true;
+	}
+	
 	self.previousTime = currentTime;
 }
 
