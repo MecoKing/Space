@@ -19,7 +19,7 @@
 @property int playerEnginePower;
 @property NSMutableArray* ships;
 @property NSMutableArray* shipStats;
-@property NSArray* factions;
+@property NSMutableArray* factions;
 @property SKNode *universe;
 @property SKNode *laserManager;
 @property SPACEShip *playerShip;

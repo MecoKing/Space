@@ -143,8 +143,10 @@
 
 -(void) generateFactions {
 	NSUInteger numberOfFactions = SPACERandomIntegerInInterval(4, 8);
+//	numberOfFactions = 1;
+	self.factions = [NSMutableArray array];
 	for (int i = 0; i < numberOfFactions; i++) {
-		self.factions = [NSArray arrayWithArray:[self.factions arrayByAddingObject:[SPACEFaction randomFaction]]];
+		[self.factions addObject:[SPACEFaction randomFaction]];
 	}
 }
 
@@ -292,7 +294,8 @@
 			SPACEShip *ship = [self shipFromNode:secondBody.node inArray:self.ships];
 			SPACEStat *stat = [self statBelongingToShip:ship inArray:self.shipStats];
 			if (missile.faction != ship.faction) {
-				if (ship.health == 0 & ship != self.playerShip) {
+				if (ship.health <= 1 & ship != self.playerShip) {
+					if ([self shipsOfFaction:ship.faction] == 0) [self.factions removeObject:ship.faction];
 					[stat removeFromParent];
 					[self.shipStats removeObject:stat];
 					[ship removeFromParent];
@@ -306,7 +309,12 @@
 				[missile removeFromParent];
 			}
 		}
+-(NSInteger*) shipsOfFaction:(SPACEFaction*)faction {
+	NSInteger *count = 0;
+	for (SPACEShip *ship in self.ships) {
+		if (ship.faction == faction) count++;
 	}
+	return count;
 }
 
 -(SPACEStat*) statBelongingToShip:(SPACEShip*)ship inArray:(NSArray*)array {
