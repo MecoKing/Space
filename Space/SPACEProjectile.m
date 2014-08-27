@@ -14,6 +14,7 @@
 	missile.physicsBody.categoryBitMask = projectileCategory;
 	missile.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
 	missile.faction = ship.faction;
+	missile.owner = ship;
 	return missile;
 }
 
@@ -25,6 +26,7 @@
 	laser.physicsBody.categoryBitMask = projectileCategory;
 	laser.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
 	laser.faction = ship.faction;
+	laser.owner = ship;
 	return laser;
 }
 
@@ -36,6 +38,15 @@
 		self.physicsBody.angularDamping = 1;
 	}
 	return self;
+}
+
+-(CGFloat) distanceFromClosestShip {
+	CGFloat topDistance = 1000000;
+	for (SPACEShip *ship in self.scene.ships) {
+		if (topDistance == 1000000) topDistance = SPACEDistanceBetweenPoints(self.position, ship.position);
+		else if (SPACEDistanceBetweenPoints(self.position, ship.position) < topDistance) topDistance = SPACEDistanceBetweenPoints(self.position, ship.position);
+	}
+	return topDistance;
 }
 
 @end

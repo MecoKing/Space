@@ -226,18 +226,9 @@
 	[self.engineHUD updateEngineHUD];
 	[self.system updateWithSystem:self.system overInterval:interval];
 	
-	for (SKNode *projectile in self.laserManager.children) {
-		//if the laser is off screen remove it...
-		CGRect windowRect = CGRectMake(
-			self.playerShip.position.x - (self.view.window.frame.size.width / 2),
-			self.playerShip.position.y - (self.view.window.frame.size.height / 2),
-			self.view.window.frame.size.width,
-			self.view.window.frame.size.height
-		);
-		if (!CGRectContainsPoint(windowRect, projectile.position))
-		{
-			[projectile removeFromParent];
-		}
+	for (SPACEProjectile *projectile in self.laserManager.children) {
+		//if the projectile is too far from a ship remove it...
+		if ([projectile distanceFromClosestShip] >= self.size.width) [projectile removeFromParent];
 	}
 	
 	if (self.factions.count == 1 && !self.playerIsDead) {
@@ -305,10 +296,14 @@
 					ship.health -= 1;
 				}
 			}
-			if (missile.faction != ship.faction) {
+			if (missile.owner != ship) {
 				[missile removeFromParent];
 			}
 		}
+		if (secondBody.categoryBitMask != shipCategory) [missile removeFromParent];
+	}
+}
+
 -(NSInteger*) shipsOfFaction:(SPACEFaction*)faction {
 	NSInteger *count = 0;
 	for (SPACEShip *ship in self.ships) {
