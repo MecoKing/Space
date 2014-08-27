@@ -211,14 +211,11 @@
 	for (SPACEStat *stat in self.shipStats) {
 		[stat updateAllShipStats];
 	}
-	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	
+	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	[self.compassHUD updateDotsOnCompass];
 	[self.engineHUD updateEngineHUD];
-
-
 	[self.system updateWithSystem:self.system overInterval:interval];
-	   
 	
 	for (SKNode *projectile in self.laserManager.children) {
 		//if the laser is off screen remove it...
@@ -233,7 +230,6 @@
 			[projectile removeFromParent];
 		}
 	}
-
 	self.previousTime = currentTime;
 }
 

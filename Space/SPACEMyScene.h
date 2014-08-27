@@ -16,15 +16,15 @@
 
 @property NSTimeInterval previousTime;
 
-@property SPACEShip *playerShip;
 @property int playerEnginePower;
 @property NSArray* ships;
 @property NSArray* shipStats;
-@property SPACESystem* system;
+@property NSArray* factions;
 @property SKNode *universe;
 @property SKNode *laserManager;
+@property SPACEShip *playerShip;
+@property SPACESystem* system;
 @property SPACEHUD *compassHUD;
 @property SPACEHUD *engineHUD;
-@property NSArray* factions;
 
 @end

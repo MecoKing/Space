@@ -15,6 +15,8 @@
 
 @implementation SPACEShip
 
+@dynamic scene;
+
 #pragma mark Instance Methods
 
 -(instancetype)initWithImageNamed:(NSString *)name {
@@ -59,9 +61,6 @@
 		@"Nothing",
 		];
 	ship.targetPriority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
-//	ship.targetPriority = @"Nothing";
-	
-	//Switch faction's parts too NSString, derive the image name from the faction and declare the sprites here!!!
 	
 	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingSpriteName];
 	ship.wings.texture.filteringMode = SKTextureFilteringNearest;
@@ -75,20 +74,12 @@
 	
 	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterSpriteName];
 	ship.thruster.texture.filteringMode = SKTextureFilteringNearest;
-
-
 	
 	[ship addChild: ship.wings];
 	[ship addChild: ship.thruster];
 	[ship addChild: ship.hull];
-	
-	ship.statDisplay = [SPACEStat statsForShip:ship];
-//	[ship addChild:ship.statDisplay];
-	
 	return ship;
 }
-
-@dynamic scene;
 
 #pragma mark
 #pragma mark Actions
