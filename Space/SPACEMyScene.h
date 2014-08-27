@@ -17,8 +17,8 @@
 @property NSTimeInterval previousTime;
 
 @property int playerEnginePower;
-@property NSArray* ships;
-@property NSArray* shipStats;
+@property NSMutableArray* ships;
+@property NSMutableArray* shipStats;
 @property NSArray* factions;
 @property SKNode *universe;
 @property SKNode *laserManager;

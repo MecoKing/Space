@@ -147,18 +147,18 @@
 
 -(void) addStarShips {
 //	return;
-	self.ships = @[];
-	self.shipStats = @[];
+	self.ships = [NSMutableArray array];
+	self.shipStats = [NSMutableArray array];
 	for (SPACEFaction *faction in self.factions) {
 		NSUInteger count = SPACERandomIntegerInInterval(4, 8);
 //		count = 2;
 		for (int i = 0; i < count; i++) {
 			SPACEShip *ship = [SPACEShip randomFighterOfFaction:faction];
-			self.ships = [self.ships arrayByAddingObject:ship];
+			[self.ships addObject:ship];
 			[self.universe addChild:ship];
 			
 			SPACEStat *stat = [SPACEStat statsForShip:ship];
-			self.shipStats = [self.shipStats arrayByAddingObject:stat];
+			[self.shipStats addObject:stat];
 			[self addChild:stat];
 		}
 	}
@@ -258,7 +258,9 @@
 			if (missile.faction != ship.faction) {
 				if (ship.health == 0 & ship != self.playerShip) {
 					[stat removeFromParent];
+					[self.shipStats removeObject:stat];
 					[ship removeFromParent];
+					[self.ships removeObject:ship];
 				}
 				else {
 					ship.health -= 1;
