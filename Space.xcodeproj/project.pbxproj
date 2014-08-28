@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB159B3219AFA4C0004B4B45 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CB159B3119AFA4C0004B4B45 /* AppIcon.png */; };
 		CB27AE6418D33FCB001C65B5 /* TerraPlanetTexture01.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6118D33FCB001C65B5 /* TerraPlanetTexture01.png */; };
 		CB27AE6518D33FCB001C65B5 /* TerraPlanetTexture02.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6218D33FCB001C65B5 /* TerraPlanetTexture02.png */; };
 		CB27AE6618D33FCB001C65B5 /* TerraPlanetTexture03.png in Resources */ = {isa = PBXBuildFile; fileRef = CB27AE6318D33FCB001C65B5 /* TerraPlanetTexture03.png */; };
@@ -77,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB159B3119AFA4C0004B4B45 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon.png; path = Images/AppIcon.png; sourceTree = SOURCE_ROOT; };
 		CB27AE6118D33FCB001C65B5 /* TerraPlanetTexture01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TerraPlanetTexture01.png; path = Images/TerraPlanetTexture01.png; sourceTree = SOURCE_ROOT; };
 		CB27AE6218D33FCB001C65B5 /* TerraPlanetTexture02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TerraPlanetTexture02.png; path = Images/TerraPlanetTexture02.png; sourceTree = SOURCE_ROOT; };
 		CB27AE6318D33FCB001C65B5 /* TerraPlanetTexture03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TerraPlanetTexture03.png; path = Images/TerraPlanetTexture03.png; sourceTree = SOURCE_ROOT; };
@@ -220,6 +222,7 @@
 				CB93C45E18D39151008D90FE /* Missile.png */,
 				CB5ABFFE19A77D8400722962 /* Explosion.png */,
 				CB5ABFFF19A77D8400722962 /* Healthbar.png */,
+				CB159B3119AFA4C0004B4B45 /* AppIcon.png */,
 			);
 			name = Graphics;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				CB5AC00019A77D8400722962 /* Explosion.png in Resources */,
 				CBC0C08F1899A615005E2507 /* Images.xcassets in Resources */,
 				CBFB465D1916FA79000C3D77 /* TwinFusionThruster.png in Resources */,
+				CB159B3219AFA4C0004B4B45 /* AppIcon.png in Resources */,
 				CBFB466519171622000C3D77 /* DualWings.png in Resources */,
 				CB27AE6618D33FCB001C65B5 /* TerraPlanetTexture03.png in Resources */,
 				CB27AE6C18D35180001C65B5 /* MoltenPlanetTexture03.png in Resources */,
