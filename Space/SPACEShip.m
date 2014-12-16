@@ -58,6 +58,7 @@
 	
 	ship.faction = faction;
 	
+	ship.priority = ship.faction.priority;
 	NSArray *possiblePriorities = @[
 		@"Closest",
 		@"Value",
@@ -65,7 +66,9 @@
 		@"Health",
 		@"Nothing",
 		];
-	ship.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
+	while (ship.priority == ship.faction.priority) {
+		ship.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
+	}
 	
 	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingSpriteName];
 	ship.wings.texture.filteringMode = SKTextureFilteringNearest;
@@ -205,6 +208,7 @@
 				if (targetShip == nil) {
 					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
 				}
+
 			}
 		}
 	}
