@@ -39,15 +39,15 @@
 }
 
 -(NSString*) generateName {
-	NSArray *name1 = @[@"Nova",@"Alpha",@"Hydro",@"Solar",@"Aero",@"Astro"];
-	NSArray *name2 = @[@"plant",@"branch",@"core",@"tech",@"corp.",@"base"];
-	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Privateer",@"Engineering",@"Research"];
-	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Alliance",@"Division"];
+	NSArray *name1 = @[@"Nova",@"Alpha",@"Hydro",@"Solar",@"Aero",@"Astro",@"Delta"];
+	NSArray *name2 = @[@"Plant",@"Branch",@"Core",@"Tech",@"Corp.",@"Base",@"Wing"];
+	NSArray *jobType = @[@"Mining",@"Trade",@"Security",@"Privateer",@"Engineering",@"Research",@"Colonial"];
+	NSArray *class = @[@"Federation",@"Corporation",@"District",@"Company",@"Alliance",@"Division",@"Systems"];
 	return [NSString stringWithFormat:@"%@%@ %@ %@",
-			name1[SPACERandomIntegerInInterval(0, 5)],
-			name2[SPACERandomIntegerInInterval(0, 5)],
-			jobType[SPACERandomIntegerInInterval(0, 5)],
-			class[SPACERandomIntegerInInterval(0, 5)]];
+			name1[SPACERandomIntegerInInterval(0, 6)],
+			name2[SPACERandomIntegerInInterval(0, 6)],
+			jobType[SPACERandomIntegerInInterval(0, 6)],
+			class[SPACERandomIntegerInInterval(0, 6)]];
 }
 
 -(void) generateShips {
