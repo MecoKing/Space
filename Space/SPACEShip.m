@@ -201,9 +201,9 @@
 				 Weapons [ ]
 				 Energy  [ ]
 				*/
-				targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
+				targetShip = [self testShip:ship againstShip:targetShip withPriority:self.faction.priority];
 				if (targetShip == nil) {
-					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.faction.priority];
+					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
 				}
 			}
 		}
