@@ -15,6 +15,7 @@
 
 @property SKLabelNode *title;
 @property SKLabelNode *info;
+@property SKLabelNode *target;
 @property SKSpriteNode *healthBar;
 
 @property SPACEShip *shipObject;

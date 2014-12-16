@@ -41,6 +41,15 @@
 	self.info.position = CGPointMake(0, -35);
 	[self addChild:self.info];
 }
+-(void) updateShipTargetInfo {
+	[self.target removeFromParent];
+	self.target = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	self.target.text = [NSString stringWithFormat:@"Target:%@ FactionTarget:%@", self.shipObject.priority, self.shipObject.faction.priority];
+	self.target.fontColor = SPACEInverseOfColour(self.scene.backgroundColor);
+	self.target.fontSize = 10;
+	self.target.position = CGPointMake(0, -55);
+	[self addChild:self.target];
+}
 -(void) updateHealthBarInfo {
 	[self.healthBar removeFromParent];
 	CGRect healthFrame = CGRectMake(self.shipObject.health*0.25, 0, 0.25, 1);
@@ -56,6 +65,7 @@
 	[self printNameInfo];
 	[self updateHealthBarInfo];
 	[self updateShipStatInfo];
+	[self updateShipTargetInfo];
 }
 
 #pragma mark PlanetStats
