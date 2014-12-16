@@ -191,14 +191,14 @@
 			}
 			else {
 				/*
-				 Closest
-				 Value
-				 Speed
-				 Rank
-				 Health
-				 Shields
-				 Weapons
-				 Energy
+				 Closest [x]
+				 Value   [x]
+				 Speed   [ ]
+				 Rank    [x]
+				 Health  [ ]
+				 Shields [ ]
+				 Weapons [ ]
+				 Energy  [ ]
 				*/
 				targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
 				if (targetShip == nil) {
