@@ -62,6 +62,7 @@
 		@"Closest",
 		@"Value",
 		@"Rank",
+		@"Health",
 		@"Nothing",
 		];
 	ship.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
@@ -195,7 +196,7 @@
 				 Value   [x]
 				 Speed   [ ]
 				 Rank    [x]
-				 Health  [ ]
+				 Health  [x]
 				 Shields [ ]
 				 Weapons [ ]
 				 Energy  [ ]
@@ -222,6 +223,10 @@
 	else if ([priority isEqual:@"Rank"]) {
 		if (shipA.rank == shipB.rank) return nil;
 		else if (shipA.rank > shipB.rank) return shipA;
+	}
+	else if ([priority isEqual:@"Health"]) {
+		if (shipA.health == shipB.health) return nil;
+		else if (shipA.health > shipB.health) return shipA;
 	}
 	return shipB;
 }

@@ -31,7 +31,7 @@
 									@"Closest",
 									@"Value",
 									@"Rank",
-									@"Nothing",
+									@"Health",
 									];
 	faction.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
 	
