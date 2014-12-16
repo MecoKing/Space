@@ -200,10 +200,8 @@
 				 Weapons
 				 Energy
 				*/
-				if ([self testShip:ship againstShip:targetShip withPriority:self.priority] != nil) {
-					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
-				}
-				else {
+				targetShip = [self testShip:ship againstShip:targetShip withPriority:self.priority];
+				if (targetShip == nil) {
 					targetShip = [self testShip:ship againstShip:targetShip withPriority:self.faction.priority];
 				}
 			}
