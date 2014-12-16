@@ -8,6 +8,23 @@
 
 #import "SPACEFunction.h"
 
+#pragma mark NSString
+
+NSString* SPACERandomName () {
+	NSArray *CONSONANTS = @[@"B", @"C", @"D", @"F", @"G", @"H", @"J", @"K", @"L", @"M", @"N", @"P", @"Q", @"R", @"S", @"T", @"V", @"W", @"X", @"Z"];
+	NSArray *consonants = @[@"b", @"c", @"d", @"f", @"g", @"h", @"j", @"k", @"l", @"m", @"n", @"p", @"q", @"r", @"s", @"t", @"v", @"w", @"x", @"z"];
+	NSArray *vowels = @[@"a", @"e", @"i", @"o", @"u", @"y"];
+	return [NSString stringWithFormat:(@"%@%@%@"),
+			CONSONANTS[SPACERandomIntegerInInterval(0, 19)],
+			vowels[SPACERandomIntegerInInterval(0, 5)],
+			consonants[SPACERandomIntegerInInterval(0, 19)]
+	];
+}
+
+NSString* SPACERandomDoubleName () {
+	return [NSString stringWithFormat:(@"%@%@"), SPACERandomName (), SPACERandomName()];
+}
+
 #pragma mark CGFloat
 
 CGFloat SPACERandomInInterval(CGFloat from, CGFloat to) {
