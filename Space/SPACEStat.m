@@ -26,7 +26,7 @@
 -(void) printNameInfo {
 	[self.title removeFromParent];
 	self.title = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-	self.title.text = [NSString stringWithFormat:@"%@",self.shipObject.faction.name];
+	self.title.text = [NSString stringWithFormat:@"%@ - %@",self.shipObject.faction.name, self.shipObject.name];
 	self.title.fontColor = self.shipObject.faction.shipColour;
 	self.title.fontSize = 10;
 	self.title.position = CGPointMake(0, -45);
