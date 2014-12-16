@@ -35,7 +35,7 @@
 +(instancetype) randomFighterOfFaction: (SPACEFaction*)faction {
 	SPACEShip *ship = [SPACEShip new];
 	
-	ship.name = [NSString stringWithFormat:(@"%@%lu"), SPACERandomName (), (unsigned long)SPACERandomIntegerInInterval(0, 999)];
+	ship.name = [NSString stringWithFormat:(@"%@%lu"), SPACERandomName(), (unsigned long)SPACERandomIntegerInInterval(0, 999)];
 	
 	while (!((ship.position.x < -500 || ship.position.x > 500) && (ship.position.y < -500 || ship.position.y > 500))) {
 		ship.position = CGPointMake(SPACERandomInInterval(-2000, 2000), SPACERandomInInterval(-2000, 2000));
