@@ -14,7 +14,7 @@
 		<string>https://github.com/MecoKing/Space.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Space.xcodeproj/project.xcworkspace</string>
+	<string>Space.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C16771D5BDA5A689C5624879D2D1636B95B7611D</key>
