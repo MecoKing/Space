@@ -40,15 +40,15 @@
 
 -(NSString*) generateNameForPart: (NSString*)part {
 	NSArray *inventor = @[@"Ptolemy",@"Galilean",@"Kepler",@"Newtonian",@"Goddard's",@"Hubble",@"Kapteyn"];
-	NSArray *hullAtrib = @[@"Nano",@"Carbon",@"Exo",@"Stealth",@"Lunar",@"",@""];
+	NSArray *hullAtrib = @[@"Nano",@"Carbon",@"Exo",@"Stealth",@"Lunar",@"Astro",@"Mega"];
 	NSArray *hullModel = @[@"Shuttle",@"Tube",@"Capsule",@"Shell",@"Tank",@"Carrier",@"Rig"];
 	NSArray *wingAtrib = @[@"Ultralight ",@"Reinforced ",@"Stealth",@"Aero",@"Astro",@"Dactyl",@"Hydro"];
 	NSArray *wingModel = @[@"Falcon",@"Eagle",@"Hawk",@"Jet",@"Strike",@"Splitter",@"Cutter"];
-	NSArray *thrusterAtrib = @[@"Light",@"Hyper",@"Ion",@"Plasma",@"Nucleo",@"UV",@"Electron"];
+	NSArray *thrusterAtrib = @[@"Light",@"Hyper",@"Ion",@"Plasma",@"Nucleo",@"UV ",@"Electron"];
 	NSArray *thrusterModel = @[@"Drive",@"Engine",@"Rocket",@"Repulsor",@"Pulsar",@"Reactor",@"Emitter"];
 	
 	if ([part isEqual: @"Hull"]) {
-		return [NSString stringWithFormat:(@"%@ %@%@ Hull"),
+		return [NSString stringWithFormat:(@"%@ %@%@"),
 				inventor [SPACERandomIntegerInInterval(0, 6)],
 				hullAtrib [SPACERandomIntegerInInterval(0, 6)],
 				hullModel [SPACERandomIntegerInInterval(0, 6)]
@@ -62,7 +62,7 @@
 				];
 	}
 	else if ([part isEqual: @"Thruster"]) {
-		return [NSString stringWithFormat:(@"%@ %@%@ Thuster"),
+		return [NSString stringWithFormat:(@"%@ %@%@"),
 				inventor [SPACERandomIntegerInInterval(0, 6)],
 				thrusterAtrib [SPACERandomIntegerInInterval(0, 6)],
 				thrusterModel [SPACERandomIntegerInInterval(0, 6)]
