@@ -9,14 +9,15 @@
 #import <SpriteKit/SpriteKit.h>
 
 @class SPACEShip;
+@class SPACEShipPart;
 
 @interface SPACEFaction : SKNode
 
 @property SPACEShip *fighterShip;
 @property SKColor *shipColour;
-@property NSString *wingSpriteName;
-@property NSString *hullSpriteName;
-@property NSString *thrusterSpriteName;
+@property SPACEShipPart *wingPart;
+@property SPACEShipPart *hullPart;
+@property SPACEShipPart *thrusterPart;
 @property NSString *priority;
 @property NSArray *ships;
 

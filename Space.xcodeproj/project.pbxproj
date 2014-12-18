@@ -22,6 +22,7 @@
 		CB47C27D18A0328A00D0F466 /* SPACEShip.m in Sources */ = {isa = PBXBuildFile; fileRef = CB47C27C18A0328A00D0F466 /* SPACEShip.m */; };
 		CB47C27F18A033ED00D0F466 /* Laser.png in Resources */ = {isa = PBXBuildFile; fileRef = CB47C27E18A033ED00D0F466 /* Laser.png */; };
 		CB4830F718DB94DD00A5657A /* SPACERadarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4830F618DB94DD00A5657A /* SPACERadarNode.m */; };
+		CB5A06B41A43142800F8BCD9 /* SPACEShipPart.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5A06B31A43142800F8BCD9 /* SPACEShipPart.m */; };
 		CB5AC00019A77D8400722962 /* Explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5ABFFE19A77D8400722962 /* Explosion.png */; };
 		CB5AC00119A77D8400722962 /* Healthbar.png in Resources */ = {isa = PBXBuildFile; fileRef = CB5ABFFF19A77D8400722962 /* Healthbar.png */; };
 		CB5AC00419A7C15A00722962 /* SPACEStat.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5AC00319A7C15A00722962 /* SPACEStat.m */; };
@@ -97,6 +98,8 @@
 		CB47C27E18A033ED00D0F466 /* Laser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Laser.png; path = Images/Laser.png; sourceTree = SOURCE_ROOT; };
 		CB4830F518DB94DD00A5657A /* SPACERadarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACERadarNode.h; sourceTree = "<group>"; };
 		CB4830F618DB94DD00A5657A /* SPACERadarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACERadarNode.m; sourceTree = "<group>"; };
+		CB5A06B21A43142800F8BCD9 /* SPACEShipPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEShipPart.h; sourceTree = "<group>"; };
+		CB5A06B31A43142800F8BCD9 /* SPACEShipPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPACEShipPart.m; sourceTree = "<group>"; };
 		CB5ABFFE19A77D8400722962 /* Explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Explosion.png; path = Images/Explosion.png; sourceTree = SOURCE_ROOT; };
 		CB5ABFFF19A77D8400722962 /* Healthbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Healthbar.png; path = Images/Healthbar.png; sourceTree = SOURCE_ROOT; };
 		CB5AC00219A7C15A00722962 /* SPACEStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPACEStat.h; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				CBDF5D8F193A667E00CC0BBA /* SPACEFaction.m */,
 				D41A624F18D3AD950065B6D0 /* SPACEProjectile.h */,
 				D41A625018D3AD950065B6D0 /* SPACEProjectile.m */,
+				CB5A06B21A43142800F8BCD9 /* SPACEShipPart.h */,
+				CB5A06B31A43142800F8BCD9 /* SPACEShipPart.m */,
 			);
 			name = Ships;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB4830F718DB94DD00A5657A /* SPACERadarNode.m in Sources */,
+				CB5A06B41A43142800F8BCD9 /* SPACEShipPart.m in Sources */,
 				CB3A0D6F18D48E6A00E3D1F7 /* SPACEHUD.m in Sources */,
 				D41A625818D499520065B6D0 /* SPACEOrbit.m in Sources */,
 				CBDF5D90193A667E00CC0BBA /* SPACEFaction.m in Sources */,

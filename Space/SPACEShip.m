@@ -12,6 +12,7 @@
 #import "SPACEProjectile.h"
 #import "SPACEFaction.h"
 #import "SPACEStat.h"
+#import "SPACEShipPart.h"
 
 @implementation SPACEShip
 
@@ -52,11 +53,11 @@
 	ship.physicsBody.contactTestBitMask = shipCategory | stellarBodyCategory;
 	ship.physicsBody.collisionBitMask = shipCategory | stellarBodyCategory;
 	
+	ship.faction = faction;
+	
 	ship.health = 3;
 	ship.rank = SPACERandomIntegerInInterval(1, 10);
-	ship.value = SPACERandomIntegerInInterval(50, 100);
-	
-	ship.faction = faction;
+	ship.value = SPACERandomIntegerInInterval(0, 50) + faction.wingPart.value + faction.hullPart.value + faction.thrusterPart.value;
 	
 	ship.priority = ship.faction.priority;
 	NSArray *possiblePriorities = @[
@@ -70,17 +71,17 @@
 		ship.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
 	}
 	
-	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingSpriteName];
+	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingPart.spriteName];
 	ship.wings.texture.filteringMode = SKTextureFilteringNearest;
 	ship.wings.colorBlendFactor = 1;
 	ship.wings.color = [SKColor colorWithRed:(faction.shipColour.redComponent - 0.1) green:(faction.shipColour.greenComponent - 0.1) blue:(faction.shipColour.blueComponent - 0.1) alpha:1];
 	
-	ship.hull = [SKSpriteNode spriteNodeWithImageNamed:faction.hullSpriteName];
+	ship.hull = [SKSpriteNode spriteNodeWithImageNamed:faction.hullPart.spriteName];
 	ship.hull.texture.filteringMode = SKTextureFilteringNearest;
 	ship.hull.colorBlendFactor = 1;
 	ship.hull.color = faction.shipColour;
 	
-	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterSpriteName];
+	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterPart.spriteName];
 	ship.thruster.texture.filteringMode = SKTextureFilteringNearest;
 	
 	[ship addChild: ship.wings];
