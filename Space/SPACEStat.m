@@ -35,7 +35,7 @@
 -(void) updateShipStatInfo {
 	[self.info removeFromParent];
 	self.info = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
-	self.info.text = [NSString stringWithFormat:@"Value:%lu Rank:%lu", (unsigned long)self.shipObject.value, (unsigned long)self.shipObject.rank];
+	self.info.text = [NSString stringWithFormat:@"Value:%luc Rank:%lu", (unsigned long)self.shipObject.value, (unsigned long)self.shipObject.rank];
 	self.info.fontColor = SPACEInverseOfColour(self.scene.backgroundColor);
 	self.info.fontSize = 10;
 	self.info.position = CGPointMake(0, -35);
