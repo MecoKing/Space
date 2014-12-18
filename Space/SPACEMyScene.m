@@ -61,9 +61,9 @@
 	[self addChild:self.nebula];
 	[self addChild:self.universe];
 	[self.universe addChild:self.laserManager];
-	[self generateNebula];
+	for (int i = 0; i < SPACERandomIntegerInInterval(2, 5); i++) {
 		[self generateNebula];
-		[self generateNebula];
+	}
 	[self generateFactions];
 	[self addStarShips];
 	[self generateSolarSystem];
