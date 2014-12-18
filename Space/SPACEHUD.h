@@ -9,11 +9,13 @@
 #import <SpriteKit/SpriteKit.h>
 
 @class SPACEMyScene;
+@class SPACEFaction;
 
 @interface SPACEHUD : SKNode
 
 @property SKShapeNode *compass;
 @property SKLabelNode *thrusterCapacity;
+@property SPACEFaction *faction;
 @property SKColor *colour;
 
 @property (nonatomic, readonly) SPACEMyScene *scene;
@@ -21,7 +23,9 @@
 
 +(instancetype) compassHUDWithColour:(SKColor*)colour atPosition: (CGPoint) position;
 +(instancetype) engineHUDWithColour:(SKColor*)colour atPosition: (CGPoint)position;
++(instancetype) factionHUDWithColour:(SKColor*)colour forFaction:(SPACEFaction*)faction atPosition: (CGPoint)position;
 -(void) updateDotsOnCompass;
 -(void) updateEngineHUD;
+-(void) updateFactionHUD;
 
 @end

@@ -178,6 +178,8 @@
 	[self addChild:self.compassHUD];
 	self.engineHUD = [SPACEHUD engineHUDWithColour:SPACEInverseOfColour(self.backgroundColor) atPosition:CGPointMake(0, -200)];
 	[self addChild:self.engineHUD];
+	self.factionHUD = [SPACEHUD factionHUDWithColour:SPACEInverseOfColour(self.backgroundColor) forFaction:self.factions [0] atPosition:CGPointMake(0, -130)];
+	[self addChild:self.factionHUD];
 }
 
 #pragma mark
@@ -231,6 +233,7 @@
 	if (self.playerEnginePower > 0) self.playerEnginePower--;
 	[self.compassHUD updateDotsOnCompass];
 	[self.engineHUD updateEngineHUD];
+	[self.factionHUD updateFactionHUD];
 	[self.system updateWithSystem:self.system overInterval:interval];
 	
 	for (SPACEProjectile *projectile in self.laserManager.children) {

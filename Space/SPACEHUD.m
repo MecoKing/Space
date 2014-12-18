@@ -13,6 +13,7 @@
 #import "SPACEFaction.h"
 #import "SPACESystem.h"
 #import "SPACEPlanet.h"
+#import "SPACEShipPart.h"
 
 @implementation SPACEHUD
 
@@ -35,6 +36,15 @@
 	
 	[HUD addChild:HUD.compass];
 	
+	return HUD;
+}
+
++(instancetype) factionHUDWithColour:(SKColor*)colour forFaction:(SPACEFaction*)faction atPosition: (CGPoint)position {
+	SPACEHUD *HUD = [SPACEHUD new];
+	HUD.faction = faction;
+	HUD.colour = colour;
+	HUD.position = position;
+	[HUD updateFactionHUD];
 	return HUD;
 }
 
@@ -99,6 +109,49 @@
 
 -(void) updateEngineHUD {
 	self.thrusterCapacity.text = [NSString stringWithFormat:@"EnginePower: %i%%", self.scene.playerEnginePower];
+}
+
+#pragma mark
+#pragma mark FactionHUD
+
+-(void) updateFactionHUD {
+	[self removeAllChildren];
+	SKLabelNode *factionNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	factionNameLabel.text = self.faction.name;
+	factionNameLabel.fontColor = self.faction.shipColour;
+	factionNameLabel.fontSize = 12;
+	factionNameLabel.position = CGPointMake(self.position.x, self.position.y + 30);
+	[self addChild:factionNameLabel];
+	SKLabelNode *shipCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	int shipCount = 0;
+	for (SPACEShip *ship in self.scene.ships) {
+		if (ship.faction == self.faction) {
+			shipCount++;
+		}
+	}
+	shipCountLabel.text = [NSString stringWithFormat:(@"Ships Owned: %lu"), (unsigned long)shipCount];
+	shipCountLabel.fontColor = self.colour;
+	shipCountLabel.fontSize = 12;
+	shipCountLabel.position = CGPointMake(self.position.x, self.position.y + 18);
+	[self addChild:shipCountLabel];
+	SKLabelNode *hullNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	hullNameLabel.text = self.faction.hullPart.name;
+	hullNameLabel.fontColor = self.colour;
+	hullNameLabel.fontSize = 12;
+	hullNameLabel.position = CGPointMake(self.position.x, self.position.y + 6);
+	[self addChild:hullNameLabel];
+	SKLabelNode *wingNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	wingNameLabel.text = self.faction.wingPart.name;
+	wingNameLabel.fontColor = self.colour;
+	wingNameLabel.fontSize = 12;
+	wingNameLabel.position = CGPointMake(self.position.x, self.position.y - 6);
+	[self addChild:wingNameLabel];
+	SKLabelNode *thrusterNameLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
+	thrusterNameLabel.text = self.faction.thrusterPart.name;
+	thrusterNameLabel.fontColor = self.colour;
+	thrusterNameLabel.fontSize = 12;
+	thrusterNameLabel.position = CGPointMake(self.position.x, self.position.y - 18);
+	[self addChild:thrusterNameLabel];
 }
 
 @end

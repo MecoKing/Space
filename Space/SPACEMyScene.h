@@ -29,7 +29,7 @@
 @property SPACESystem* system;
 @property SPACEHUD *compassHUD;
 @property SPACEHUD *engineHUD;
-
+@property SPACEHUD *factionHUD;
 
 @property bool playerIsDead;
 @end
