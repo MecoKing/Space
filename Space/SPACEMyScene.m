@@ -191,7 +191,19 @@
 #pragma mark Update
 
 -(void)update:(CFTimeInterval)currentTime {
-//	return;
+	for (SPACEStat *stat in self.shipStats) {
+		[stat updateAllShipStats];
+	}
+	if (self.playerIsDead) {
+		for (SPACEShip *ship in self.ships) {
+			[ship releaseDirectionalThrusters];
+			ship.linearMagnitude = 0;
+			if (ship.linearMagnitude != 0) {
+				[ship removeAllActions];
+			}
+		}
+		return;
+	}
 	if (self.previousTime == 0) self.previousTime = currentTime;
 	const CGFloat gravitationalConstant = 6e-19;
 	CFTimeInterval interval = currentTime - self.previousTime;
@@ -221,9 +233,6 @@
 		if (ship != self.playerShip) {
 			[ship runAutoPilot];
 		}
-	}
-	for (SPACEStat *stat in self.shipStats) {
-		[stat updateAllShipStats];
 	}
 	
 	if (self.playerEnginePower > 0) self.playerEnginePower--;
