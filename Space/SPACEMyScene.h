@@ -24,6 +24,7 @@
 @property NSMutableArray* factions;
 @property SKNode *universe;
 @property SKNode *laserManager;
+@property SKNode *nebula;
 @property SPACEShip *playerShip;
 @property SPACESystem* system;
 @property SPACEHUD *compassHUD;

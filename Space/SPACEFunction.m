@@ -58,6 +58,13 @@ SKColor *SPACERandomColour() {
 	return [SKColor colorWithRed:SPACERandomInInterval(0, 1) green:SPACERandomInInterval(0, 1) blue:SPACERandomInInterval(0, 1) alpha:1];
 }
 
+SKColor *SPACEColourCloseToColour(SKColor *colour) {
+	return [SKColor colorWithRed:colour.redComponent + SPACERandomInInterval(-0.1, 0.1)
+						   green:colour.greenComponent + SPACERandomInInterval(-0.1, 0.1)
+							blue:colour.blueComponent + SPACERandomInInterval(-0.1, 0.1)
+						   alpha:1];
+}
+
 SKColor *SPACERandomDarkColour() {
 	return [SKColor colorWithRed:SPACERandomInInterval(0, 0.5) green:SPACERandomInInterval(0, 0.5) blue:SPACERandomInInterval(0, 0.5) alpha:1];
 }

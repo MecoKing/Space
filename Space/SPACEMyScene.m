@@ -41,6 +41,7 @@
 		self.difficulty = 1;
 		self.universe = [SKNode node];
 		self.laserManager = [SKNode node];
+		self.nebula = [SKNode node];
 		[self refreshSolarSystem];
 	}
 	return self;
@@ -51,14 +52,18 @@
 	self.playerEnginePower = 0;
 	[self.laserManager removeAllChildren];
 	[self.universe removeAllChildren];
+	[self.nebula removeAllChildren];
 	[self removeAllChildren];
 	self.factions = nil;
 	self.ships = nil;
 	self.shipStats = nil;
 	//-----------------------------------------
+	[self addChild:self.nebula];
 	[self addChild:self.universe];
 	[self.universe addChild:self.laserManager];
 	[self generateNebula];
+		[self generateNebula];
+		[self generateNebula];
 	[self generateFactions];
 	[self addStarShips];
 	[self generateSolarSystem];
@@ -113,37 +118,25 @@
 
 -(void) generateNebula {
 	self.backgroundColor = SPACEAverageDarkColour();
-	return;
-	int numberOfClouds = ((self.size.width + self.size.height) / 2) / 2;
+//	return;
+	int cloudPoints = 25;
 	
-	for (int i = 0; i < numberOfClouds; i++) {
-		SKShapeNode *cloud = [SKShapeNode node];
-		int cloudSize = SPACERandomInInterval(50, 200);
-		CGRect bounds = {
-			.origin.x = SPACERandomInInterval((cloudSize / -2) - (self.size.width / 2), self.size.width),
-			.origin.y = SPACERandomInInterval((cloudSize / -2) - (self.size.height / 2), self.size.height),
-			.size.width = cloudSize * 2,
-			.size.height = cloudSize * 2,
-		};
-		cloud.path = CGPathCreateWithEllipseInRect(bounds, NULL);
-		cloud.strokeColor = [SKColor colorWithWhite:1 alpha:0.01];
-		cloud.glowWidth = cloudSize * SPACERandomInInterval(0.25, 0.75);
-		[self addChild:cloud];
-		
-		SKShapeNode *star = [SKShapeNode node];
-		int starSize = SPACERandomInInterval(1, 3);
-		CGRect starBounds = {
-			.origin.x = SPACERandomInInterval((starSize / -2) - (self.size.width / 2), self.size.width),
-			.origin.y = SPACERandomInInterval((starSize / -2) - (self.size.height / 2), self.size.height),
-			.size.width = starSize * 2,
-			.size.height = starSize * 2,
-		};
-		star.path = CGPathCreateWithEllipseInRect(starBounds, NULL);
-		star.strokeColor = [SKColor  colorWithWhite:1 alpha:0.2];
-		star.fillColor = [SKColor whiteColor];
-		star.glowWidth = starSize * SPACERandomInInterval(0.25, 0.75);
-		[self addChild:star];
+	CGMutablePathRef path = CGPathCreateMutable(); // I think?
+	CGPathMoveToPoint(path, NULL, SPACERandomInInterval(-self.size.width, self.size.width), SPACERandomInInterval(-self.size.height, self.size.height));
+	for (int i = 0; i < cloudPoints; i++) {
+		CGPathAddLineToPoint(path, NULL, SPACERandomInInterval(-self.size.width, self.size.width), SPACERandomInInterval(-self.size.height, self.size.height));
 	}
+	SKShapeNode *cloud = [SKShapeNode node];
+	cloud.path = path;
+	CGPathRelease(path);
+	cloud.strokeColor = SPACEColourCloseToColour(self.backgroundColor);
+	cloud.strokeColor = [SKColor colorWithRed:cloud.strokeColor.redComponent
+										green:cloud.strokeColor.greenComponent
+										blue:cloud.strokeColor.blueComponent
+										alpha:0.5
+						 ];
+	cloud.glowWidth = 200;
+	[self.nebula addChild:cloud];
 }
 
 -(void) generateFactions {

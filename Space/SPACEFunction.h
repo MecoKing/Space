@@ -17,6 +17,7 @@ NSUInteger SPACERandomIntegerInInterval(NSUInteger from, NSUInteger to);
 #pragma mark Colours
 
 SKColor *SPACERandomColour();
+SKColor *SPACEColourCloseToColour(SKColor *colour);
 SKColor *SPACERandomDarkColour();
 SKColor *SPACERandomLightColour();
 SKColor *SPACEInverseOfColour(SKColor *colour);
