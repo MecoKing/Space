@@ -77,8 +77,9 @@
 -(CGMutablePathRef) generatedThruster {
 	CGSize thrusterSize = CGSizeMake(SPACERandomInInterval(4, 6), SPACERandomInInterval(8, 12));
 	CGRect thrusterRect = CGRectMake(-(thrusterSize.width / 2), SPACERandomInInterval(-16, -20), thrusterSize.width, thrusterSize.height);
-	CGMutablePathRef path = CGPathCreateWithRect(thrusterRect, NULL);
-	return path;
+	CGPathRef path = CGPathCreateWithRect(thrusterRect, NULL);
+	CGMutablePathRef mutablePath = CGPathCreateMutableCopy(path);
+	return mutablePath;
 }
 
 -(NSString*) generateNameForPart: (NSString*)part {
