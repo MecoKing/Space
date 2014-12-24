@@ -25,9 +25,9 @@
 @property CGFloat currentAngle;
 @property CGPoint relativePoint;
 //Visual
-@property SKSpriteNode *wings;
-@property SKSpriteNode *hull;
-@property SKSpriteNode *thruster;
+@property SKShapeNode *wings;
+@property SKShapeNode *hull;
+@property SKShapeNode *thruster;
 //Statistics
 @property NSInteger health;
 @property NSUInteger rank;
