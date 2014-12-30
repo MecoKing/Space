@@ -13,13 +13,13 @@
 @property NSUInteger value;
 @property NSUInteger storage;
 
-@property CGMutablePathRef shape;
+@property CGPathRef shape;
 
 +(instancetype) randomWingPart;
 +(instancetype) randomHullPart;
 +(instancetype) randomThrusterPart;
--(CGMutablePathRef) generatedWings;
--(CGMutablePathRef) generatedHull;
--(CGMutablePathRef) generatedThruster;
+-(CGPathRef) newGeneratedWings;
+-(CGPathRef) newGeneratedHull;
+-(CGPathRef) newGeneratedThruster;
 
 @end

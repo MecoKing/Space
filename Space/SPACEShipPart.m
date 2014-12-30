@@ -15,7 +15,9 @@
 	SPACEShipPart *wingPart = [SPACEShipPart new];
 	wingPart.name = [wingPart generateNameForPart:@"Wings"];
 	wingPart.value = SPACERandomIntegerInInterval(10, 100);
-	wingPart.shape = [wingPart generatedWings];
+	CGPathRef wingPath = [wingPart newGeneratedWings];
+	wingPart.shape = wingPath;
+	CGPathRelease(wingPath);
 	return wingPart;
 }
 
@@ -23,7 +25,9 @@
 	SPACEShipPart *hullPart = [SPACEShipPart new];
 	hullPart.name = [hullPart generateNameForPart:@"Hull"];
 	hullPart.value = SPACERandomIntegerInInterval(10, 100);
-	hullPart.shape = [hullPart generatedHull];
+	CGPathRef hullPath = [hullPart newGeneratedHull];
+	hullPart.shape = hullPath;
+	CGPathRelease(hullPath);
 	return hullPart;
 }
 
@@ -31,11 +35,13 @@
 	SPACEShipPart *thrusterPart = [SPACEShipPart new];
 	thrusterPart.name = [thrusterPart generateNameForPart:@"Thruster"];
 	thrusterPart.value = SPACERandomIntegerInInterval(10, 100);
-	thrusterPart.shape = [thrusterPart generatedThruster];
+	CGPathRef thrusterPath = [thrusterPart newGeneratedThruster];
+	thrusterPart.shape = thrusterPath;
+	CGPathRelease(thrusterPath);
 	return thrusterPart;
 }
 
--(CGMutablePathRef) generatedHull {
+-(CGPathRef) newGeneratedHull {
 	CGPoint PointA = CGPointMake(0, SPACERandomInInterval(5, 10));
 	CGPoint PointB = CGPointMake(SPACERandomInInterval(0, 12), SPACERandomInInterval(0, PointA.y));
 	CGPoint PointC = CGPointMake(SPACERandomInInterval(0, 14), SPACERandomInInterval(-5, PointB.y));
@@ -53,7 +59,7 @@
 	return path;
 }
 
--(CGMutablePathRef) generatedWings {
+-(CGPathRef) newGeneratedWings {
 	CGPoint PointA = CGPointMake(0, SPACERandomInInterval(12, 16));
 	CGPoint PointB = CGPointMake(SPACERandomInInterval(0, 16), SPACERandomInInterval(8, PointA.y));
 	CGPoint PointC = CGPointMake(SPACERandomInInterval(0, 18), SPACERandomInInterval(0, PointB.y));
@@ -74,7 +80,7 @@
 	return path;
 }
 
--(CGMutablePathRef) generatedThruster {
+-(CGPathRef) newGeneratedThruster {
 	CGSize thrusterSize = CGSizeMake(SPACERandomInInterval(4, 6), SPACERandomInInterval(8, 12));
 	CGRect thrusterRect = CGRectMake(-(thrusterSize.width / 2), SPACERandomInInterval(-16, -20), thrusterSize.width, thrusterSize.height);
 	CGPathRef path = CGPathCreateWithRect(thrusterRect, NULL);
