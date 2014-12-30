@@ -13,29 +13,79 @@
 
 +(instancetype) randomWingPart {
 	SPACEShipPart *wingPart = [SPACEShipPart new];
-	NSArray *wingImages = @[@"HawkWings",@"SlicerWings",@"ZipperWings",@"DualWings",@"RocketWings",];
-	wingPart.spriteName = wingImages [SPACERandomIntegerInInterval(0, 4)];
 	wingPart.name = [wingPart generateNameForPart:@"Wings"];
 	wingPart.value = SPACERandomIntegerInInterval(10, 100);
+	CGPathRef wingPath = [wingPart newGeneratedWings];
+	wingPart.shape = wingPath;
+	CGPathRelease(wingPath);
 	return wingPart;
 }
 
 +(instancetype) randomHullPart {
 	SPACEShipPart *hullPart = [SPACEShipPart new];
-	NSArray *hullImages = @[@"SingleHull",@"NeedleHull",@"SplitHull",@"MantaHull",@"CoPilotHull",];
-	hullPart.spriteName = hullImages [SPACERandomIntegerInInterval(0, 4)];
 	hullPart.name = [hullPart generateNameForPart:@"Hull"];
 	hullPart.value = SPACERandomIntegerInInterval(10, 100);
+	CGPathRef hullPath = [hullPart newGeneratedHull];
+	hullPart.shape = hullPath;
+	CGPathRelease(hullPath);
 	return hullPart;
 }
 
 +(instancetype) randomThrusterPart {
 	SPACEShipPart *thrusterPart = [SPACEShipPart new];
-	NSArray *thrusterImages = @[@"IonThruster",@"TwinIonThruster",@"TwinFusionThruster",@"TriFusionThruster",@"TwinElectronThruster",];
-	thrusterPart.spriteName = thrusterImages [SPACERandomIntegerInInterval(0, 4)];
 	thrusterPart.name = [thrusterPart generateNameForPart:@"Thruster"];
 	thrusterPart.value = SPACERandomIntegerInInterval(10, 100);
+	CGPathRef thrusterPath = [thrusterPart newGeneratedThruster];
+	thrusterPart.shape = thrusterPath;
+	CGPathRelease(thrusterPath);
 	return thrusterPart;
+}
+
+-(CGPathRef) newGeneratedHull {
+	CGPoint PointA = CGPointMake(0, SPACERandomInInterval(5, 10));
+	CGPoint PointB = CGPointMake(SPACERandomInInterval(0, 12), SPACERandomInInterval(0, PointA.y));
+	CGPoint PointC = CGPointMake(SPACERandomInInterval(0, 14), SPACERandomInInterval(-5, PointB.y));
+	CGPoint PointD = CGPointMake(0, SPACERandomInInterval(-10, PointC.y));
+	
+	CGMutablePathRef path = CGPathCreateMutable();
+	CGPathMoveToPoint(path, NULL, PointA.x, PointA.y);
+	CGPathAddLineToPoint(path, NULL, PointB.x, PointB.y);
+	CGPathAddLineToPoint(path, NULL, PointC.x, PointC.y);
+	CGPathAddLineToPoint(path, NULL, PointD.x, PointD.y);
+	CGPathAddLineToPoint(path, NULL, -PointC.x, PointC.y);
+	CGPathAddLineToPoint(path, NULL, -PointB.x, PointB.y);
+	CGPathAddLineToPoint(path, NULL, PointA.x, PointA.y);
+	
+	return path;
+}
+
+-(CGPathRef) newGeneratedWings {
+	CGPoint PointA = CGPointMake(0, SPACERandomInInterval(12, 16));
+	CGPoint PointB = CGPointMake(SPACERandomInInterval(0, 16), SPACERandomInInterval(8, PointA.y));
+	CGPoint PointC = CGPointMake(SPACERandomInInterval(0, 18), SPACERandomInInterval(0, PointB.y));
+	CGPoint PointD = CGPointMake(SPACERandomInInterval(0, 20), SPACERandomInInterval(-8, PointC.y));
+	CGPoint PointE = CGPointMake(0, SPACERandomInInterval(-16, PointD.y));
+	
+	CGMutablePathRef path = CGPathCreateMutable();
+	CGPathMoveToPoint(path, NULL, PointA.x, PointA.y);
+	CGPathAddLineToPoint(path, NULL, PointB.x, PointB.y);
+	CGPathAddLineToPoint(path, NULL, PointC.x, PointC.y);
+	CGPathAddLineToPoint(path, NULL, PointD.x, PointD.y);
+	CGPathAddLineToPoint(path, NULL, PointE.x, PointE.y);
+	CGPathAddLineToPoint(path, NULL, -PointD.x, PointD.y);
+	CGPathAddLineToPoint(path, NULL, -PointC.x, PointC.y);
+	CGPathAddLineToPoint(path, NULL, -PointB.x, PointB.y);
+	CGPathAddLineToPoint(path, NULL, PointA.x, PointA.y);
+	
+	return path;
+}
+
+-(CGPathRef) newGeneratedThruster {
+	CGSize thrusterSize = CGSizeMake(SPACERandomInInterval(4, 6), SPACERandomInInterval(8, 12));
+	CGRect thrusterRect = CGRectMake(-(thrusterSize.width / 2), SPACERandomInInterval(-16, -20), thrusterSize.width, thrusterSize.height);
+	CGPathRef path = CGPathCreateWithRect(thrusterRect, NULL);
+	CGMutablePathRef mutablePath = CGPathCreateMutableCopy(path);
+	return mutablePath;
 }
 
 -(NSString*) generateNameForPart: (NSString*)part {

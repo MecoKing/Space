@@ -67,11 +67,11 @@
 	CGPathRef shipDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x - 5, self.compass.position.y - 5, 10, 10), NULL);
 	CGPathRef planetDotPath = CGPathCreateWithEllipseInRect(CGRectMake(self.compass.position.x -10, self.compass.position.y - 10, 20, 20), NULL);
 
-	for (SPACEShip *ship in self.scene.ships) {
+	for (SPACEShip *ship in self.myScene.ships) {
 		[self solidDotForShip:ship withFaction:ship.faction andPath:shipDotPath];
 	}
-	[self solidDotForNode:self.scene.system withColour:self.colour path:starDotPath andGlow:YES];
-	for (SPACESystem *planet in self.scene.system.satellites) {
+	[self solidDotForNode:self.myScene.system withColour:self.colour path:starDotPath andGlow:YES];
+	for (SPACESystem *planet in self.myScene.system.satellites) {
 		[self solidDotForNode:planet withColour:[SKColor colorWithWhite:0.1 alpha:1.0] path:planetDotPath andGlow:NO];
 	}
 }
@@ -83,7 +83,7 @@
 	if (hasGlow) dot.strokeColor = colour;
 	else dot.strokeColor = [SKColor clearColor];
 	dot.glowWidth = 3;
-	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(node.position, self.scene.playerShip.position)), 150));
+	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(node.position, self.myScene.playerShip.position)), 150));
 	dot.position = SPACEPointWithPolarPoint(polarPoint);
 	[self.compass addChild:dot];
 }
@@ -91,10 +91,10 @@
 	SKShapeNode *dot = [SKShapeNode new];
 	dot.path = path;
 	dot.fillColor = faction.shipColour;
-	if (faction == self.scene.playerShip.faction) dot.strokeColor = [SKColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5];
+	if (faction == self.myScene.playerShip.faction) dot.strokeColor = [SKColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.5];
 	else dot.strokeColor = [SKColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
 	dot.glowWidth = 0.05;
-	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(ship.position, self.scene.playerShip.position)), 150));
+	SPACEPolarPoint polarPoint = SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(ship.position, self.myScene.playerShip.position)), 150));
 	dot.position = SPACEPointWithPolarPoint(polarPoint);
 	[self.compass addChild:dot];
 }
@@ -108,7 +108,7 @@
 #pragma mark EngineHUD
 
 -(void) updateEngineHUD {
-	self.thrusterCapacity.text = [NSString stringWithFormat:@"EnginePower: %i%%", self.scene.playerEnginePower];
+	self.thrusterCapacity.text = [NSString stringWithFormat:@"EnginePower: %i%%", self.myScene.playerEnginePower];
 }
 
 #pragma mark
@@ -124,7 +124,7 @@
 	[self addChild:factionNameLabel];
 	SKLabelNode *shipCountLabel = [SKLabelNode labelNodeWithFontNamed:@"Menlo"];
 	int shipCount = 0;
-	for (SPACEShip *ship in self.scene.ships) {
+	for (SPACEShip *ship in self.myScene.ships) {
 		if (ship.faction == self.faction) {
 			shipCount++;
 		}

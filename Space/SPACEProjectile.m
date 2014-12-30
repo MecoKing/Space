@@ -42,7 +42,7 @@
 
 -(CGFloat) distanceFromClosestShip {
 	CGFloat topDistance = 1000000;
-	for (SPACEShip *ship in self.scene.ships) {
+	for (SPACEShip *ship in self.myScene.ships) {
 		if (topDistance == 1000000) topDistance = SPACEDistanceBetweenPoints(self.position, ship.position);
 		else if (SPACEDistanceBetweenPoints(self.position, ship.position) < topDistance) topDistance = SPACEDistanceBetweenPoints(self.position, ship.position);
 	}

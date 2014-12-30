@@ -18,7 +18,7 @@
 @property SPACEFaction *faction;
 @property SKColor *colour;
 
-@property (nonatomic, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *myScene;
 
 
 +(instancetype) compassHUDWithColour:(SKColor*)colour atPosition: (CGPoint) position;

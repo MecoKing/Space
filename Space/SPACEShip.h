@@ -17,7 +17,7 @@
 
 @interface SPACEShip : SKSpriteNode
 
-@property (nonatomic, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *myScene;
 //Physics
 @property CGFloat linearMagnitude;
 @property CGFloat angularMagnitude;
@@ -25,9 +25,9 @@
 @property CGFloat currentAngle;
 @property CGPoint relativePoint;
 //Visual
-@property SKSpriteNode *wings;
-@property SKSpriteNode *hull;
-@property SKSpriteNode *thruster;
+@property SKShapeNode *wings;
+@property SKShapeNode *hull;
+@property SKShapeNode *thruster;
 //Statistics
 @property NSInteger health;
 @property NSUInteger rank;
