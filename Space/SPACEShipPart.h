@@ -12,10 +12,14 @@
 
 @property NSUInteger value;
 @property NSUInteger storage;
-@property NSString *spriteName;
+
+@property (strong) CGPathRef shape __attribute__((NSObject));
 
 +(instancetype) randomWingPart;
 +(instancetype) randomHullPart;
 +(instancetype) randomThrusterPart;
+-(CGPathRef) newGeneratedWings;
+-(CGPathRef) newGeneratedHull;
+-(CGPathRef) newGeneratedThruster;
 
 @end

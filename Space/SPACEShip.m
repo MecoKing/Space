@@ -71,18 +71,18 @@
 		ship.priority = possiblePriorities[SPACERandomIntegerInInterval(0, possiblePriorities.count - 1)];
 	}
 	
-	ship.wings = [SKSpriteNode spriteNodeWithImageNamed:faction.wingPart.spriteName];
-	ship.wings.texture.filteringMode = SKTextureFilteringNearest;
-	ship.wings.colorBlendFactor = 1;
-	ship.wings.color = [SKColor colorWithRed:(faction.shipColour.redComponent - 0.1) green:(faction.shipColour.greenComponent - 0.1) blue:(faction.shipColour.blueComponent - 0.1) alpha:1];
+	ship.wings = [SKShapeNode shapeNodeWithPath:faction.wingPart.shape];
+	ship.wings.fillColor = [SKColor colorWithRed:(faction.shipColour.redComponent - 0.1) green:(faction.shipColour.greenComponent - 0.1) blue:(faction.shipColour.blueComponent - 0.1) alpha:1];
+	ship.wings.strokeColor = ship.wings.fillColor;
 	
-	ship.hull = [SKSpriteNode spriteNodeWithImageNamed:faction.hullPart.spriteName];
-	ship.hull.texture.filteringMode = SKTextureFilteringNearest;
-	ship.hull.colorBlendFactor = 1;
-	ship.hull.color = faction.shipColour;
+	ship.hull = [SKShapeNode shapeNodeWithPath:faction.hullPart.shape];
+	ship.hull.fillColor = faction.shipColour;
+	ship.hull.strokeColor = faction.shipColour;
 	
-	ship.thruster = [SKSpriteNode spriteNodeWithImageNamed:faction.thrusterPart.spriteName];
-	ship.thruster.texture.filteringMode = SKTextureFilteringNearest;
+	CGFloat grayScale = SPACERandomInInterval(0.2, 0.8);
+	ship.thruster = [SKShapeNode shapeNodeWithPath:faction.thrusterPart.shape];
+	ship.thruster.fillColor = [SKColor colorWithRed:grayScale green:grayScale blue:grayScale alpha:1.0];
+	ship.thruster.strokeColor = ship.thruster.fillColor;
 	
 	[ship addChild: ship.wings];
 	[ship addChild: ship.thruster];
@@ -115,7 +115,7 @@
 
 -(void) fireLaser {
 	SPACEProjectile *laser = [SPACEProjectile laserOriginatingFromShip:self];
-	[self.scene.laserManager addChild:laser];
+	[self.myScene.laserManager addChild:laser];
 	laser.physicsBody.velocity = self.physicsBody.velocity;
 	[laser.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = self.zRotation, .r = self.linearMagnitude })];
 }
@@ -126,7 +126,7 @@
 	
 	SPACEProjectile *missile = [SPACEProjectile missileOriginatingFromShip:self];
 	
-	[self.scene.laserManager addChild:missile];
+	[self.myScene.laserManager addChild:missile];
 	missile.physicsBody.velocity = self.physicsBody.velocity;
 	missile.zRotation = firingAngle;
 	[missile.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = firingAngle, .r = self.linearMagnitude })];
@@ -189,7 +189,7 @@
 -(SPACEShip*) target {
 	SPACEShip *targetShip = NULL;
 	
-	for (SPACEShip *ship in self.scene.ships) {
+	for (SPACEShip *ship in self.myScene.ships) {
 		if (ship.faction != self.faction) {
 			if (targetShip == NULL) {
 				targetShip = ship;

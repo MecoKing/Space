@@ -12,7 +12,7 @@
 +(instancetype)randomMoltenPlanet;
 +(instancetype)randomGasGiant;
 
-@property (readonly) SPACEMyScene *scene;
+@property (readonly) SPACEMyScene *myScene;
 @property SKSpriteNode *shadow;
 @property (readonly) SKTexture *texture;
 
