@@ -13,7 +13,7 @@
 
 @interface SPACEStellarBody : SKNode <SPACEBarycentre>
 
-@property (readonly) SPACEMyScene *scene;
+@property (readonly) SPACEMyScene *myScene;
 
 -(instancetype)initWithRadius:(CGFloat)radius mass:(CGFloat)mass colour:(SKColor *)colour haloWidthRatio:(CGFloat)haloWidthRatio;
 

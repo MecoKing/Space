@@ -13,7 +13,7 @@
 +(instancetype)laserOriginatingFromShip:(SPACEShip *)ship;
 -(CGFloat) distanceFromClosestShip;
 
-@property (nonatomic, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *myScene;
 @property SPACEFaction* faction;
 @property SPACEShip *owner;
 

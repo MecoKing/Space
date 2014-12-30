@@ -15,7 +15,7 @@
 
 +(instancetype) radarNodeTrackingNode: (SKNode*)node withColour: (SKColor*)colour {
 	SPACERadarNode *radar = [SPACERadarNode new];
-	radar.position = SPACEPointWithPolarPoint(SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(node.position, radar.scene.playerShip.position)), 150)));
+	radar.position = SPACEPointWithPolarPoint(SPACEPolarPointWithPoint(SPACEMultiplyPointByScalar(SPACENormalizePoint(SPACESubtractPoint(node.position, radar.myScene.playerShip.position)), 150)));
 	return radar;
 }
 

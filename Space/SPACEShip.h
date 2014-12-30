@@ -17,7 +17,7 @@
 
 @interface SPACEShip : SKSpriteNode
 
-@property (nonatomic, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *myScene;
 //Physics
 @property CGFloat linearMagnitude;
 @property CGFloat angularMagnitude;

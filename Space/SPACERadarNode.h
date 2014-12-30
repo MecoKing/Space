@@ -12,6 +12,6 @@
 
 @interface SPACERadarNode : SKNode
 
-@property (nonatomic, readonly) SPACEMyScene *scene;
+@property (nonatomic, readonly) SPACEMyScene *myScene;
 
 @end

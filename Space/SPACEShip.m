@@ -115,7 +115,7 @@
 
 -(void) fireLaser {
 	SPACEProjectile *laser = [SPACEProjectile laserOriginatingFromShip:self];
-	[self.scene.laserManager addChild:laser];
+	[self.myScene.laserManager addChild:laser];
 	laser.physicsBody.velocity = self.physicsBody.velocity;
 	[laser.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = self.zRotation, .r = self.linearMagnitude })];
 }
@@ -126,7 +126,7 @@
 	
 	SPACEProjectile *missile = [SPACEProjectile missileOriginatingFromShip:self];
 	
-	[self.scene.laserManager addChild:missile];
+	[self.myScene.laserManager addChild:missile];
 	missile.physicsBody.velocity = self.physicsBody.velocity;
 	missile.zRotation = firingAngle;
 	[missile.physicsBody applyForce:SPACEVectorWithPolarPoint((SPACEPolarPoint){ .phi = firingAngle, .r = self.linearMagnitude })];
@@ -189,7 +189,7 @@
 -(SPACEShip*) target {
 	SPACEShip *targetShip = NULL;
 	
-	for (SPACEShip *ship in self.scene.ships) {
+	for (SPACEShip *ship in self.myScene.ships) {
 		if (ship.faction != self.faction) {
 			if (targetShip == NULL) {
 				targetShip = ship;
