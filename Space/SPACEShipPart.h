@@ -13,7 +13,7 @@
 @property NSUInteger value;
 @property NSUInteger storage;
 
-@property CGPathRef shape;
+@property (strong) CGPathRef shape __attribute__((NSObject));
 
 +(instancetype) randomWingPart;
 +(instancetype) randomHullPart;
